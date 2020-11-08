@@ -1,5 +1,0 @@
-language: python
-
-script:
-- echo 'init'
-- python --version
