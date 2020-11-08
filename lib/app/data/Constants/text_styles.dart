@@ -11,14 +11,14 @@ class CustomTextStyles {
   );
   final buttonTextStyle = TextStyle(
       color: HexColorUtils.getColorFromHex(CustomColors.textColorThree),
-      fontSize: Get.height * 0.03);
+      fontSize: Get.height * 0.024);
   final textFieldStyle = TextStyle(
       color: HexColorUtils.getColorFromHex(CustomColors.hintText),
       fontSize: Get.height * 0.016);
   final smallText = TextStyle(
       color: HexColorUtils.getColorFromHex(CustomColors.textColorOne),
-      fontSize: Get.height * 0.018);
+      fontSize: Get.height * 0.016);
   final smallButtonText = TextStyle(
       color: HexColorUtils.getColorFromHex(CustomColors.textColorTwo),
-      fontSize: Get.height * 0.018);
+      fontSize: Get.height * 0.016);
 }

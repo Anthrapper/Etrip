@@ -3,6 +3,8 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/modules/signup/views/signup_view.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/login/controllers/login_controller.dart';
@@ -24,6 +26,7 @@ class LoginView extends GetView<LoginController> {
               form(),
               button(),
               language(),
+              toSignUp(),
             ],
           ),
         ),
@@ -72,11 +75,11 @@ class LoginView extends GetView<LoginController> {
             CustomTextField(
               suffixChecker: true,
               controller: controller.email,
-              hintText: 'Enter Email or phone number',
+              hintText: 'Enter email or phone number',
               secureText: false,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
                   obsecure: controller.obscure,
@@ -97,8 +100,9 @@ class LoginView extends GetView<LoginController> {
   Widget language() {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: Get.width * 0.1, vertical: Get.height * 0.1),
+          horizontal: Get.width * 0.1, vertical: Get.height * 0.05),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'Choose a language',
@@ -106,7 +110,7 @@ class LoginView extends GetView<LoginController> {
           ),
           Obx(
             () => Padding(
-              padding: EdgeInsets.only(left: Get.width * 0.08),
+              padding: EdgeInsets.only(left: Get.width * 0.03),
               child: InkWell(
                 onTap: controller.enSelected,
                 child: Text(
@@ -121,7 +125,7 @@ class LoginView extends GetView<LoginController> {
           Obx(
             () => Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: Get.width * 0.08),
+                padding: EdgeInsets.only(left: Get.width * 0.03),
                 child: InkWell(
                   onTap: controller.mlSelected,
                   child: Text(
@@ -134,6 +138,32 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
           )
+        ],
+      ),
+    );
+  }
+
+  Widget toSignUp(){
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(40, 0, 10, 0),
+      child: Row(
+        children: [
+          Text(
+            'Don\'\ t have an account?',
+            style: CustomTextStyles().smallText,
+          ),
+           Padding(
+              padding: EdgeInsets.only(left: Get.width * 0.03),
+              child: InkWell(
+                onTap: (){
+                  Get.toNamed(AppPages.SIGNUP);
+                },
+                child: Text(
+                  'SignUp',
+                  style: CustomTextStyles().smallButtonText,
+                ),
+              ),
+            ),
         ],
       ),
     );

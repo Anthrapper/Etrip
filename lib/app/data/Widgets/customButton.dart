@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: HexColorUtils.getColorFromHex(CustomColors.buttonColor),
-      height: Get.height * 0.065,
+      height: Get.height * 0.055,
       width: Get.width * 0.4,
       child: FlatButton(
         onPressed: onpressed,
