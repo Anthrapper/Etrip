@@ -1,7 +1,8 @@
 # etrip
 
-A new Flutter project.
-
+- [x] frontend  https://github.com/TomerconDevelopers/etrip/tree/frontend
+- [ ] backend `working on it`
+- [ ] production `soon`
 ## Getting Started
 
 This project is a starting point for a Flutter application.
