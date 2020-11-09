@@ -27,9 +27,9 @@ class CustomTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.085),
       child: Container(
         decoration: BoxDecoration(
-            color: HexColorUtils.getColorFromHex(CustomColors.textfield),
+            color: HexColorUtils.getColorFromHex(CustomColors.textField),
             border: Border.all(
-              color: HexColorUtils.getColorFromHex(CustomColors.textfield),
+              color: HexColorUtils.getColorFromHex(CustomColors.textField),
             ),
             borderRadius: BorderRadius.all(Radius.circular(13))),
         child: TextFormField(

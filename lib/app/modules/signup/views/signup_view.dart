@@ -3,10 +3,11 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/modules/home/views/home_view.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/signup/controllers/signup_controller.dart';
-
 
 class SignupView extends GetView<SignupController> {
   @override
@@ -24,6 +25,12 @@ class SignupView extends GetView<SignupController> {
               heading(),
               form(),
               button(),
+              FlatButton(
+                onPressed: (){
+                  Get.offAll(HomeView());
+                },
+                child: Text('To Home'),
+              ),
             ],
           ),
         ),
@@ -87,29 +94,27 @@ class SignupView extends GetView<SignupController> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
-                    () =>
-                    CustomTextField(
-                      obsecure: controller.obscure,
-                      icon: Icons.visibility,
-                      suffixChecker: true,
-                      controller: controller.password,
-                      hintText: 'New Password',
-                      secureText: controller.showText.value,
-                    ),
+                () => CustomTextField(
+                  obsecure: controller.obscure,
+                  icon: Icons.visibility,
+                  suffixChecker: true,
+                  controller: controller.password,
+                  hintText: 'New Password',
+                  secureText: controller.showText.value,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
-                    () =>
-                    CustomTextField(
-                      obsecure: controller.obscure,
-                      icon: Icons.visibility,
-                      suffixChecker: true,
-                      controller: controller.password,
-                      hintText: 'Confirm Password',
-                      secureText: controller.showText.value,
-                    ),
+                () => CustomTextField(
+                  obsecure: controller.obscure,
+                  icon: Icons.visibility,
+                  suffixChecker: true,
+                  controller: controller.password,
+                  hintText: 'Confirm Password',
+                  secureText: controller.showText.value,
+                ),
               ),
             ),
           ],
@@ -117,5 +122,4 @@ class SignupView extends GetView<SignupController> {
       ),
     );
   }
-
 }
