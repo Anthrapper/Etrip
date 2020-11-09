@@ -3,7 +3,6 @@ import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/home/controllers/home_controller.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomeView extends GetView<HomeController> {
   @override
