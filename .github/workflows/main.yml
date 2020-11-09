@@ -3,7 +3,7 @@ name: Flutter CI
 on:
   push:
     branches:
-    - master    
+    - frontend    
 jobs:
   build:
     runs-on: ubuntu-latest

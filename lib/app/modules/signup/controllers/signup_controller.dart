@@ -45,51 +45,49 @@ class SignupController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
-}
-
-Widget submitOtp() {
-  return Container(
-    height: 300,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(10),
-        topRight: Radius.circular(10),
+  Widget submitOtp() {
+    return Container(
+      height: 300,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+        color: Colors.white,
       ),
-      color: Colors.white,
-    ),
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: PinEntryTextField(
-            fields: 4,
-            fieldWidth: 60.0,
-            fontSize: 30.0,
-            showFieldAsBox: false,
-            onSubmit: (String pin) {
-              print(pin);
-            },
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text(
-            'Please enter 4-digit code sent to your number as SMS',
-            textAlign: TextAlign.center,
-            style: CustomTextStyles().smallText,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: CustomButton(
-              text: 'SIGNUP',
-              // onpressed: controller.doSignUp,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: PinEntryTextField(
+              fields: 4,
+              fieldWidth: 60.0,
+              fontSize: 30.0,
+              showFieldAsBox: false,
+              onSubmit: (String pin) {
+                print(pin);
+              },
             ),
           ),
-        ),
-      ],
-    ),
-  );
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              'Please enter 4-digit code sent to your number as SMS',
+              textAlign: TextAlign.center,
+              style: CustomTextStyles().smallText,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: CustomButton(
+                text: 'SIGNUP',
+                onpressed: doSignUp,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -1,9 +1,7 @@
-import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
-import 'package:etrip/app/modules/signup/views/signup_view.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -143,7 +141,7 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget toSignUp(){
+  Widget toSignUp() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 0, 10, 0),
       child: Row(
@@ -152,18 +150,18 @@ class LoginView extends GetView<LoginController> {
             'Don\'\ t have an account?',
             style: CustomTextStyles().smallText,
           ),
-           Padding(
-              padding: EdgeInsets.only(left: Get.width * 0.03),
-              child: InkWell(
-                onTap: (){
-                  Get.toNamed(AppPages.SIGNUP);
-                },
-                child: Text(
-                  'SignUp',
-                  style: CustomTextStyles().smallButtonText,
-                ),
+          Padding(
+            padding: EdgeInsets.only(left: Get.width * 0.03),
+            child: InkWell(
+              onTap: () {
+                Get.toNamed(AppPages.SIGNUP);
+              },
+              child: Text(
+                'SignUp',
+                style: CustomTextStyles().smallButtonText,
               ),
             ),
+          ),
         ],
       ),
     );
