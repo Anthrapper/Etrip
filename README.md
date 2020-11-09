@@ -1,7 +1,7 @@
 # etrip
 
 - [x] frontend  https://github.com/TomerconDevelopers/etrip/tree/frontend
-- [ ] backend `working on it`
+- [x] backend https://github.com/TomerconDevelopers/etrip/tree/backend
 - [ ] production `soon`
 ## Getting Started
 
