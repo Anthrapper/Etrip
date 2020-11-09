@@ -1,0 +1,7 @@
+- [ ] development server
+- [ ] api endpoints
+  - [ ] host : https://<host>:<port>/
+  - [ ] v1/users/login
+  - [ ] v1/users/logout
+  - [ ] v1/users/signup
+  - [ ] ...
