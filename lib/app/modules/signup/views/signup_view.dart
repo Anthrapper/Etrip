@@ -27,7 +27,7 @@ class SignupView extends GetView<SignupController> {
               button(),
               FlatButton(
                 onPressed: (){
-                  Get.offAll(HomeView());
+                  Get.offAllNamed(AppPages.INITIAL);
                 },
                 child: Text('To Home'),
               ),

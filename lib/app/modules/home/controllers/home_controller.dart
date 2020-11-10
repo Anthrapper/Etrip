@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final count = 0.obs;
+  var currentIndex=0.obs;
+
+   indexChange(int index){
+    currentIndex.value = index;
+  }
 
   @override
   void onInit() {
@@ -18,5 +22,4 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
