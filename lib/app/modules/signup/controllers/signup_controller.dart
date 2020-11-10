@@ -82,7 +82,7 @@ class SignupController extends GetxController {
             child: Center(
               child: CustomButton(
                 text: 'SIGNUP',
-                // onpressed: doSignUp,
+                onpressed: doSignUp,
               ),
             ),
           ),

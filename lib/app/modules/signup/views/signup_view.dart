@@ -3,7 +3,6 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
-import 'package:etrip/app/modules/home/views/home_view.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +25,7 @@ class SignupView extends GetView<SignupController> {
               form(),
               button(),
               FlatButton(
-                onPressed: (){
+                onPressed: () {
                   Get.offAllNamed(AppPages.INITIAL);
                 },
                 child: Text('To Home'),

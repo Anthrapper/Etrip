@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  geolocator: 6.1.6
   google_fonts: 1.1.1
   pin_entry_text_field: 0.1.4
   carousel_slider: ^2.3.1

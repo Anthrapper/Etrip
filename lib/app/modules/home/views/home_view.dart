@@ -1,12 +1,14 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
+import 'package:etrip/app/data/Functions/location_helper.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/home/controllers/home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeView extends GetView<HomeController> {
-  List cardList = [
+  final List cardList = [
     Item1(),
     Item2(),
     Item3(),
@@ -124,6 +126,13 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                   ),
+                  FlatButton(
+                    onPressed: () async {
+                      var vName = 'Otorsha';
+                      await Get.toNamed(AppPages.VEHICLEFORM, arguments: vName);
+                    },
+                    child: Text('New Trip'),
+                  ),
                 ],
               ),
             ),
@@ -131,7 +140,9 @@ class HomeView extends GetView<HomeController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          LocationHelper().getLocation();
+        },
         child: Icon(Icons.gps_fixed),
         backgroundColor:
             HexColorUtils.getColorFromHex(CustomColors.buttonColor),
