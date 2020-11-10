@@ -8,7 +8,7 @@
 ### Backend : Development Server
  
   ### Admin
- - admin : `https://admin.etrip.ml/y42rhXWHCYGcfu6g3uqR7vkxqQZ7G5gt/`
+ - admin : https://admin.etrip.ml/y42rhXWHCYGcfu6g3uqR7vkxqQZ7G5gt/
  - username : `admin`
  - password : `12345`
  
