@@ -3,7 +3,7 @@ from django.db.models import CharField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from django.contrib.gis.db import models as geo_models
+#from django.contrib.gis.db import models as geo_models
 
 
 class User(AbstractUser):
