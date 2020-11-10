@@ -17,3 +17,7 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     list_display = ["username", "name", "is_superuser"]
     search_fields = ["name"]
+
+admin.site.site_header = "ETrip Admin"
+admin.site.site_title = "ETrip Dashboard"
+admin.site.index_title = "Welcome to ETrip Dashboard"
