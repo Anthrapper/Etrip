@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "739510513536",
+    "firebase_url": "https://etrip-a31c2.firebaseio.com",
+    "project_id": "etrip-a31c2",
+    "storage_bucket": "etrip-a31c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739510513536:android:e81816e61fc01f13ef1b65",
+        "android_client_info": {
+          "package_name": "com.etrip.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739510513536-hdgc2r86jhl9qftvbkniuik59p2lqkq0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.etrip.demo",
+            "certificate_hash": "80ab7898ead23796bf6ea385dd16dee87a98b8b5"
+          }
+        },
+        {
+          "client_id": "739510513536-fl40rfmsvg485je196jmo5b23a55shg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCSymwDX6v4CNTqBwpuFxwHqv3TdCRii8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739510513536-fl40rfmsvg485je196jmo5b23a55shg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739510513536:android:dcd967e902aefc8cef1b65",
+        "android_client_info": {
+          "package_name": "com.hathtech.firebase_tutorials"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739510513536-o5e0jarqfq8j72ncmuvu1d02o303q1ju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hathtech.firebase_tutorials",
+            "certificate_hash": "221ef141f76fcaa63195909f6acbe5b1c5a90785"
+          }
+        },
+        {
+          "client_id": "739510513536-3guvi034kar67kpmokoau26g9djibgh4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hathtech.firebase_tutorials",
+            "certificate_hash": "4b56ae0ddbb33bc7a546e5c45428922e0ed79662"
+          }
+        },
+        {
+          "client_id": "739510513536-fl40rfmsvg485je196jmo5b23a55shg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCSymwDX6v4CNTqBwpuFxwHqv3TdCRii8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739510513536-fl40rfmsvg485je196jmo5b23a55shg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739510513536:android:b76a90b4cfebb07fef1b65",
+        "android_client_info": {
+          "package_name": "com.tomercon.dev.etrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739510513536-7nm6vaap2h2qcfk8bqkjra03j7di7e6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tomercon.dev.etrip",
+            "certificate_hash": "4b56ae0ddbb33bc7a546e5c45428922e0ed79662"
+          }
+        },
+        {
+          "client_id": "739510513536-fl40rfmsvg485je196jmo5b23a55shg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCSymwDX6v4CNTqBwpuFxwHqv3TdCRii8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739510513536-fl40rfmsvg485je196jmo5b23a55shg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
