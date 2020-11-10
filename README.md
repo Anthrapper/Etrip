@@ -1,7 +1,12 @@
 # etrip
 
+
+[![Build CI](https://img.shields.io/badge/download%20apk-v0.1-green.svg)](https://github.com/TomerconDevelopers/etrip/releases/download/v0.1-beta/app-release-v0-1.apk)
+
 - [x] frontend  https://github.com/TomerconDevelopers/etrip/tree/frontend
+
 - [x] backend https://github.com/TomerconDevelopers/etrip/tree/backend
+
 - [ ] production `soon`
 ## Getting Started
 
@@ -18,4 +23,8 @@
 
 ### Frontend : Development Build
 
-![Build CI](https://github.com/TomerconDevelopers/etrip/workflows/Flutter%20CI/badge.svg)
+[![Build CI](https://github.com/TomerconDevelopers/etrip/workflows/Flutter%20CI/badge.svg)](https://github.com/TomerconDevelopers/etrip/actions)
+
+
+
+
