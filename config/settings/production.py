@@ -9,6 +9,8 @@ from sentry_sdk.integrations.celery import CeleryIntegration
 from .base import *  # noqa
 from .base import env
 
+import os #env
+
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
@@ -193,5 +195,5 @@ sentry_sdk.init(
 
 # GDAL
 # ------------------------------------------------------------------------------
-GDAL_LIBRARY_PATH = env('GDAL_LIBRARY_PATH')
-GEOS_LIBRARY_PATH = env('GEOS_LIBRARY_PATH')
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
