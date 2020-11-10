@@ -15,3 +15,7 @@
   ### API
   - api host : https://api.etrip.ml/
   - endpoints : `v1/*`
+
+### Frontend : Development Build
+
+![Build CI](https://github.com/TomerconDevelopers/etrip/workflows/Flutter%20CI/badge.svg)
