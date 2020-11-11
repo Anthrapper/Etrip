@@ -1,16 +1,54 @@
+import 'package:etrip/app/data/Api/api_calls.dart';
+import 'package:etrip/app/data/Auth/auth_helper.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Widgets/snackbars.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  TextEditingController email;
+  final AuthHelper _authHelper = AuthHelper();
+  TextEditingController userName;
   TextEditingController password;
   var showText = true.obs;
   var en = true.obs;
   var ml = false.obs;
-  final formKey = GlobalKey<FormState>();
-  Future dologin() async {
-    print('logged in');
+  failedLogin(var reason) {
+    if (Get.isDialogOpen) {
+      Get.back();
+    }
+    CustomSnackbars().snackBar('Login Failed', reason.toString(), Icons.error);
   }
+
+  successfulLogin(var tokenData) async {
+    await _authHelper
+        .storeToken(tokenData['access'], tokenData['refresh'])
+        .whenComplete(() async {
+      if (Get.isDialogOpen) {
+        Get.back();
+        await Get.offAllNamed(AppPages.INITIAL);
+      }
+    });
+  }
+
+  Future login() async {
+    await ApiCalls().postRequest(
+      body: {"username": userName.text, "password": password.text},
+      headers: ApiData.jsonHeader,
+      url: ApiData.login,
+    ).then((postData) async {
+      print(postData);
+      if (postData[0] == 200) {
+        successfulLogin(postData[1]);
+      } else if (postData[0] == 401) {
+        failedLogin(postData[1]['detail']);
+      } else {
+        print(postData[0]);
+        failedLogin(postData[1]);
+      }
+    });
+  }
+  // OtpSender().onVerifyCode('7012595875');
 
   enSelected() {
     en.value = true;
@@ -37,7 +75,7 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    email = TextEditingController();
+    userName = TextEditingController();
     password = TextEditingController();
     super.onInit();
   }
@@ -49,7 +87,7 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
-    email?.dispose();
+    userName?.dispose();
     password?.dispose();
     super.onClose();
   }

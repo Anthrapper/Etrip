@@ -1,3 +1,4 @@
+import 'package:etrip/app/data/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Functions/location_helper.dart';
@@ -132,6 +133,13 @@ class HomeView extends GetView<HomeController> {
                       await Get.toNamed(AppPages.VEHICLEFORM, arguments: vName);
                     },
                     child: Text('New Trip'),
+                  ),
+                  FlatButton(
+                    onPressed: () async {
+                      await AuthHelper().removeToken().whenComplete(
+                          () async => await Get.offAllNamed(AppPages.LOGIN));
+                    },
+                    child: Text('Log Out'),
                   ),
                 ],
               ),

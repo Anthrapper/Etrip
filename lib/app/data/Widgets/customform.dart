@@ -13,9 +13,9 @@ class CustomTextField extends StatelessWidget {
   final bool suffixChecker;
   final Function obsecure;
   CustomTextField({
-    this.hintText,
+    @required this.hintText,
     this.icon,
-    this.controller,
+    @required this.controller,
     this.secureText,
     this.validator,
     this.suffixChecker,

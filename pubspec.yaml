@@ -21,6 +21,10 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  jwt_decoder: 1.0.3
+  flutter_secure_storage: 3.3.5
+  http: 0.12.2
+  form_field_validator: 1.0.1
   firebase_auth: 0.18.3
   firebase_core: 0.5.2
   geolocator: 6.1.6

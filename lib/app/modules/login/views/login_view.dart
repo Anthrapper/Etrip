@@ -1,5 +1,6 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
+import 'package:etrip/app/data/Functions/validator.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/routes/app_pages.dart';
@@ -8,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:etrip/app/modules/login/controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +61,12 @@ class LoginView extends GetView<LoginController> {
     return Center(
       child: CustomButton(
         text: 'LOGIN',
-        onpressed: controller.dologin,
+        onpressed: () {
+          if (formKey.currentState.validate()) {
+            CustomSnackbars().progressIndicator();
+            controller.login();
+          }
+        },
       ),
     );
   }
@@ -67,12 +75,13 @@ class LoginView extends GetView<LoginController> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
       child: Form(
-        key: controller.formKey,
+        key: formKey,
         child: Column(
           children: [
             CustomTextField(
+              validator: FormValidator().reqValidator,
               suffixChecker: true,
-              controller: controller.email,
+              controller: controller.userName,
               hintText: 'Enter email or phone number',
               secureText: false,
             ),
@@ -80,6 +89,7 @@ class LoginView extends GetView<LoginController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  validator: FormValidator().reqValidator,
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
                   suffixChecker: true,
