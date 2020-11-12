@@ -90,21 +90,24 @@ class MyDrawer extends StatelessWidget {
                   thickness: 0.5,
                   // color: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Logout',
-                        style: TextStyle(
-                          fontSize: 20,
+                FlatButton(
+                  onPressed: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Logout',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .4,
-                      ),
-                      Icon(Icons.exit_to_app),
-                    ],
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * .4,
+                        ),
+                        Icon(Icons.exit_to_app),
+                      ],
+                    ),
                   ),
                 ),
               ],

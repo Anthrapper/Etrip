@@ -97,6 +97,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "739510513536-pdao4kr1c5798luc3g4enuondggrf2ja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tomercon.dev.etrip",
+            "certificate_hash": "80ab7898ead23796bf6ea385dd16dee87a98b8b5"
+          }
+        },
+        {
           "client_id": "739510513536-0cneq6l8p9d81o0iar8v2dm0e1047cec.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

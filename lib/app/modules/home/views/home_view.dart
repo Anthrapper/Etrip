@@ -103,28 +103,100 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Container(
-                        color: Colors.grey,
-                        height: 40,
-                        width: 300,
-                        child: Center(
-                          child: Text('My Trip'),
+                    child: Container(
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 4,
+                              offset: Offset(1, 3),
+                            )
+                          ]),
+                      child: FlatButton(
+                        onPressed: () {},
+                        child: ListTile(
+                          title: Text(
+                            'My Trip',
+                            style: TextStyle(
+                              fontSize: 23,
+                            ),
+                          ),
+                          subtitle: Text('See your trips'),
+                          trailing: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 5,
+                                  color: Colors.grey,
+                                  spreadRadius: 1,
+                                  offset: Offset(2, 4),
+                                )
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundColor: HexColorUtils.getColorFromHex(
+                                  CustomColors.buttonColor),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Container(
-                        color: Colors.grey,
-                        height: 40,
-                        width: 300,
-                        child: Center(
-                          child: Text('Trip History'),
+                    child: Container(
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 4,
+                              offset: Offset(1, 3),
+                            )
+                          ]),
+                      child: FlatButton(
+                        onPressed: () {},
+                        child: ListTile(
+                          title: Text(
+                            'Trip History',
+                            style: TextStyle(fontSize: 23),
+                          ),
+                          subtitle: Text('See your trip history'),
+                          trailing: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 5,
+                                  color: Colors.grey,
+                                  spreadRadius: 1,
+                                  offset: Offset(2, 4),
+                                )
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundColor: HexColorUtils.getColorFromHex(
+                                  CustomColors.buttonColor),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
