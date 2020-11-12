@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:etrip/app/modules/home/controllers/home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'drawer.dart';
+
 class HomeView extends GetView<HomeController> {
   final List cardList = [
     Item1(),
@@ -27,7 +29,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: newDrawer(),
+      drawer: MyDrawer(),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -154,17 +156,6 @@ class HomeView extends GetView<HomeController> {
         child: Icon(Icons.gps_fixed),
         backgroundColor:
             HexColorUtils.getColorFromHex(CustomColors.buttonColor),
-      ),
-    );
-  }
-
-  Widget newDrawer() {
-    return Container(
-      color: Colors.white,
-      height: double.infinity,
-      width: 250,
-      child: Center(
-        child: Text('Drawer'),
       ),
     );
   }
