@@ -97,6 +97,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "739510513536-0cneq6l8p9d81o0iar8v2dm0e1047cec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tomercon.dev.etrip",
+            "certificate_hash": "22310c97e6738010a948a61f0d365e5e37eeeb47"
+          }
+        },
+        {
+          "client_id": "739510513536-cv83dgc1na2ofe9prh29foms6tqhdf7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tomercon.dev.etrip",
+            "certificate_hash": "221ef141f76fcaa63195909f6acbe5b1c5a90785"
+          }
+        },
+        {
           "client_id": "739510513536-7nm6vaap2h2qcfk8bqkjra03j7di7e6b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

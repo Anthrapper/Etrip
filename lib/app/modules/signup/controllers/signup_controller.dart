@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/text_styles.dart';
+import 'package:etrip/app/data/Functions/otp_sender.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:pin_entry_text_field/pin_entry_text_field.dart';
 class SignupController extends GetxController {
   final count = 0.obs;
   TextEditingController email;
+  TextEditingController name;
+  TextEditingController confPass;
   TextEditingController password;
   var showText = true.obs;
   var en = true.obs;
@@ -16,7 +19,9 @@ class SignupController extends GetxController {
 
   Future doSignUp() async {
     print('Signed in');
-    Get.bottomSheet(submitOtp());
+    OtpSender().onVerifyCode('7012595875');
+
+    // Get.bottomSheet(submitOtp());
   }
 
   obscure() {
@@ -32,6 +37,8 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
+    email = TextEditingController();
+    password = TextEditingController();
     super.onInit();
   }
 

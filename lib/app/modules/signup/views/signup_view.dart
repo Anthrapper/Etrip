@@ -77,7 +77,7 @@ class SignupView extends GetView<SignupController> {
           children: [
             CustomTextField(
               suffixChecker: true,
-              controller: controller.email,
+              controller: controller.name,
               hintText: 'Name',
               secureText: false,
             ),
@@ -110,7 +110,7 @@ class SignupView extends GetView<SignupController> {
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
                   suffixChecker: true,
-                  controller: controller.password,
+                  controller: controller.confPass,
                   hintText: 'Confirm Password',
                   secureText: controller.showText.value,
                 ),
