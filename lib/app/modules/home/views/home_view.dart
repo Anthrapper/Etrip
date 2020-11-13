@@ -210,6 +210,12 @@ class HomeView extends GetView<HomeController> {
                     child: Text('New Trip'),
                   ),
                   FlatButton(
+                    onPressed: () {
+                      Get.toNamed(AppPages.SIGNUP_DRIVER);
+                    },
+                    child: Text('SignUp Driver'),
+                  ),
+                  FlatButton(
                     onPressed: ()  {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) => UserType(),

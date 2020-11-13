@@ -1,3 +1,5 @@
+import 'package:etrip/app/modules/signup_driver/views/signup_driver_view.dart';
+import 'package:etrip/app/modules/signup_driver/bindings/signup_driver_binding.dart';
 import 'package:etrip/app/modules/vehicleform/views/vehicleform_view.dart';
 import 'package:etrip/app/modules/vehicleform/bindings/vehicleform_binding.dart';
 import 'package:etrip/app/modules/signup/views/signup_view.dart';
@@ -14,6 +16,7 @@ class AppPages {
   static const LOGIN = Routes.LOGIN;
   static const SIGNUP = Routes.SIGNUP;
   static const VEHICLEFORM = Routes.VEHICLEFORM;
+  static const SIGNUP_DRIVER = Routes.SIGNUP_DRIVER;
 
   static final routes = [
     GetPage(
@@ -35,6 +38,11 @@ class AppPages {
       name: Routes.VEHICLEFORM,
       page: () => VehicleformView(),
       binding: VehicleformBinding(),
+    ),
+    GetPage(
+      name: Routes.SIGNUP_DRIVER, 
+      page:()=> SignupDriverView(), 
+      binding: SignupDriverBinding(),
     ),
   ];
 }
