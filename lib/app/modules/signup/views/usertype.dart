@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
-import 'package:etrip/app/modules/signup/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,20 +58,22 @@ class UserType extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
-                child: Text('Lorem ipsum dolor sit amet?',
-                style: TextStyle(
-                  fontSize: Get.height * 0.028,
-                  fontWeight: FontWeight.w500,
-                ),
+                child: Text(
+                  'Lorem ipsum dolor sit amet?',
+                  style: TextStyle(
+                    fontSize: Get.height * 0.028,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               FlatButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: ListTile(
                   title: Text(
                     'Ride',
                     style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(CustomColors.headings),
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.headings),
                         fontSize: Get.height * 0.024),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right),
@@ -80,12 +81,13 @@ class UserType extends StatelessWidget {
               ),
               Divider(),
               FlatButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: ListTile(
                   title: Text(
                     'Drive',
                     style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(CustomColors.headings),
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.headings),
                         fontSize: Get.height * 0.024),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right),

@@ -46,7 +46,7 @@ class AuthHelper {
             }
           } on SocketException catch (e) {
             print(e);
-            CustomSnackbars().noInternet();
+            CustomNotifiers().noInternet();
           }
         } else {
           print('refresh token expired you need to login again');

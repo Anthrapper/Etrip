@@ -1,7 +1,7 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/data/Widgets/snackbars.dart';
+import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,7 @@ class LoginController extends GetxController {
     if (Get.isDialogOpen) {
       Get.back();
     }
-    CustomSnackbars().snackBar('Login Failed', reason.toString(), Icons.error);
+    CustomNotifiers().snackBar('Login Failed', reason.toString(), Icons.error);
   }
 
   successfulLogin(var tokenData) async {

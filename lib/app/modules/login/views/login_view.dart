@@ -63,7 +63,7 @@ class LoginView extends GetView<LoginController> {
         text: 'LOGIN',
         onpressed: () {
           if (formKey.currentState.validate()) {
-            CustomSnackbars().progressIndicator();
+            CustomNotifiers().progressIndicator();
             controller.login();
           }
         },

@@ -56,7 +56,10 @@ class SignupView extends GetView<SignupController> {
     return Center(
       child: CustomButton(
         text: 'SIGNUP',
-        onpressed: controller.doSignUp,
+        onpressed: () {
+          CustomNotifiers().progressIndicator();
+          controller.doSignUp();
+        },
       ),
     );
   }
