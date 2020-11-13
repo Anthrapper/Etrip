@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 #from django.contrib.gis.db import models as geo_models
 
+import uuid
 
 class User(AbstractUser):
     """Default user for E Trip."""
@@ -19,7 +20,7 @@ class User(AbstractUser):
     #: First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
     phone = models.CharField(blank=True,max_length=10)
-
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     def get_absolute_url(self):
         """Get url for user's detail view.
 
