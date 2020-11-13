@@ -14,38 +14,38 @@ class MyDrawer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            color: HexColorUtils.getColorFromHex(CustomColors.buttonColor),
-            height: MediaQuery.of(context).size.height * 0.33,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.grey,
-                        child: Icon(Icons.person,
-                        color: Colors.white,
+              color: HexColorUtils.getColorFromHex(CustomColors.buttonColor),
+              height: MediaQuery.of(context).size.height * 0.33,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.grey,
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        'John Doe',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
+                        SizedBox(
+                          width: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )
-          ),
+                        Text(
+                          'John Doe',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
             child: Container(
@@ -91,7 +91,7 @@ class MyDrawer extends StatelessWidget {
                   // color: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
                 ),
                 FlatButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
                     child: Row(

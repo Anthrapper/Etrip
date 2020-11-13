@@ -1,14 +1,17 @@
+import 'package:etrip/app/data/Api/api_calls.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
 import 'package:etrip/app/data/Functions/otp_sender.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
 
 class SignupController extends GetxController {
-  final count = 0.obs;
-  TextEditingController email;
+  TextEditingController username;
   TextEditingController name;
   TextEditingController confPass;
   TextEditingController password;
@@ -17,11 +20,37 @@ class SignupController extends GetxController {
   var ml = false.obs;
   final formKey = GlobalKey<FormState>();
 
-  Future doSignUp() async {
-    print('Signed in');
-    OtpSender().onVerifyCode('7012595875');
+  isPhone() async {
+    print('phone');
+    OtpSender().onVerifyCode(username.text);
+  }
 
-    // Get.bottomSheet(submitOtp());
+  isEmail() async {
+    print('mail');
+    await Get.offAllNamed(AppPages.LOGIN);
+    // CustomSnackbars().snackBar(
+    //     'Success',
+    //     'Your account has been created successfully. Activate your account by validating your email',
+    //     Icons.check);
+  }
+
+  Future doSignUp() async {
+    await ApiCalls().postRequest(
+      body: {
+        "username": username.text,
+        "name": name.text,
+        "password": password.text,
+      },
+      headers: ApiData.jsonHeader,
+      url: ApiData.signUp,
+    ).then((postData) async {
+      print(postData);
+      if (postData[0] == 201) {
+        GetUtils.isEmail(username.text) ? isEmail() : isPhone();
+      } else {
+        print(postData[0]);
+      }
+    });
   }
 
   obscure() {
@@ -37,7 +66,9 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
-    email = TextEditingController();
+    username = TextEditingController();
+    name = TextEditingController();
+    confPass = TextEditingController();
     password = TextEditingController();
     super.onInit();
   }
@@ -49,6 +80,10 @@ class SignupController extends GetxController {
 
   @override
   void onClose() {
+    username?.dispose();
+    name?.dispose();
+    password?.dispose();
+    confPass?.dispose();
     super.onClose();
   }
 

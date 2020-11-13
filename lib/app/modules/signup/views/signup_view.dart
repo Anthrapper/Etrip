@@ -3,7 +3,6 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
-import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/signup/controllers/signup_controller.dart';
@@ -24,12 +23,6 @@ class SignupView extends GetView<SignupController> {
               heading(),
               form(),
               button(),
-              FlatButton(
-                onPressed: () {
-                  Get.offAllNamed(AppPages.INITIAL);
-                },
-                child: Text('To Home'),
-              ),
             ],
           ),
         ),
@@ -85,7 +78,7 @@ class SignupView extends GetView<SignupController> {
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
                 suffixChecker: true,
-                controller: controller.email,
+                controller: controller.username,
                 hintText: 'Enter email or phone number',
                 secureText: false,
               ),

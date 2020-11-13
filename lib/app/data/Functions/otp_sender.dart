@@ -3,10 +3,27 @@ import 'package:get/get.dart';
 
 class OtpSender {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  void onVerifyCode(String phone) async {
+  // setState(() {
+  //   isCodeSent = true;
+  // });
+
+  final PhoneCodeSent codeSent =
+      (String verificationId, [int forceResendingToken]) async {
+    var id = verificationId;
+    print(id);
     // setState(() {
-    //   isCodeSent = true;
+    //   _verificationId = verificationId;
     // });
+  };
+  final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
+      (String verificationId) {
+    var id = verificationId;
+    // setState(() {
+    //   _verificationId = verificationId;
+    // });
+    print(id);
+  };
+  void onVerifyCode(String phone) async {
     final PhoneVerificationCompleted verificationCompleted =
         (AuthCredential phoneAuthCredential) {
       _firebaseAuth
@@ -28,23 +45,6 @@ class OtpSender {
       // setState(() {
       //   isCodeSent = false;
       // });
-    };
-
-    final PhoneCodeSent codeSent =
-        (String verificationId, [int forceResendingToken]) async {
-      var id = verificationId;
-      print(id);
-      // setState(() {
-      //   _verificationId = verificationId;
-      // });
-    };
-    final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-        (String verificationId) {
-      var id = verificationId;
-      // setState(() {
-      //   _verificationId = verificationId;
-      // });
-      print(id);
     };
 
     await _firebaseAuth.verifyPhoneNumber(

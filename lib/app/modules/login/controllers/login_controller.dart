@@ -48,7 +48,6 @@ class LoginController extends GetxController {
       }
     });
   }
-  // OtpSender().onVerifyCode('7012595875');
 
   enSelected() {
     en.value = true;
