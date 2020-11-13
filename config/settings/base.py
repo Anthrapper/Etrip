@@ -319,3 +319,4 @@ FIREBASE_APIKEY = env('FIREBASE_APIKEY', default="AIzaSyD8X4JIeB3pJUe7jwaaqoNMkl
 FIREBASE_AUTHDOMAIN = env('FIREBASE_AUTHDOMAIN', default="etrip-a31c2.firebaseapp.com")
 FIREBASE_DATABASEURL = env('FIREBASE_DATABASEURL',default='etrip-a31c2.firebaseio.com' )
 FIREBASE_STORAGEBUCKET = env('FIREBASE_STORAGEBUCKET',default='etrip-a31c2.firebaseio.com')
+GOOGLE_APPLICATION_CREDENTIALS = env('GOOGLE_APPLICATION_CREDENTIALS', default='admin.json')
