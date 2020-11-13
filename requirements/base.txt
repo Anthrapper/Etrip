@@ -22,3 +22,5 @@ djangorestframework==3.12.2  # https://github.com/encode/django-rest-framework
 django-cors-headers==3.5.0 # https://github.com/adamchainz/django-cors-headers
 djangorestframework_simplejwt
 django-nested-admin
+firebase-admin
+pyrebase

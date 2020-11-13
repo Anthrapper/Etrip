@@ -305,5 +305,17 @@ REST_FRAMEWORK = {
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
-# Your stuff...
+
+# Regex...
 # ------------------------------------------------------------------------------
+PHONE_EMAIL_REGEX = env('PHONE_EMAIL_REGEX', default="^(?:\\d{10}|[A-Za-z0-9.!#$%&'*+-/=?^_`{|}~;_%\\+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,5})$")
+PHONE_REGEX = env('PHONE_REGEX', default="^(?:\\d{10})$")
+EMAIL_REGEX = env('EMAIL_REGEX',default="^(?:[A-Za-z0-9.!#$%&'*+-/=?^_`{|}~;_%\\+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,5})$")
+
+
+# Firebase...
+# ------------------------------------------------------------------------------
+FIREBASE_APIKEY = env('FIREBASE_APIKEY', default="AIzaSyD8X4JIeB3pJUe7jwaaqoNMklp64KJmMVA")
+FIREBASE_AUTHDOMAIN = env('FIREBASE_AUTHDOMAIN', default="etrip-a31c2.firebaseapp.com")
+FIREBASE_DATABASEURL = env('FIREBASE_DATABASEURL',default='etrip-a31c2.firebaseio.com' )
+FIREBASE_STORAGEBUCKET = env('FIREBASE_STORAGEBUCKET',default='etrip-a31c2.firebaseio.com')
