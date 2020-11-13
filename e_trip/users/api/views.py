@@ -8,12 +8,18 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework import generics
+from rest_framework_simplejwt.authentication import AUTH_HEADER_TYPES
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework_simplejwt import serializers
 
 from requests.exceptions import HTTPError
 from .serializers import UserSerializer, UserCreateSerializer
 from firebase_admin import auth as admin_auth
+from firebase_admin import credentials
 import firebase_admin
 import pyrebase
+import re
 
 config = {
   "apiKey": settings.FIREBASE_APIKEY,
@@ -22,10 +28,16 @@ config = {
   "storageBucket": settings.FIREBASE_STORAGEBUCKET
 }
 
+regex = settings.PHONE_EMAIL_REGEX
+regex_contact = settings.PHONE_REGEX
+regex_mail = settings.EMAIL_REGEX
 
-#x = auth.get_user_by_phone_number('+917012595875')
+if not firebase_admin._apps:
+    cred = credentials.Certificate(settings.GOOGLE_APPLICATION_CREDENTIALS)
+    default_app = firebase_admin.initialize_app(cred)
+
 firebase = pyrebase.initialize_app(config)
-default_app = firebase_admin.initialize_app()
+
 auth = firebase.auth()
 
 User = get_user_model()
@@ -56,17 +68,21 @@ class CreateUserAPIView(CreateAPIView):
         # We create a token than will be used for future auth
         user=serializer.instance
         print(serializer.data)
-        try:
-            firebase_user = auth.create_user_with_email_and_password(user.email,user.password)
-            m = auth.send_email_verification(firebase_user['idToken'])
-        except:
-            print('Account Found')
+        email_match = re.match(regex_mail, user.username)
+        if email_match:
             try:
-                firebase_user = admin_auth.get_user_by_email(user.username)
-                m = auth.send_email_verification(firebase_user['idToken'])
+                firebase_user = auth.create_user_with_email_and_password(user.email,user.password)
+                auth.send_email_verification(firebase_user['idToken'])
             except:
-                print('error2')
-        content = {'message': 'mail has been send!'}
+                print('Account Found')
+                try:
+                    firebase_user = admin_auth.get_user_by_email(user.username)
+                    admin_auth.delete_user(firebase_user.uid)
+                    firebase_user = auth.create_user_with_email_and_password(user.email,user.password)
+                    auth.send_email_verification(firebase_user['idToken'])
+                except:
+                    print('error2')
+            content = {'message': 'mail has been send!'}
         print('send message')
         create_message = {"message": "Your account is created successfully."}
         return Response(
@@ -74,3 +90,56 @@ class CreateUserAPIView(CreateAPIView):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
+
+class TokenViewBase(generics.GenericAPIView):
+    permission_classes = ()
+    authentication_classes = ()
+
+    serializer_class = None
+
+    www_authenticate_realm = 'api'
+
+    def get_authenticate_header(self, request):
+        return '{0} realm="{1}"'.format(
+            AUTH_HEADER_TYPES[0],
+            self.www_authenticate_realm,
+        )
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        username = request.data['username']
+        print(request.data['username'])
+        if User.objects.filter(username=username).exclude(is_superuser=True).exists():
+            phone_email_match = re.match(regex,username)
+            phone_match = re.match(regex_contact, username)
+            email_match = re.match(regex_mail, username)
+            if phone_email_match:
+                if phone_match:
+                    try:
+                        userdata = str('+91') + str(username)
+                        firebase_user = admin_auth.get_user_by_phone_number(userdata)
+                    except:
+                        return Response({'user':'inactive or 404'}, status=status.HTTP_401_UNAUTHORIZED)
+                if email_match:
+                    try:
+                        firebase_user = admin_auth.get_user_by_email(username)
+                        if not firebase_user.email_verified:
+                            return Response({'user':'inactive'}, status=status.HTTP_401_UNAUTHORIZED)
+                    except:
+                        return Response({'user':'404'}, status=status.HTTP_401_UNAUTHORIZED)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+class TokenObtainPairView(TokenViewBase):
+    """
+    Takes a set of user credentials and returns an access and refresh JSON web
+    token pair to prove the authentication of those credentials.
+    """
+    serializer_class = serializers.TokenObtainPairSerializer
+
+
+token_obtain_pair = TokenObtainPairView.as_view()
