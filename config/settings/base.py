@@ -318,5 +318,5 @@ EMAIL_REGEX = env('EMAIL_REGEX',default="^(?:[A-Za-z0-9.!#$%&'*+-/=?^_`{|}~;_%\\
 FIREBASE_APIKEY = env('FIREBASE_APIKEY', default="AIzaSyD8X4JIeB3pJUe7jwaaqoNMklp64KJmMVA")
 FIREBASE_AUTHDOMAIN = env('FIREBASE_AUTHDOMAIN', default="etrip-a31c2.firebaseapp.com")
 FIREBASE_DATABASEURL = env('FIREBASE_DATABASEURL',default='etrip-a31c2.firebaseio.com' )
-FIREBASE_STORAGEBUCKET = env('FIREBASE_STORAGEBUCKET',default='etrip-a31c2.firebaseio.com')
+FIREBASE_STORAGEBUCKET = env('FIREBASE_STORAGEBUCKET',default='etrip-a31c2.appspot.com')
 GOOGLE_APPLICATION_CREDENTIALS = env('GOOGLE_APPLICATION_CREDENTIALS', default='admin.json')
