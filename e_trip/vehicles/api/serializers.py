@@ -9,6 +9,8 @@ from botocore.client import Config
 
 from  e_trip.vehicles.models import Vehicle
 
+logger = logging.getLogger('django')
+
 def create_presigned_url(bucket_name, object_name, expiration=3600):
     """Generate a presigned URL to share an S3 object
 
@@ -20,6 +22,7 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
     # Generate a presigned URL for the S3 object
     s3_client = boto3.client('s3',
+                      config=Config(signature_version='s3v4'),
                       aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
                       aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
                       region_name=settings.AWS_S3_REGION_NAME
