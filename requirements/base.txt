@@ -24,3 +24,4 @@ djangorestframework_simplejwt
 django-nested-admin
 firebase-admin
 pyrebase
+boto3

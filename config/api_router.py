@@ -6,6 +6,7 @@ from rest_framework_simplejwt import views as jwt_views
 from django.urls import path
 
 from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair
+from e_trip.vehicles.api.views import VehicleList
 if settings.DEBUG:
     router = DefaultRouter()
 else:
@@ -15,7 +16,7 @@ router.register("users", UserViewSet)
 
 
 urlpatterns = [
-
+    path('driver/vehicles',VehicleList.as_view()),
     path('user/registration', CreateUserAPIView.as_view()),
     path('token/', token_obtain_pair, name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
