@@ -13,8 +13,10 @@ from rest_framework_simplejwt.authentication import AUTH_HEADER_TYPES
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt import serializers
 
+from .serializers import UserSerializer, UserCreateSerializer, DriverUserCreateSerializer
+from e_trip.users.models import Driver
+
 from requests.exceptions import HTTPError
-from .serializers import UserSerializer, UserCreateSerializer
 from firebase_admin import auth as admin_auth
 from firebase_admin import credentials
 import firebase_admin
@@ -83,6 +85,45 @@ class CreateUserAPIView(CreateAPIView):
                 except:
                     print('error2')
             content = {'message': 'mail has been send!'}
+
+
+        print('send message')
+        create_message = {"message": "Your account is created successfully."}
+        return Response(
+            {**serializer.data, **create_message},
+            status=status.HTTP_201_CREATED,
+            headers=headers
+        )
+
+class CreateDriverUser(CreateAPIView):
+    serializer_class = DriverUserCreateSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        # We create a token than will be used for future auth
+        user=serializer.instance
+        print(serializer.data)
+        email_match = re.match(regex_mail, user.username)
+        if email_match:
+            try:
+                firebase_user = auth.create_user_with_email_and_password(user.email,user.password)
+                auth.send_email_verification(firebase_user['idToken'])
+            except:
+                print('Account Found')
+                try:
+                    firebase_user = admin_auth.get_user_by_email(user.username)
+                    admin_auth.delete_user(firebase_user.uid)
+                    firebase_user = auth.create_user_with_email_and_password(user.email,user.password)
+                    auth.send_email_verification(firebase_user['idToken'])
+                except:
+                    print('error2')
+            content = {'message': 'mail has been send!'}
+
+        obj,creatd = Driver.objects.get_or_create(user=user)
         print('send message')
         create_message = {"message": "Your account is created successfully."}
         return Response(
@@ -106,9 +147,14 @@ class TokenViewBase(generics.GenericAPIView):
         )
 
     def post(self, request, *args, **kwargs):
+        #request.data._mutable = True
+        #request.data.update({"username":"admin"})
+        #print(request.data)
         serializer = self.get_serializer(data=request.data)
         username = request.data['username']
         print(request.data['username'])
+        print(serializer)
+
         if User.objects.filter(username=username).exclude(is_superuser=True).exists():
             phone_email_match = re.match(regex,username)
             phone_match = re.match(regex_contact, username)

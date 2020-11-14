@@ -66,3 +66,55 @@ class UserCreateSerializer(serializers.ModelSerializer):
         user.user_type = 0
         user.save()
         return user
+
+class DriverUserCreateSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True,
+                                     style={'input_type': 'password'})
+    name = serializers.CharField()
+
+    def validate(self, data):
+        username = data['phone']
+        email = data['email']
+        name = data['name']
+        password = data.get('password')
+        phone_match = re.match(regex_contact,username)
+        email_match = re.match(regex_mail,email)
+        if not phone_match:
+            raise serializers.ValidationError("Invalid Phone")
+        if not email_match:
+            raise serializers.ValidationError("Invalid Email")
+        errors = dict()
+        try:
+            validators.validate_password(password=password, user=User)
+        except exceptions.ValidationError as e:
+            errors['password'] = list(e.messages)
+        if User.objects.filter(username=username).exists():
+            raise serializers.ValidationError("phone already taken")
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError("email already taken")
+        if User.objects.filter(phone=username).exists():
+            raise serializers.ValidationError("phone already taken")
+        if errors:
+            raise serializers.ValidationError(errors)
+        return data
+
+    class Meta:
+        model = User
+        fields = ["phone","email", "name", "password"]
+        write_only_fields = ('password')
+        read_only_fields = ('is_staff', 'is_superuser', 'is_active',)
+
+    def create(self, validated_data):
+        print(validated_data)
+        validated_data['username'] = validated_data['phone']
+        user = super(UserCreateSerializer, self).create(validated_data)
+        user.set_password(validated_data['password'])
+        user.is_active = True
+        user.user_type = 0
+        user.save()
+        return user
+
+class UserActivationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["email"]
