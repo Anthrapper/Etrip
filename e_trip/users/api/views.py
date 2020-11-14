@@ -12,6 +12,7 @@ from rest_framework import generics
 from rest_framework_simplejwt.authentication import AUTH_HEADER_TYPES
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt import serializers
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from .serializers import UserSerializer, UserCreateSerializer, DriverUserCreateSerializer, DriverUserUpdateSerializer
 from e_trip.users.models import Driver
@@ -135,6 +136,7 @@ class CreateDriverUser(CreateAPIView):
 class DriverUpdate(UpdateAPIView):
     serializer_class = DriverUserUpdateSerializer
     queryset = Driver.objects.all()
+    parser_classes = (MultiPartParser, FormParser)
 
     def get_object(self):
         obj = Driver.objects.get(user=self.request.user)
