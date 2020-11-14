@@ -3,6 +3,8 @@ from rest_framework import serializers
 import django.contrib.auth.password_validation as validators
 from django.core import exceptions
 
+from e_trip.users.models import Driver
+
 import re
 from django.conf import settings
 
@@ -113,6 +115,23 @@ class DriverUserCreateSerializer(serializers.ModelSerializer):
         user.user_type = 0
         user.save()
         return user
+
+class DriverUserUpdateSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+    class Meta:
+        model = Driver
+        fields = ["user","vehicles","photo","license"]
+    def validate(self,data):
+        data['user'] = self.context.get('request').user
+        print(data)
+        if not Driver.objects.filter(user=self.context.get('request').user).exists():
+            raise serializers.ValidationError("No Driver User Found")
+        else:
+            data['user'] = self.context.get('request').user
+        return data
+    def get_user(self,obj):
+        print(self.context.get('request').user)
+        return self.context.get('request').user.id
 
 class UserActivationSerializer(serializers.ModelSerializer):
     class Meta:

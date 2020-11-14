@@ -6,14 +6,14 @@ from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView ,UpdateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework import generics
 from rest_framework_simplejwt.authentication import AUTH_HEADER_TYPES
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt import serializers
 
-from .serializers import UserSerializer, UserCreateSerializer, DriverUserCreateSerializer
+from .serializers import UserSerializer, UserCreateSerializer, DriverUserCreateSerializer, DriverUserUpdateSerializer
 from e_trip.users.models import Driver
 
 from requests.exceptions import HTTPError
@@ -131,6 +131,20 @@ class CreateDriverUser(CreateAPIView):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
+
+class DriverUpdate(UpdateAPIView):
+    serializer_class = DriverUserUpdateSerializer
+    queryset = Driver.objects.all()
+
+    def get_object(self):
+        obj = Driver.objects.get(user=self.request.user)
+        return obj
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 class TokenViewBase(generics.GenericAPIView):
     permission_classes = ()
