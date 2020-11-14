@@ -42,12 +42,12 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 4,
-              child: CarouselSlider(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CarouselSlider(
                 options: CarouselOptions(
                   height: 200.0,
                   autoPlay: false,
@@ -73,141 +73,183 @@ class HomeView extends GetView<HomeController> {
                   });
                 }).toList(),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: map<Widget>(cardList, (index, url) {
-                  return Obx(
-                    () => Container(
-                      width: 7.0,
-                      height: 7.0,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: controller.currentIndex == index
-                            ? Colors.blueAccent
-                            : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: map<Widget>(cardList, (index, url) {
+                    return Obx(
+                      () => Container(
+                        width: 7.0,
+                        height: 7.0,
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: controller.currentIndex == index
+                              ? Colors.blueAccent
+                              : Colors.grey,
+                        ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+                ),
               ),
-            ),
-            Expanded(
-              flex: 7,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 4,
-                              offset: Offset(1, 3),
-                            )
-                          ]),
-                      child: FlatButton(
-                        onPressed: () async {
-                          var vName = 'Otorsha';
-                          await Get.toNamed(AppPages.VEHICLEFORM,
-                              arguments: vName);
-                        },
-                        child: ListTile(
-                          title: Text(
-                            'My Trip',
-                            style: TextStyle(
-                              fontSize: 23,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 350,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 4,
+                                offset: Offset(1, 3),
+                              )
+                            ]),
+                        child: FlatButton(
+                          onPressed: () {},
+                          child: ListTile(
+                            title: Text(
+                              'My Trip',
+                              style: TextStyle(
+                                fontSize: 23,
+                              ),
                             ),
-                          ),
-                          subtitle: Text('See your trips'),
-                          trailing: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 5,
-                                  color: Colors.grey,
-                                  spreadRadius: 1,
-                                  offset: Offset(2, 4),
-                                )
-                              ],
-                            ),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: HexColorUtils.getColorFromHex(
-                                  CustomColors.buttonColor),
-                              child: Icon(
-                                Icons.arrow_forward,
+                            subtitle: Text('See your trips'),
+                            trailing: Container(
+                              decoration: BoxDecoration(
                                 color: Colors.white,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 5,
+                                    color: Colors.grey,
+                                    spreadRadius: 1,
+                                    offset: Offset(2, 4),
+                                  )
+                                ],
+                              ),
+                              child: CircleAvatar(
+                                radius: 25,
+                                backgroundColor: HexColorUtils.getColorFromHex(
+                                    CustomColors.buttonColor),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 350,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 4,
-                              offset: Offset(1, 3),
-                            )
-                          ]),
-                      child: FlatButton(
-                        onPressed: () {},
-                        child: ListTile(
-                          title: Text(
-                            'Trip History',
-                            style: TextStyle(fontSize: 23),
-                          ),
-                          subtitle: Text('See your trip history'),
-                          trailing: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 5,
-                                  color: Colors.grey,
-                                  spreadRadius: 1,
-                                  offset: Offset(2, 4),
-                                )
-                              ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 350,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 4,
+                                offset: Offset(1, 3),
+                              )
+                            ]),
+                        child: FlatButton(
+                          onPressed: () {
+                            Get.toNamed(AppPages.TRIP_HISTORY);
+                          },
+                          child: ListTile(
+                            title: Text(
+                              'Trip History',
+                              style: TextStyle(fontSize: 23),
                             ),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: HexColorUtils.getColorFromHex(
-                                  CustomColors.buttonColor),
-                              child: Icon(
-                                Icons.arrow_forward,
+                            subtitle: Text('See your trip history'),
+                            trailing: Container(
+                              decoration: BoxDecoration(
                                 color: Colors.white,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 5,
+                                    color: Colors.grey,
+                                    spreadRadius: 1,
+                                    offset: Offset(2, 4),
+                                  )
+                                ],
+                              ),
+                              child: CircleAvatar(
+                                radius: 25,
+                                backgroundColor: HexColorUtils.getColorFromHex(
+                                    CustomColors.buttonColor),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.09),
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Start a new trip',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          height: Get.height * 0.1,
+                          width: Get.height * 0.1,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 4,
+                                offset: Offset(1, 3),
+                              ),
+                            ],
+                          ),
+                          child: FlatButton(
+                            onPressed: () async {
+                              var vName = 'Otorsha';
+                              await Get.toNamed(AppPages.VEHICLEFORM,
+                                  arguments: vName);
+                            },
+                            child: Image.network('https://etripml.s3.amazonaws.com/media/assets/icons/ricksaw20201114135454.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201114%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201114T135501Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a39026244c97d5b8aab4ab7d4e18f3b766429e60c8d011fa063de4e82bfbf1a8',
+                            fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -220,70 +262,6 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
-  // Widget carouselRough() {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(vertical: 20.0),
-  //     height: 300.0,
-  //     child: ListView(
-  //       scrollDirection: Axis.horizontal,
-  //       children: <Widget>[
-  //         Padding(
-  //           padding: const EdgeInsets.all(8.0),
-  //           child: Container(
-  //             decoration: BoxDecoration(
-  //               borderRadius: BorderRadius.only(
-  //                 topLeft: Radius.circular(10),
-  //                 bottomRight: Radius.circular(10),
-  //               ),
-  //               color: Colors.grey,
-  //             ),
-  //             width: 300.0,
-  //           ),
-  //         ),
-  //         Padding(
-  //           padding: const EdgeInsets.all(8.0),
-  //           child: Container(
-  //             decoration: BoxDecoration(
-  //               borderRadius: BorderRadius.only(
-  //                 topLeft: Radius.circular(10),
-  //                 bottomRight: Radius.circular(10),
-  //               ),
-  //               color: Colors.grey,
-  //             ),
-  //             width: 300.0,
-  //           ),
-  //         ),
-  //         Padding(
-  //           padding: const EdgeInsets.all(8.0),
-  //           child: Container(
-  //             decoration: BoxDecoration(
-  //               borderRadius: BorderRadius.only(
-  //                 topLeft: Radius.circular(10),
-  //                 bottomRight: Radius.circular(10),
-  //               ),
-  //               color: Colors.grey,
-  //             ),
-  //             width: 300.0,
-  //           ),
-  //         ),
-  //         Padding(
-  //           padding: const EdgeInsets.all(8.0),
-  //           child: Container(
-  //             decoration: BoxDecoration(
-  //               borderRadius: BorderRadius.only(
-  //                 topLeft: Radius.circular(10),
-  //                 bottomRight: Radius.circular(10),
-  //               ),
-  //               color: Colors.grey,
-  //             ),
-  //             width: 300.0,
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
 
 class Item1 extends StatelessWidget {

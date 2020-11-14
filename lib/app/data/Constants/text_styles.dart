@@ -12,6 +12,9 @@ class CustomTextStyles {
   final buttonTextStyle = TextStyle(
       color: HexColorUtils.getColorFromHex(CustomColors.textColorThree),
       fontSize: Get.height * 0.024);
+  final buttonTextStyle1 = TextStyle(
+      color: HexColorUtils.getColorFromHex(CustomColors.textColorThree),
+      fontSize: Get.height * 0.02);
   final textFieldStyle = TextStyle(
       color: HexColorUtils.getColorFromHex(CustomColors.hintText),
       fontSize: Get.height * 0.016);

@@ -1,3 +1,5 @@
+import 'package:etrip/app/modules/trip_history/views/trip_history_view.dart';
+import 'package:etrip/app/modules/trip_history/bindings/trip_history_binding.dart';
 import 'package:etrip/app/modules/signup/views/usertype.dart';
 import 'package:etrip/app/modules/signup_driver/views/signup_driver_view.dart';
 import 'package:etrip/app/modules/signup_driver/bindings/signup_driver_binding.dart';
@@ -19,6 +21,7 @@ class AppPages {
   static const VEHICLEFORM = Routes.VEHICLEFORM;
   static const SIGNUP_DRIVER = Routes.SIGNUP_DRIVER;
   static const SIGNUP_SELECTION = Routes.SIGNUP_SELECTION;
+  static const TRIP_HISTORY = Routes.TRIP_HISTORY;
 
   static final routes = [
     GetPage(
@@ -49,6 +52,11 @@ class AppPages {
     GetPage(
       name: Routes.SIGNUP_SELECTION,
       page: () => UserType(),
-    )
+    ),
+    GetPage(
+      name: Routes.TRIP_HISTORY, 
+      page:()=> TripHistoryView(), 
+      binding: TripHistoryBinding(),
+    ),
   ];
 }
