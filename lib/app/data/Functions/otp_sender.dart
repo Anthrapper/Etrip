@@ -58,12 +58,12 @@ class OtpSender {
 
     _firebaseAuth
         .signInWithCredential(_authCredential)
-        .then((UserCredential value) {
+        .then((UserCredential value) async {
       if (value.user != null) {
         // Handle loogged in state
         print(value.user.phoneNumber);
         Get.back();
-        Get.offAllNamed(AppPages.LOGIN);
+        await Get.offAllNamed(AppPages.LOGIN);
       } else {
         Get.snackbar("Error validating OTP, try again", 'Colors.red');
       }

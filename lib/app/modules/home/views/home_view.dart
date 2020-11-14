@@ -1,8 +1,6 @@
-import 'package:etrip/app/data/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Functions/location_helper.dart';
-import 'package:etrip/app/modules/signup/views/usertype.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -117,7 +115,11 @@ class HomeView extends GetView<HomeController> {
                             )
                           ]),
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          var vName = 'Otorsha';
+                          await Get.toNamed(AppPages.VEHICLEFORM,
+                              arguments: vName);
+                        },
                         child: ListTile(
                           title: Text(
                             'My Trip',
@@ -201,34 +203,6 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ),
                     ),
-                  ),
-                  FlatButton(
-                    onPressed: () async {
-                      var vName = 'Otorsha';
-                      await Get.toNamed(AppPages.VEHICLEFORM, arguments: vName);
-                    },
-                    child: Text('New Trip'),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      Get.toNamed(AppPages.SIGNUP_DRIVER);
-                    },
-                    child: Text('SignUp Driver'),
-                  ),
-                  FlatButton(
-                    onPressed: ()  {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => UserType(),
-                      ));
-                    },
-                    child: Text('UserType'),
-                  ),
-                  FlatButton(
-                    onPressed: () async {
-                      await AuthHelper().removeToken().whenComplete(
-                          () async => await Get.offAllNamed(AppPages.LOGIN));
-                    },
-                    child: Text('Log Out'),
                   ),
                 ],
               ),

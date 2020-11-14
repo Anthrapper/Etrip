@@ -1,3 +1,4 @@
+import 'package:etrip/app/modules/signup/views/usertype.dart';
 import 'package:etrip/app/modules/signup_driver/views/signup_driver_view.dart';
 import 'package:etrip/app/modules/signup_driver/bindings/signup_driver_binding.dart';
 import 'package:etrip/app/modules/vehicleform/views/vehicleform_view.dart';
@@ -17,6 +18,7 @@ class AppPages {
   static const SIGNUP = Routes.SIGNUP;
   static const VEHICLEFORM = Routes.VEHICLEFORM;
   static const SIGNUP_DRIVER = Routes.SIGNUP_DRIVER;
+  static const SIGNUP_SELECTION = Routes.SIGNUP_SELECTION;
 
   static final routes = [
     GetPage(
@@ -40,9 +42,13 @@ class AppPages {
       binding: VehicleformBinding(),
     ),
     GetPage(
-      name: Routes.SIGNUP_DRIVER, 
-      page:()=> SignupDriverView(), 
+      name: Routes.SIGNUP_DRIVER,
+      page: () => SignupDriverView(),
       binding: SignupDriverBinding(),
     ),
+    GetPage(
+      name: Routes.SIGNUP_SELECTION,
+      page: () => UserType(),
+    )
   ];
 }

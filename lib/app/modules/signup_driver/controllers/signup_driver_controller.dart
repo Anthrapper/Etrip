@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
-import 'package:etrip/app/data/Functions/otp_sender.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -11,13 +10,13 @@ class SignupDriverController extends GetxController {
   TextEditingController confPass;
   TextEditingController password;
   var showText = true.obs;
-  var en = true.obs;
-  var ml = false.obs;
   final formKey = GlobalKey<FormState>();
 
   isPhone() async {
     print('phone');
-    OtpSender().onVerifyCode(username.text);
+    // OtpSender().onVerifyCode(
+    //   username.text,
+    // );
   }
 
   isEmail() async {
@@ -81,5 +80,4 @@ class SignupDriverController extends GetxController {
     confPass?.dispose();
     super.onClose();
   }
-
 }

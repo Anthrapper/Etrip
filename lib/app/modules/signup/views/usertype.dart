@@ -1,5 +1,6 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,7 +68,9 @@ class UserType extends StatelessWidget {
                 ),
               ),
               FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppPages.SIGNUP);
+                },
                 child: ListTile(
                   title: Text(
                     'Ride',
@@ -81,7 +84,9 @@ class UserType extends StatelessWidget {
               ),
               Divider(),
               FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppPages.SIGNUP_DRIVER);
+                },
                 child: ListTile(
                   title: Text(
                     'Drive',

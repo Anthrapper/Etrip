@@ -1,6 +1,6 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
-import 'package:etrip/app/data/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';

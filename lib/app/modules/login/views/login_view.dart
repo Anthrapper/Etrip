@@ -164,7 +164,7 @@ class LoginView extends GetView<LoginController> {
             padding: EdgeInsets.only(left: Get.width * 0.03),
             child: InkWell(
               onTap: () {
-                Get.toNamed(AppPages.SIGNUP);
+                Get.offAndToNamed(AppPages.SIGNUP_SELECTION);
               },
               child: Text(
                 'SignUp',

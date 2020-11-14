@@ -1,7 +1,10 @@
 import 'package:etrip/app/data/Constants/colors.dart';
+import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -94,19 +97,25 @@ class MyDrawer extends StatelessWidget {
                   onPressed: () {},
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Logout',
-                          style: TextStyle(
-                            fontSize: 20,
+                    child: GestureDetector(
+                      onTap: () async {
+                        await AuthHelper().removeToken().whenComplete(
+                            () async => await Get.offAllNamed(AppPages.LOGIN));
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            'Logout',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * .4,
-                        ),
-                        Icon(Icons.exit_to_app),
-                      ],
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .4,
+                          ),
+                          Icon(Icons.exit_to_app),
+                        ],
+                      ),
                     ),
                   ),
                 ),

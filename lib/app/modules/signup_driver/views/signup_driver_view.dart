@@ -23,7 +23,8 @@ class SignupDriverView extends GetView<SignupDriverController> {
               form(),
               // upload(),
               Padding(
-                padding: EdgeInsets.only(top: Get.height * 0.03, bottom: Get.height * 0.05),
+                padding: EdgeInsets.only(
+                    top: Get.height * 0.03, bottom: Get.height * 0.05),
                 child: button(),
               ),
             ],
@@ -71,7 +72,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
           children: [
             CustomTextField(
               suffixChecker: true,
-              // controller: controller.name,
+              controller: controller.name,
               hintText: 'Name',
               secureText: false,
             ),
@@ -79,7 +80,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
                 suffixChecker: true,
-                // controller: controller.username,
+                controller: controller.username,
                 hintText: 'Email',
                 secureText: false,
               ),
@@ -88,7 +89,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
                 suffixChecker: true,
-                // controller: controller.username,
+                controller: controller.username,
                 hintText: 'Phone Number',
                 secureText: false,
               ),
@@ -97,7 +98,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
                 suffixChecker: true,
-                // controller: controller.username,
+                controller: controller.username,
                 hintText: 'Enter license number',
                 secureText: false,
               ),
