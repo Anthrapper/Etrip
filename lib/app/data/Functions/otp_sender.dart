@@ -25,6 +25,7 @@ class OtpSender {
         if (value.user != null) {
           // Handle loogged in state
           print(value.user.phoneNumber);
+          Get.offAllNamed(AppPages.LOGIN);
         } else {
           Get.snackbar("Error validating OTP", 'try again');
         }
@@ -68,7 +69,7 @@ class OtpSender {
         Get.snackbar("Error validating OTP, try again", 'Colors.red');
       }
     }).catchError((error) {
-      Get.snackbar("Something went wrong", 'Colors.red');
+      Get.snackbar("Something went wrong", error.toString());
     });
   }
 }

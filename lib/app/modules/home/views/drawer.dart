@@ -94,28 +94,25 @@ class MyDrawer extends StatelessWidget {
                   // color: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
                 ),
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await AuthHelper().removeToken().whenComplete(
+                        () async => await Get.offAllNamed(AppPages.LOGIN));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
-                    child: GestureDetector(
-                      onTap: () async {
-                        await AuthHelper().removeToken().whenComplete(
-                            () async => await Get.offAllNamed(AppPages.LOGIN));
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            'Logout',
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Logout',
+                          style: TextStyle(
+                            fontSize: 20,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * .4,
-                          ),
-                          Icon(Icons.exit_to_app),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * .4,
+                        ),
+                        Icon(Icons.exit_to_app),
+                      ],
                     ),
                   ),
                 ),
