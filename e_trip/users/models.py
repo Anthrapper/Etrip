@@ -6,6 +6,14 @@ from django.db import models
 #from django.contrib.gis.db import models as geo_models
 
 import uuid
+import os
+from django.utils import timezone
+from datetime import datetime
+
+def driver_directory_path(instance, filename):
+    basefilename, file_extension= os.path.splitext(filename)
+    timenow = timezone.now()
+    return 'driver/{username}/{basename}{time}{ext}'.format( username=instance.user.username,basename=basefilename, time=timenow.strftime("%Y%m%d%H%M%S"), ext=file_extension)
 
 class User(AbstractUser):
     """Default user for E Trip."""
@@ -33,8 +41,11 @@ class User(AbstractUser):
 class Driver(models.Model):
     user = models.OneToOneField('User',on_delete=models.CASCADE)
     vehicles = models.ManyToManyField('vehicles.Vehicle',blank=True)
+    photo = models.FileField(upload_to=driver_directory_path,default='photo.jpeg')
+    license = models.FileField(upload_to=driver_directory_path,default='license.jpeg')
     driver_status = models.BooleanField(default=True)
     is_document_cleared = models.BooleanField(default=False)
 
+
     def __str__(self):
-        return self.user
+        return self.user.username
