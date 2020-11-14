@@ -33,4 +33,8 @@ class User(AbstractUser):
 class Driver(models.Model):
     user = models.OneToOneField('User',on_delete=models.CASCADE)
     vehicles = models.ManyToManyField('vehicles.Vehicle',blank=True)
-    status = models.BooleanField(default=True)
+    driver_status = models.BooleanField(default=True)
+    is_document_cleared = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user
