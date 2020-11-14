@@ -51,7 +51,7 @@ class AWSImageField(serializers.ImageField):
 
 
 class VehicleSerializer(serializers.ModelSerializer):
-    file = AWSImageField()
+    icon = AWSImageField()
     class Meta:
         model = Vehicle
         fields = '__all__'
