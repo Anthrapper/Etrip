@@ -20,6 +20,11 @@
   ### API
   - api host : https://api.etrip.ml/
   - endpoints : `v1/*`
+  
+  ### Storage Bucket
+  |User name 	| password 	| access 	| secret 	| login link 	|
+|:---------:	|:--------:	|:------:	|:------:	|:----------:	|
+|     etripml      	|    [@P7[T}c(vWR8al      	|    AKIASATQSK4MMRBTTO7M    	|       hIjKALJDkmiNypQdc0qVu8wwlk7L6DOTahPJPgfu 	|      https://138748778264.signin.aws.amazon.com/console      	|
 
 ### Frontend : Development Build
 
