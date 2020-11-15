@@ -12,8 +12,9 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView ,UpdateAPIView
-from .serializers import VehicleSerializer, DriverVehicleSerializer
+from .serializers import VehicleSerializer, DriverVehicleSerializer, DriverVehicleListSerializer
 from e_trip.vehicles.models import Vehicle
+from e_trip.users.models import Driver
 
 class VehicleList(generics.ListAPIView):
     serializer_class = VehicleSerializer
@@ -35,3 +36,12 @@ class CreateDriverVehicle(CreateAPIView):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
+
+class DriverVehicleList(generics.ListAPIView):
+    serializer_class = DriverVehicleListSerializer
+    queryset = Vehicle.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        driver = get_object_or_404(Driver, user=user)
+        return Vehicle.objects.filter(id__in = driver.vehicles.all())

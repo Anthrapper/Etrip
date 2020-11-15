@@ -74,3 +74,9 @@ class DriverVehicleSerializer(serializers.ModelSerializer):
         driver_vehicle = super(DriverVehicleSerializer, self).create(validated_data)
         driver_vehicle.save()
         return driver_vehicle
+
+class DriverVehicleListSerializer(serializers.ModelSerializer):
+    icon = AWSImageField()
+    class Meta:
+        model = Vehicle
+        fields = '__all__'
