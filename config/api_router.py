@@ -7,6 +7,8 @@ from django.urls import path
 
 from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair,CreateDriverUser,DriverUpdate
 from e_trip.vehicles.api.views import VehicleList
+from e_trip.vehicles.api.views import CreateDriverVehicle
+
 if settings.DEBUG:
     router = DefaultRouter()
 else:
@@ -17,6 +19,7 @@ router.register("users", UserViewSet)
 
 urlpatterns = [
     path('driver/vehicles',VehicleList.as_view()),
+    path('driver/vehicles/registration', CreateDriverVehicle.as_view()),
     path('driver/registration/basic', CreateDriverUser.as_view()),
     path('driver/registration/docs',DriverUpdate.as_view()),
     path('user/registration', CreateUserAPIView.as_view()),
