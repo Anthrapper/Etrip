@@ -124,7 +124,7 @@ class DriverUserUpdateSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     class Meta:
         model = Driver
-        fields = ["user","vehicles","photo","license"]
+        fields = ["user","vehicles","photo","license_front","license_back"]
     def validate(self,data):
         data['user'] = self.context.get('request').user
         print(data)

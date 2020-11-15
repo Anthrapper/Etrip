@@ -42,7 +42,8 @@ class Driver(models.Model):
     user = models.OneToOneField('User',on_delete=models.CASCADE)
     vehicles = models.ManyToManyField('vehicles.Vehicle',blank=True)
     photo = models.FileField(upload_to=driver_directory_path,default='photo.jpeg')
-    license = models.FileField(upload_to=driver_directory_path,default='license.jpeg')
+    license_front = models.FileField(upload_to=driver_directory_path,default='license.jpeg')
+    license_back = models.FileField(upload_to=driver_directory_path,default='license.jpeg')
     driver_status = models.BooleanField(default=True)
     is_document_cleared = models.BooleanField(default=False)
 
