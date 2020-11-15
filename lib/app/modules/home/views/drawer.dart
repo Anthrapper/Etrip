@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
-import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class MyDrawer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-              color: HexColorUtils.getColorFromHex(CustomColors.buttonColor),
+              color: CustomColors.buttonColor,
               height: MediaQuery.of(context).size.height * 0.33,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

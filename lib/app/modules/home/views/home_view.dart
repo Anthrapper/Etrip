@@ -1,12 +1,12 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Functions/location_helper.dart';
+import 'package:etrip/app/modules/home/views/vehicle_card.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/home/controllers/home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import 'drawer.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -82,8 +82,8 @@ class HomeView extends GetView<HomeController> {
                       () => Container(
                         width: 7.0,
                         height: 7.0,
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: controller.currentIndex == index
@@ -138,8 +138,7 @@ class HomeView extends GetView<HomeController> {
                               ),
                               child: CircleAvatar(
                                 radius: 25,
-                                backgroundColor: HexColorUtils.getColorFromHex(
-                                    CustomColors.buttonColor),
+                                backgroundColor: CustomColors.buttonColor,
                                 child: Icon(
                                   Icons.arrow_forward,
                                   color: Colors.white,
@@ -189,8 +188,7 @@ class HomeView extends GetView<HomeController> {
                               ),
                               child: CircleAvatar(
                                 radius: 25,
-                                backgroundColor: HexColorUtils.getColorFromHex(
-                                    CustomColors.buttonColor),
+                                backgroundColor: CustomColors.buttonColor,
                                 child: Icon(
                                   Icons.arrow_forward,
                                   color: Colors.white,
@@ -216,33 +214,16 @@ class HomeView extends GetView<HomeController> {
                           fontSize: 18,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          height: Get.height * 0.1,
-                          width: Get.height * 0.1,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 4,
-                                offset: Offset(1, 3),
-                              ),
-                            ],
-                          ),
-                          child: FlatButton(
-                            onPressed: () async {
-                              var vName = 'Otorsha';
-                              await Get.toNamed(AppPages.VEHICLEFORM,
-                                  arguments: vName);
-                            },
-                            child: Image.network('https://etripml.s3.amazonaws.com/media/assets/icons/ricksaw20201114135454.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201114%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201114T135501Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a39026244c97d5b8aab4ab7d4e18f3b766429e60c8d011fa063de4e82bfbf1a8',
-                            fit: BoxFit.fill,
-                            ),
-                          ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: 6,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
                         ),
+                        itemBuilder: (BuildContext context, int index) {
+                          return VehicleCard();
+                        },
                       ),
                     ],
                   ),
@@ -257,8 +238,7 @@ class HomeView extends GetView<HomeController> {
           LocationHelper().getUserLocation();
         },
         child: Icon(Icons.gps_fixed),
-        backgroundColor:
-            HexColorUtils.getColorFromHex(CustomColors.buttonColor),
+        backgroundColor: CustomColors.buttonColor,
       ),
     );
   }

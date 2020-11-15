@@ -6,7 +6,7 @@ class CustomColors {
   static const String headings = "#121214";
   static const String textField = "#F4F4F4";
   static const String hintText = "#7C8189";
-  static const String buttonColor = "#052450";
+  static const Color buttonColor = Color(0xff052450);
   static const String buttonColor1 = "#497470";
   static const Color buttonColor2 = Color(0xff497470);
   static const String textColorOne = "#B0B0B0";

@@ -24,19 +24,27 @@ class ApiCalls {
     }
   }
 
-  Future getRequest({var url, var header}) async {
+  Future getRequest({@required var url, @required var header}) async {
     try {
       var response = await http.get(
         url,
         headers: header,
       );
+      print(header);
       var jsonData = json.decode(response.body);
       print(jsonData);
       print(response.statusCode);
       if (Get.isDialogOpen) {
         Get.back();
       }
-      return [response.statusCode, jsonData];
+      if (response.statusCode == 200) {
+        var jsonData = json.decode(response.body);
+        print(jsonData);
+        print(response.statusCode);
+        return [response.statusCode, jsonData];
+      } else {
+        return null;
+      }
     } on SocketException catch (e) {
       print(e);
       print('No internet');
