@@ -191,12 +191,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 ),
                 child: MultiSelectFormField(
                   autovalidate: false,
-<<<<<<< HEAD
-                  chipBackGroundColor:
-                      HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
-=======
                   chipBackGroundColor: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
->>>>>>> 77e554b08bf2d168688722f3c7a81e26f0c6b297
                   chipLabelStyle: TextStyle(fontWeight: FontWeight.bold),
                   dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
                   checkBoxActiveColor: Colors.red,
