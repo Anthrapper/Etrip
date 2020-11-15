@@ -109,7 +109,7 @@ class DriverUserCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         print(validated_data)
         validated_data['username'] = validated_data['phone']
-        user = super(UserCreateSerializer, self).create(validated_data)
+        user = super(DriverUserCreateSerializer, self).create(validated_data)
         user.set_password(validated_data['password'])
         user.is_active = True
         user.user_type = 0
