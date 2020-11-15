@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignupController extends GetxController {
-//TODO need to change logic
   var otp = ''.obs;
   var vId = ''.obs;
   TextEditingController username;

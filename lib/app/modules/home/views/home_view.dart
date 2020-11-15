@@ -212,7 +212,7 @@ class HomeView extends GetView<HomeController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          LocationHelper().getLocation();
+          LocationHelper().getUserLocation();
         },
         child: Icon(Icons.gps_fixed),
         backgroundColor:
