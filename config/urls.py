@@ -13,6 +13,8 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+
+    path('api-auth/', include('rest_framework.urls')),
     # User management
     path("users/", include("e_trip.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
