@@ -1,5 +1,9 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
+<<<<<<< HEAD
+=======
+import 'package:etrip/app/data/Widgets/notifiers.dart';
+>>>>>>> 77e554b08bf2d168688722f3c7a81e26f0c6b297
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,10 +32,18 @@ class DriverDetailsController extends GetxController {
   //   );
   // }
 
+<<<<<<< HEAD
   isLicenseNumber() {
     print('License Number');
   }
 
+=======
+  isLicenseNumber()  {
+        print('License Number');
+  }
+
+
+>>>>>>> 77e554b08bf2d168688722f3c7a81e26f0c6b297
   Future doDetailsSubmit() async {
     await ApiCalls().postRequest(
       body: {

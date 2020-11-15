@@ -153,16 +153,19 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
             // ),
 
             Padding(
-              padding: EdgeInsets.only(
-                  top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
+              padding: EdgeInsets.only(top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: MultiSelectFormField(
                   autovalidate: false,
+<<<<<<< HEAD
                   chipBackGroundColor:
                       HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
+=======
+                  chipBackGroundColor: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
+>>>>>>> 77e554b08bf2d168688722f3c7a81e26f0c6b297
                   chipLabelStyle: TextStyle(fontWeight: FontWeight.bold),
                   dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
                   checkBoxActiveColor: Colors.red,
@@ -206,7 +209,13 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                     // Obx( ()=>
                     //   _myActivities = value
                     // ),
+<<<<<<< HEAD
                     Obx(() => _myActivities = value);
+=======
+                    Obx(
+                          () => _myActivities = value
+                    );
+>>>>>>> 77e554b08bf2d168688722f3c7a81e26f0c6b297
                   },
                 ),
               ),
