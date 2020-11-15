@@ -4,6 +4,7 @@ import 'package:etrip/app/data/Functions/otp_sender.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignupDriverController extends GetxController {
@@ -67,6 +68,8 @@ class SignupDriverController extends GetxController {
         isPhone();
       } else {
         print(postData[0]);
+        CustomNotifiers().snackBar('Registration failed',
+            'Email or Phone Number already exists', Icons.error);
       }
     });
   }
