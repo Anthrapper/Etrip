@@ -58,3 +58,6 @@ DATABASES = {
 ```
 
 - [x] `DATABASE_URL = postgis://user001:123456789@localhost:5432/gis`
+
+### Development Server Config
+- [x] `heroku config:set DATABASE_URL="postgis://<username>:<password>@<host>:<port>/<database>?postgis_extension=true&search_schema_path=public,postgis"`
