@@ -25,3 +25,36 @@
   - [ ] v1/users/signup
   - [ ] ...
 
+
+## Enable GeoDjango
+
+### System Config :- 
+
+#### Installing GeoDjango Dependencies (GEOS, GDAL, and PROJ.4)
+ 
+ - [x] `sudo aptitude install gdal-bin libgdal-dev`
+ - [x] `sudo aptitude install python3-gdal`
+ - [x] `sudo aptitude install binutils libproj-dev`
+
+#### Up postgres DB
+ 
+ - [x] `docker run --name=postgis -d -e POSTGRES_USER=user001 -e POSTGRES_PASS=123456789 -e POSTGRES_DBNAME=gis -p 5432:5432 kartoza/postgis:9.6-2.4`
+
+
+### App Config
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'gis',
+        'USER': 'user001',
+        'PASSWORD': '123456789',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+
+```
+
+- [x] `DATABASE_URL = postgis://user001:123456789@localhost:5432/gis`
