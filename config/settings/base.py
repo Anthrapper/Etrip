@@ -62,6 +62,8 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    # GIS
+    "django.contrib.gis",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -77,7 +79,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "e_trip.users.apps.UsersConfig",
     "e_trip.vehicles.apps.VehiclesConfig",
-    # Your stuff: custom apps go here
+    "e_trip.trips.apps.TripsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
