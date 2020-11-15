@@ -7,7 +7,8 @@ import boto3
 from botocore.exceptions import ClientError
 from botocore.client import Config
 
-from  e_trip.vehicles.models import Vehicle
+from e_trip.vehicles.models import Vehicle, DriverVehicle
+from e_trip.users.models import Driver
 
 logger = logging.getLogger('django')
 
@@ -57,3 +58,19 @@ class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = '__all__'
+
+class DriverVehicleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DriverVehicle
+        fields = ["vehicle", "photo", "vehicle_no"]
+    def validate(self, data):
+        user = self.context.get('request').user
+        driver = get_object_or_404(Driver, user=user)
+        return data
+    def create(self, validated_data):
+        user = self.context.get('request').user
+        driver = get_object_or_404(Driver, user=user)
+        validated_data['driver'] = driver
+        driver_vehicle = super(DriverVehicleSerializer, self).create(validated_data)
+        driver_vehicle.save()
+        return driver_vehicle
