@@ -44,6 +44,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
             errors['password'] = list(e.messages)
         if User.objects.filter(username=username).exists():
             raise serializers.ValidationError("Username already taken")
+        if User.objects.filter(email=username).exists():
+            raise serializers.ValidationError("email already taken")
+        if User.objects.filter(phone=username).exists():
+            raise serializers.ValidationError("phone already taken")
         if errors:
             raise serializers.ValidationError(errors)
         return data

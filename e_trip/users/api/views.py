@@ -141,7 +141,7 @@ class DriverUpdate(UpdateAPIView):
     def get_object(self):
         obj = Driver.objects.get(user=self.request.user)
         return obj
-    def create(self, request, *args, **kwargs):
+    def update(self, request, *args, **kwargs):
         print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -163,18 +163,26 @@ class TokenViewBase(generics.GenericAPIView):
         )
 
     def post(self, request, *args, **kwargs):
-        #request.data._mutable = True
-        #request.data.update({"username":"admin"})
+        request.data._mutable = True
         #print(request.data)
+
         serializer = self.get_serializer(data=request.data)
         username = request.data['username']
+        phone_email_match = re.match(regex,username)
+        phone_match = re.match(regex_contact, username)
+        email_match = re.match(regex_mail, username)
+        if phone_match:
+            if User.objects.filter(phone=username).exclude(is_superuser=True).exists():
+                user =  User.objects.get_object_or_404(phone=username)
+                request.data.update({"username":user.username})
+        if email_match:
+            if User.objects.filter(email=username).exclude(is_superuser=True).exists():
+                user =  User.objects.get_object_or_404(email=username)
+                request.data.update({"username":user.username})
         print(request.data['username'])
         print(serializer)
 
         if User.objects.filter(username=username).exclude(is_superuser=True).exists():
-            phone_email_match = re.match(regex,username)
-            phone_match = re.match(regex_contact, username)
-            email_match = re.match(regex_mail, username)
             if phone_email_match:
                 if phone_match:
                     try:
