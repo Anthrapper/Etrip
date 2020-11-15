@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DriverDetailsController extends GetxController {
+
+  List myActivities = [].obs;
+
   var otp = ''.obs;
   var vId = ''.obs;
   TextEditingController licenseNum;
@@ -79,7 +82,6 @@ class DriverDetailsController extends GetxController {
   @override
   void onInit() {
     licenseNum = TextEditingController();
-
     super.onInit();
   }
 

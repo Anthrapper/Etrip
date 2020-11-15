@@ -10,16 +10,10 @@ import 'package:etrip/app/modules/driver_details/controllers/driver_details_cont
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 class DriverDetailsView extends GetView<DriverDetailsController> {
-  List _myActivities;
-  String _myActivitiesResult;
+
   final formKey = new GlobalKey<FormState>();
 
-  @override
-  void onInit() {
-    onInit();
-    _myActivities = [];
-    _myActivitiesResult = '';
-  }
+
 
   _saveForm() {
     var form = formKey.currentState;
@@ -97,12 +91,26 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: CustomTextField(
-                suffixChecker: true,
-                controller: controller.licenseNum,
-                hintText: 'Enter license number',
-                secureText: false,
+              padding: EdgeInsets.only(
+                  top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: HexColorUtils.getColorFromHex(CustomColors.textField),
+                  borderRadius: BorderRadius.all(Radius.circular(13)),
+                ),
+                child: FlatButton(
+                  onPressed: () {},
+                  child: ListTile(
+                    title: Text(
+                      'Upload your photo',
+                      style: TextStyle(
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.hintText),
+                      ),
+                    ),
+                    trailing: Icon(Icons.upload_file),
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -117,7 +125,30 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   onPressed: () {},
                   child: ListTile(
                     title: Text(
-                      'Upload your photo',
+                      'Upload your license - front',
+                      style: TextStyle(
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.hintText),
+                      ),
+                    ),
+                    trailing: Icon(Icons.upload_file),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: HexColorUtils.getColorFromHex(CustomColors.textField),
+                  borderRadius: BorderRadius.all(Radius.circular(13)),
+                ),
+                child: FlatButton(
+                  onPressed: () {},
+                  child: ListTile(
+                    title: Text(
+                      'Upload your license - back',
                       style: TextStyle(
                         color: HexColorUtils.getColorFromHex(
                             CustomColors.hintText),
@@ -203,19 +234,12 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   okButtonLabel: 'OK',
                   cancelButtonLabel: 'CANCEL',
                   hintWidget: Text('Please select your vehicles'),
-                  initialValue: _myActivities,
+                  initialValue: controller.myActivities,
                   onSaved: (value) {
                     if (value == null) return;
-                    // Obx( ()=>
-                    //   _myActivities = value
-                    // ),
-<<<<<<< HEAD
-                    Obx(() => _myActivities = value);
-=======
-                    Obx(
-                          () => _myActivities = value
-                    );
->>>>>>> 77e554b08bf2d168688722f3c7a81e26f0c6b297
+
+                    controller.myActivities = value;
+
                   },
                 ),
               ),
