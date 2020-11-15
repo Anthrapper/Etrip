@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomColors {
-  static const String background = "#E5E5E5";
+  static const Color background = Color(0xffE5E5E5);
   static const String circleAvatar = "#C4C4C4";
   static const String headings = "#121214";
   static const String textField = "#F4F4F4";

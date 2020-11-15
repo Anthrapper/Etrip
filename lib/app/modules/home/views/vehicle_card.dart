@@ -26,11 +26,13 @@ class VehicleCard extends StatelessWidget {
         ),
         child: FlatButton(
           onPressed: () async {
-            var vName = 'Otorsha';
-            await Get.toNamed(AppPages.VEHICLEFORM, arguments: vName);
+            await Get.toNamed(
+              AppPages.VEHICLEFORM,
+              arguments: this.name.capitalizeFirst,
+            );
           },
           child: Image.network(
-            'https://etripml.s3.amazonaws.com/media/assets/icons/ricksaw20201114135454.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201114%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201114T135501Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a39026244c97d5b8aab4ab7d4e18f3b766429e60c8d011fa063de4e82bfbf1a8',
+            this.iconUrl,
             fit: BoxFit.fill,
           ),
         ),

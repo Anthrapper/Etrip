@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
-import 'package:etrip/app/data/Functions/location_helper.dart';
 import 'package:etrip/app/modules/home/views/vehicle_card.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -214,16 +213,24 @@ class HomeView extends GetView<HomeController> {
                           fontSize: 18,
                         ),
                       ),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: 6,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
+                      Obx(
+                        () => GridView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: controller.vehicleData == null
+                              ? 0
+                              : controller.vehicleData.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                          itemBuilder: (BuildContext context, int index) {
+                            return VehicleCard(
+                              iconUrl: controller.vehicleData[index]['icon'],
+                              name: controller.vehicleData[index]['name'],
+                            );
+                          },
                         ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return VehicleCard();
-                        },
                       ),
                     ],
                   ),
@@ -232,13 +239,6 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          LocationHelper().getUserLocation();
-        },
-        child: Icon(Icons.gps_fixed),
-        backgroundColor: CustomColors.buttonColor,
       ),
     );
   }

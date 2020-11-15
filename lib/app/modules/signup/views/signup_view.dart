@@ -11,9 +11,7 @@ class SignupView extends GetView<SignupController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColorUtils.getColorFromHex(
-        CustomColors.background,
-      ),
+      backgroundColor: CustomColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

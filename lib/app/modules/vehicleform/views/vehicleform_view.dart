@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Functions/location_helper.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ class VehicleformView extends GetView<VehicleformController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.background,
       appBar: AppBar(
         title: Text('VEHICLE FORM'),
         centerTitle: true,
@@ -51,11 +53,35 @@ class VehicleformView extends GetView<VehicleformController> {
         key: controller.vehicleKey,
         child: Column(
           children: [
-            CustomTextField(
-              suffixChecker: false,
-              controller: controller.from,
-              hintText: 'From',
-              secureText: false,
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: Get.width * 0.001),
+                    child: CustomTextField(
+                      suffixChecker: false,
+                      controller: controller.from,
+                      hintText: 'From',
+                      secureText: false,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: Get.width * 0.085),
+                  child: IconButton(
+                    icon: Icon(Icons.gps_fixed),
+                    color: CustomColors.buttonColor,
+                    iconSize: Get.width * 0.075,
+                    onPressed: () {
+                      LocationHelper().getUserLocation();
+                    },
+                  ),
+                  // child: Icon(
+                  //   Icons.gps_fixed,
+                  //   color: CustomColors.buttonColor,
+                  // ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20.0),

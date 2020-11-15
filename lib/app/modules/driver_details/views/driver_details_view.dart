@@ -3,18 +3,15 @@ import 'package:etrip/app/data/Constants/text_styles.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
-import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
 import 'package:etrip/app/modules/driver_details/controllers/driver_details_controller.dart';
 
 class DriverDetailsView extends GetView<DriverDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColorUtils.getColorFromHex(
-        CustomColors.background,
-      ),
+      backgroundColor: CustomColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -66,7 +63,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
   Widget form() {
     return Padding(
       padding:
-      EdgeInsets.only(top: Get.height * 0.1, bottom: Get.height * 0.03),
+          EdgeInsets.only(top: Get.height * 0.1, bottom: Get.height * 0.03),
       child: Form(
         // key: controller.formKey,
         child: Column(
@@ -132,4 +129,3 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
     );
   }
 }
-  

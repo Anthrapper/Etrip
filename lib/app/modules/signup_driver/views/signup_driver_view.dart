@@ -11,9 +11,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColorUtils.getColorFromHex(
-        CustomColors.background,
-      ),
+      backgroundColor: CustomColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -28,7 +26,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
                 child: button(),
               ),
               FlatButton(
-                onPressed: (){
+                onPressed: () {
                   Get.toNamed(AppPages.DRIVER_DETAILS);
                 },
                 child: Text('DriverDetails'),
@@ -64,10 +62,12 @@ class SignupDriverView extends GetView<SignupDriverController> {
 
   Widget button() {
     return Center(
-      child: CustomButton(text: 'Submit', onpressed: () {
-        CustomNotifiers().progressIndicator();
-        controller.doSignUp();
-      }),
+      child: CustomButton(
+          text: 'Submit',
+          onpressed: () {
+            CustomNotifiers().progressIndicator();
+            controller.doSignUp();
+          }),
     );
   }
 

@@ -30,18 +30,14 @@ class ApiCalls {
         url,
         headers: header,
       );
-      print(header);
-      var jsonData = json.decode(response.body);
-      print(jsonData);
-      print(response.statusCode);
+
       if (Get.isDialogOpen) {
         Get.back();
       }
+      print(response.statusCode);
+
       if (response.statusCode == 200) {
-        var jsonData = json.decode(response.body);
-        print(jsonData);
-        print(response.statusCode);
-        return [response.statusCode, jsonData];
+        return json.decode(response.body);
       } else {
         return null;
       }
