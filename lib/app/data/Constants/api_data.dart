@@ -9,6 +9,7 @@ class ApiData {
   static const activation = baseUrl + version + 'user/activation';
   static const vehiclesList = baseUrl + version + 'driver/vehicles';
   static const jsonHeader = {"Content-Type": "application/json"};
+  static const driverSignUp = baseUrl + version + "driver/registration/basic";
   Future getHeader() async {
     var loginToken = await AuthHelper().getToken();
     var headers = {

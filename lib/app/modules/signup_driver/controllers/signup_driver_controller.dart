@@ -1,22 +1,44 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
+import 'package:etrip/app/data/Functions/otp_sender.dart';
+import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class SignupDriverController extends GetxController {
-  TextEditingController username;
+  var otp = ''.obs;
+  var vId = ''.obs;
+  TextEditingController email;
+  TextEditingController number;
   TextEditingController name;
   TextEditingController confPass;
   TextEditingController password;
   var showText = true.obs;
-  final formKey = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
+
+  vidUpdate(String verificationId) {
+    vId.value = verificationId;
+  }
+
+  saveOtp(String pin) {
+    otp.value = pin;
+    print(pin);
+  }
+
+  submitOtp() {
+    OtpSender().onFormSubmitted(otp.value, vId.value);
+  }
 
   isPhone() async {
-    print('phone');
-    // OtpSender().onVerifyCode(
-    //   username.text,
-    // );
+    OtpSender().onVerifyCode(
+      number.text,
+      vidUpdate,
+    );
+    await CustomNotifiers().submitOtp(
+      otpSave: saveOtp,
+      otpSend: submitOtp,
+    );
   }
 
   isEmail() async {
@@ -31,16 +53,18 @@ class SignupDriverController extends GetxController {
   Future doSignUp() async {
     await ApiCalls().postRequest(
       body: {
-        "username": username.text,
+        "phone": number.text,
+        "email": email.text,
         "name": name.text,
         "password": password.text,
       },
       headers: ApiData.jsonHeader,
-      url: ApiData.signUp,
+      url: ApiData.driverSignUp,
     ).then((postData) async {
       print(postData);
       if (postData[0] == 201) {
-        GetUtils.isEmail(username.text) ? isEmail() : isPhone();
+        // isEmail();
+        isPhone();
       } else {
         print(postData[0]);
       }
@@ -60,7 +84,8 @@ class SignupDriverController extends GetxController {
 
   @override
   void onInit() {
-    username = TextEditingController();
+    email = TextEditingController();
+    number = TextEditingController();
     name = TextEditingController();
     confPass = TextEditingController();
     password = TextEditingController();
@@ -74,7 +99,8 @@ class SignupDriverController extends GetxController {
 
   @override
   void onClose() {
-    username?.dispose();
+    email?.dispose();
+    number?.dispose();
     name?.dispose();
     password?.dispose();
     confPass?.dispose();

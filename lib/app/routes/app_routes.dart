@@ -8,4 +8,5 @@ abstract class Routes {
   static const SIGNUP_DRIVER = '/signup-driver';
   static const SIGNUP_SELECTION = '/signup-selection';
   static const TRIP_HISTORY = '/trip-history';
+  static const DRIVER_DETAILS = '/driver-details';
 }
