@@ -1,15 +1,17 @@
 import 'package:get/get.dart';
 
 class TripHistoryController extends GetxController {
-  //TODO: Implement TripHistoryController
-  
   final count = 0.obs;
 
   @override
-  void onInit() {}
+  void onInit() {
+    super.onInit();
+  }
 
   @override
-  void onReady() {}
+  void onReady() {
+    super.onReady();
+  }
 
   @override
   void onClose() {}

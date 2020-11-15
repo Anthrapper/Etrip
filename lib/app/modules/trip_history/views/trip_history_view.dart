@@ -1,10 +1,8 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
-import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/data/Widgets/customButton1.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/trip_history/controllers/trip_history_controller.dart';
 
@@ -26,9 +24,11 @@ class TripHistoryView extends GetView<TripHistoryController> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(Get.width * 0.04, Get.height * 0.02, Get.width * 0.04, Get.height * 0.02),
+        padding: EdgeInsets.fromLTRB(Get.width * 0.04, Get.height * 0.02,
+            Get.width * 0.04, Get.height * 0.02),
         child: Container(
-          padding: EdgeInsets.fromLTRB(Get.width * 0.03, Get.height * 0.01, Get.width * 0.03, Get.height * 0.01),
+          padding: EdgeInsets.fromLTRB(Get.width * 0.03, Get.height * 0.01,
+              Get.width * 0.03, Get.height * 0.01),
           width: Get.width,
           height: Get.height * 0.32,
           decoration: BoxDecoration(
@@ -98,7 +98,7 @@ class TripHistoryView extends GetView<TripHistoryController> {
                 right: 20,
                 child: CustomButton1(
                   text: 'Bids',
-                  onpressed: (){},
+                  onpressed: () {},
                 ),
               ),
               Positioned(
@@ -106,7 +106,7 @@ class TripHistoryView extends GetView<TripHistoryController> {
                 right: 20,
                 child: CustomButton1(
                   text: 'Selected Bid',
-                  onpressed: (){},
+                  onpressed: () {},
                 ),
               ),
               Positioned(
