@@ -1,12 +1,11 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
-import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DriverDetailsController extends GetxController {
-
   List myActivities = [].obs;
+  var vehicleData = [].obs;
 
   var otp = ''.obs;
   var vId = ''.obs;
@@ -21,6 +20,23 @@ class DriverDetailsController extends GetxController {
     vId.value = verificationId;
   }
 
+  Future getVehicleList() async {
+    try {
+      var vehicleList = await ApiCalls().getRequest(
+        url: ApiData.vehiclesList,
+        header: await ApiData().getHeader(),
+      );
+      if (vehicleList != null) {
+        print(vehicleList);
+        vehicleData.value = vehicleList;
+      } else {
+        throw Exception('Failed to load cars');
+      }
+    } on Exception catch (e) {
+      print(e);
+    }
+  }
+
   // isPhone() async {
   //   OtpSender().onVerifyCode(
   //     username.text,
@@ -32,9 +48,8 @@ class DriverDetailsController extends GetxController {
   //   );
   // }
 
-
-  isLicenseNumber()  {
-        print('License Number');
+  isLicenseNumber() {
+    print('License Number');
   }
 
   Future doDetailsSubmit() async {
@@ -71,6 +86,7 @@ class DriverDetailsController extends GetxController {
 
   @override
   void onInit() {
+    // getVehicleList();
     licenseNum = TextEditingController();
     super.onInit();
   }

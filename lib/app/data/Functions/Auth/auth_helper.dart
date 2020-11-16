@@ -46,8 +46,7 @@ class AuthHelper {
           CustomNotifiers().snackBar('Error', e.toString(), Icons.error);
         }
       } else {
-        await CustomNotifiers().snackBar(
-            'Error', 'Session Expired, Please Login again', Icons.error);
+        print('Session Expired, Please Login again');
         await Get.offAllNamed(AppPages.LOGIN);
         return 'error';
       }

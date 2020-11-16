@@ -7,7 +7,7 @@ import 'dart:convert';
 
 class ApiCalls {
   Future postRequest({
-    @required Map<String, String> body,
+    @required Map<String, dynamic> body,
     @required String url,
     @required Map<String, String> headers,
   }) async {
@@ -17,6 +17,9 @@ class ApiCalls {
         body: jsonEncode(body),
         headers: headers,
       );
+      print(body);
+      print(response.body);
+      print(response.statusCode);
       return [response.statusCode, json.decode(response.body)];
     } on SocketException catch (e) {
       print(e);

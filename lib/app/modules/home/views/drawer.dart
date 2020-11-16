@@ -98,7 +98,12 @@ class MyDrawer extends StatelessWidget {
                         () async => await Get.offAllNamed(AppPages.LOGIN));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
+                    padding: EdgeInsets.fromLTRB(
+                      Get.width * 0.01,
+                      Get.height * 0.01,
+                      0,
+                      Get.width * 0.04,
+                    ),
                     child: Row(
                       children: [
                         Text(

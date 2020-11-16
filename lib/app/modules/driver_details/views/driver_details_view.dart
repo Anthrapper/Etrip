@@ -2,7 +2,6 @@ import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
-import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,21 +9,6 @@ import 'package:etrip/app/modules/driver_details/controllers/driver_details_cont
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 class DriverDetailsView extends GetView<DriverDetailsController> {
-
-  final formKey = new GlobalKey<FormState>();
-
-
-
-  _saveForm() {
-    var form = formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      // setState(() {
-      //   _myActivitiesResult = _myActivities.toString();
-      // });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +23,9 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
               form(),
               Padding(
                 padding: EdgeInsets.only(
-                    top: Get.height * 0.03, bottom: Get.height * 0.05),
+                  top: Get.height * 0.03,
+                  bottom: Get.height * 0.05,
+                ),
                 child: button(),
               ),
             ],
@@ -184,14 +170,16 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
             // ),
 
             Padding(
-              padding: EdgeInsets.only(top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
+              padding: EdgeInsets.only(
+                  top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: MultiSelectFormField(
                   autovalidate: false,
-                  chipBackGroundColor: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
+                  chipBackGroundColor:
+                      HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
                   chipLabelStyle: TextStyle(fontWeight: FontWeight.bold),
                   dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
                   checkBoxActiveColor: Colors.red,
@@ -234,7 +222,6 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                     if (value == null) return;
 
                     controller.myActivities = value;
-
                   },
                 ),
               ),

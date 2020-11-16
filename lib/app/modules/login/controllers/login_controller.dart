@@ -33,20 +33,26 @@ class LoginController extends GetxController {
 
   Future login() async {
     await ApiCalls().postRequest(
-      body: {"username": userName.text, "password": password.text},
+      body: {
+        "username": userName.text,
+        "password": password.text,
+        "_mutable": 1
+      },
       headers: ApiData.jsonHeader,
       url: ApiData.login,
-    ).then((postData) async {
-      print(postData);
-      if (postData[0] == 200) {
-        successfulLogin(postData[1]);
-      } else if (postData[0] == 401) {
-        failedLogin(postData[1]['detail']);
-      } else {
-        print(postData[0]);
-        failedLogin(postData[1]);
-      }
-    });
+    ).then(
+      (postData) async {
+        print(postData);
+        if (postData[0] == 200) {
+          successfulLogin(postData[1]);
+        } else if (postData[0] == 401) {
+          failedLogin(postData[1]['detail']);
+        } else {
+          print(postData[0]);
+          failedLogin(postData[1]);
+        }
+      },
+    );
   }
 
   enSelected() {
