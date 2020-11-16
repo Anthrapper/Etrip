@@ -163,7 +163,7 @@ class TokenViewBase(generics.GenericAPIView):
         )
 
     def post(self, request, *args, **kwargs):
-        request.data._mutable = True
+        #request.data._mutable = True
         #print(request.data)
 
         serializer = self.get_serializer(data=request.data)
