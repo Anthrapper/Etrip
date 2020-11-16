@@ -37,52 +37,32 @@ class DriverDetailsController extends GetxController {
     }
   }
 
-  // isPhone() async {
-  //   OtpSender().onVerifyCode(
-  //     username.text,
-  //     vidUpdate,
-  //   );
-  //   await CustomNotifiers().submitOtp(
-  //     otpSave: saveOtp,
-  //     otpSend: submitOtp,
-  //   );
+
+  // manualVerify(String filename) async {
+  //   print(filename);
+  //
+  //   var uri = Uri.parse(ApiData.driverDetails);
+  //   var req = http.MultipartRequest('POST', uri);
+  //   req.files
+  //       .add(await http.MultipartFile.fromPath('verification_file', filename));
+  //   req.fields['token'] = sharedPreferences.getString('token');
+  //   var res = await req.send();
+  //   print(res.reasonPhrase);
+  //   print(res.statusCode);
+  //   if (res.statusCode == 201) {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //
+  //     _onAlertButtonPressed(context);
+  //   } else if (res.statusCode == 400) {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //     _errorMessage(context);
+  //   }
   // }
 
-  isLicenseNumber() {
-    print('License Number');
-  }
-
-  Future doDetailsSubmit() async {
-    await ApiCalls().postRequest(
-      body: {
-        // "username": username.text,
-      },
-      headers: ApiData.jsonHeader,
-      url: ApiData.driverDetails,
-    ).then((postData) async {
-      print(postData);
-
-      if (Get.isDialogOpen) {
-        Get.back();
-      }
-      if (postData[0] == 201) {
-        isLicenseNumber();
-      } else {
-        print(postData[0]);
-      }
-    });
-  }
-
-  obscure() {
-    print('called ');
-    print(showText.value);
-
-    if (showText.value == false) {
-      showText.value = true;
-    } else {
-      showText.value = false;
-    }
-  }
 
   @override
   void onInit() {

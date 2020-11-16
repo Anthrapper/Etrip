@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Functions/imagepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
@@ -74,6 +75,58 @@ class CustomNotifiers {
       duration: Duration(seconds: 3),
       icon: Icon(icon),
       isDismissible: false,
+    );
+  }
+
+  uploadSelection(){
+    return  Get.bottomSheet(
+        Container(
+          height: Get.height * 0.2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(Get.height * 0.02),
+            child: Wrap(
+              children: <Widget>[
+                Text(
+                  'Upload From :',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                FlatButton(
+                  onPressed: (){
+
+                  },
+                  child: ListTile(
+                      leading: Icon(Icons.camera),
+                      title: Text('Camera'),
+                      onTap: () {
+                        ImagePick().getImageFromCamera();
+                      }
+                  ),
+                ),
+                FlatButton(
+                  onPressed: (){
+
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons.image),
+                    title: Text('Gallery'),
+                    onTap: (){
+                    ImagePick().getImageFromGallery();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
     );
   }
 

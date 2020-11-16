@@ -1,6 +1,7 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
 import 'package:etrip/app/data/Functions/hexcolors.dart';
+import 'package:etrip/app/data/Functions/imagepicker.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
           text: 'Submit',
           onpressed: () {
             CustomNotifiers().progressIndicator();
-            controller.doDetailsSubmit();
+            // controller.doDetailsSubmit();
           }),
     );
   }
@@ -85,7 +86,9 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    CustomNotifiers().uploadSelection();
+                  },
                   child: ListTile(
                     title: Text(
                       'Upload your photo',
@@ -108,7 +111,9 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    CustomNotifiers().uploadSelection();
+                  },
                   child: ListTile(
                     title: Text(
                       'Upload your license - front',
@@ -131,7 +136,9 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    CustomNotifiers().uploadSelection();
+                  },
                   child: ListTile(
                     title: Text(
                       'Upload your license - back',
