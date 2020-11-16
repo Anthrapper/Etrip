@@ -40,9 +40,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
       child: CircleAvatar(
-        backgroundColor: HexColorUtils.getColorFromHex(
-          CustomColors.circleAvatar,
-        ),
+        backgroundColor: (CustomColors.circleAvatar),
         radius: Get.width * 0.11,
       ),
     );
@@ -82,7 +80,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HexColorUtils.getColorFromHex(CustomColors.textField),
+                  color: (CustomColors.textField),
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),
                 child: FlatButton(
@@ -93,8 +91,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                     title: Text(
                       'Upload your photo',
                       style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(
-                            CustomColors.hintText),
+                        color: (CustomColors.hintText),
                       ),
                     ),
                     trailing: Icon(Icons.upload_file),
@@ -107,7 +104,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HexColorUtils.getColorFromHex(CustomColors.textField),
+                  color: (CustomColors.textField),
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),
                 child: FlatButton(
@@ -118,8 +115,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                     title: Text(
                       'Upload your license - front',
                       style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(
-                            CustomColors.hintText),
+                        color: (CustomColors.hintText),
                       ),
                     ),
                     trailing: Icon(Icons.upload_file),
@@ -132,7 +128,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                   top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HexColorUtils.getColorFromHex(CustomColors.textField),
+                  color: (CustomColors.textField),
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),
                 child: FlatButton(
@@ -143,8 +139,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                     title: Text(
                       'Upload your license - back',
                       style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(
-                            CustomColors.hintText),
+                        color: (CustomColors.hintText),
                       ),
                     ),
                     trailing: Icon(Icons.upload_file),
@@ -185,8 +180,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 ),
                 child: MultiSelectFormField(
                   autovalidate: false,
-                  chipBackGroundColor:
-                      HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
+                  chipBackGroundColor: (CustomColors.buttonColor1),
                   chipLabelStyle: TextStyle(fontWeight: FontWeight.bold),
                   dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
                   checkBoxActiveColor: Colors.red,

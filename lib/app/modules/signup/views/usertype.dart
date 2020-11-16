@@ -28,9 +28,7 @@ class UserType extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
       child: CircleAvatar(
-        backgroundColor: HexColorUtils.getColorFromHex(
-          CustomColors.circleAvatar,
-        ),
+        backgroundColor: (CustomColors.circleAvatar),
         radius: Get.width * 0.11,
       ),
     );
@@ -73,8 +71,7 @@ class UserType extends StatelessWidget {
                   title: Text(
                     'Ride',
                     style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(
-                            CustomColors.headings),
+                        color: (CustomColors.headings),
                         fontSize: Get.height * 0.024),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right),
@@ -89,8 +86,7 @@ class UserType extends StatelessWidget {
                   title: Text(
                     'Drive',
                     style: TextStyle(
-                        color: HexColorUtils.getColorFromHex(
-                            CustomColors.headings),
+                        color: (CustomColors.headings),
                         fontSize: Get.height * 0.024),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right),

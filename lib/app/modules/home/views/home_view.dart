@@ -35,7 +35,7 @@ class HomeView extends GetView<HomeController> {
         title: Text(
           'HomeView',
           style: TextStyle(
-            color: HexColorUtils.getColorFromHex(CustomColors.headings),
+            color: (CustomColors.headings),
           ),
         ),
         centerTitle: true,

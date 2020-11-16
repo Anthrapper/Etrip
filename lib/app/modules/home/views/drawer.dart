@@ -10,43 +10,40 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      height: double.infinity,
-      width: MediaQuery.of(context).size.width * 0.78,
+      height: Get.height,
+      width: Get.width * 0.78,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
               color: CustomColors.buttonColor,
-              height: MediaQuery.of(context).size.height * 0.33,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.grey,
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          'John Doe',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
+              height: Get.height * 0.26,
+              child: Padding(
+                padding: EdgeInsets.all(Get.height * 0.025),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: Get.height * 0.04,
+                      backgroundColor: Colors.grey,
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
                     ),
-                  )
-                ],
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
+                    Text(
+                      'John Doe',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
               )),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
@@ -113,7 +110,7 @@ class MyDrawer extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * .4,
+                          width: Get.width * 0.4,
                         ),
                         Icon(Icons.exit_to_app),
                       ],

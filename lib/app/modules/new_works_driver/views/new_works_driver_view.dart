@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart'; 
+import 'package:etrip/app/modules/new_works_driver/controllers/new_works_driver_controller.dart';
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:etrip/app/modules/trip_history/controllers/trip_history_controller.dart';
 
-class TripHistoryView extends GetView<TripHistoryController> {
+class NewWorksDriverView extends GetView<NewWorksDriverController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +28,7 @@ class TripHistoryView extends GetView<TripHistoryController> {
           child: Column(
             children: [
 
-              // TripHistory
+              // New Works Driver
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Container(
@@ -91,7 +91,7 @@ class TripHistoryView extends GetView<TripHistoryController> {
                         top: Get.height * 0.23,
                         right: 20,
                         child: CustomButton1(
-                          text: 'Selected Bid',
+                          text: 'Set Bid Amount',
                           onpressed: () {},
                         ),
                       ),
@@ -104,11 +104,6 @@ class TripHistoryView extends GetView<TripHistoryController> {
                       ),
                       Positioned(
                         left: 20,
-                        top: Get.height * 0.24,
-                        child: Text('Amount: ₹ 5500'),
-                      ),
-                      Positioned(
-                        left: 20,
                         top: Get.height * 0.2,
                         child: Text('Nov 4, 2020'),
                       ),
@@ -116,7 +111,6 @@ class TripHistoryView extends GetView<TripHistoryController> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
@@ -124,3 +118,4 @@ class TripHistoryView extends GetView<TripHistoryController> {
     );
   }
 }
+  

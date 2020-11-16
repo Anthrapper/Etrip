@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.routes,
       translations: Messages(),
       theme: ThemeData(
-        fontFamily: GoogleFonts.lato().fontFamily,
+        fontFamily: GoogleFonts.hind().fontFamily,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryColor: Colors.lightBlue[700],
-        textTheme: TextTheme().apply(fontFamily: GoogleFonts.lato().fontFamily),
+        textTheme: TextTheme().apply(fontFamily: GoogleFonts.hind().fontFamily),
       ),
     );
   }

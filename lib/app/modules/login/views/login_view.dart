@@ -37,9 +37,7 @@ class LoginView extends GetView<LoginController> {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
       child: CircleAvatar(
-        backgroundColor: HexColorUtils.getColorFromHex(
-          CustomColors.circleAvatar,
-        ),
+        backgroundColor: (CustomColors.circleAvatar),
         radius: Get.width * 0.11,
       ),
     );

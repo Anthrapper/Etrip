@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart'; 
+import 'package:etrip/app/modules/my_trip/controllers/my_trip_controller.dart';
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:etrip/app/modules/trip_history/controllers/trip_history_controller.dart';
 
-class TripHistoryView extends GetView<TripHistoryController> {
+class MyTripView extends GetView<MyTripController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +28,14 @@ class TripHistoryView extends GetView<TripHistoryController> {
           child: Column(
             children: [
 
-              // TripHistory
+              // MyTrip
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(Get.width * 0.03, Get.height * 0.01, Get.width * 0.03, Get.height * 0.01),
+                  padding: EdgeInsets.fromLTRB(Get.width * 0.03, Get.height * 0.01,
+                      Get.width * 0.03, Get.height * 0.02),
                   width: Get.width,
-                  height: Get.height * 0.32,
+                  height: Get.height * 0.353,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -95,10 +96,21 @@ class TripHistoryView extends GetView<TripHistoryController> {
                           onpressed: () {},
                         ),
                       ),
+
                       Positioned(
+                        top: Get.height * 0.28,
+                        right: 20,
+                        child: CustomButton1(
+                          text: 'Trip Completed',
+                          onpressed: () {},
+                        ),
+                      ),
+
+                      Positioned(
+                        // bottom: Get.height * 0.5,
                         child: Center(
                           child: Divider(
-                            thickness: 1,
+                            thickness: 3,
                           ),
                         ),
                       ),
@@ -116,7 +128,6 @@ class TripHistoryView extends GetView<TripHistoryController> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
@@ -124,3 +135,4 @@ class TripHistoryView extends GetView<TripHistoryController> {
     );
   }
 }
+  

@@ -11,7 +11,7 @@ class CustomButton1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: Get.height * 0.04,
-      width: Get.width * 0.33,
+      width: Get.width * 0.38,
       decoration: BoxDecoration(
         // color: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
         color: CustomColors.buttonColor2,
