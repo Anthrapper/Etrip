@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 from rest_framework import status
 from rest_framework.decorators import action
@@ -181,7 +182,7 @@ class TokenViewBase(generics.GenericAPIView):
                 request.data.update({"username":user.username})
         print(request.data['username'])
         print(serializer)
-
+        message = {}
         if User.objects.filter(username=username).exclude(is_superuser=True).exists():
             if phone_email_match:
                 if phone_match:
@@ -199,10 +200,29 @@ class TokenViewBase(generics.GenericAPIView):
                         return Response({'user':'404'}, status=status.HTTP_401_UNAUTHORIZED)
         try:
             serializer.is_valid(raise_exception=True)
+            username = request.data['username']
+            user =  get_object_or_404(User,username=username)
+            if Driver.objects.filter(user=user).exists():
+                driver = get_object_or_404(Driver, user=user)
+                message = {
+                'user': 'driver',
+                'is_document_cleared': driver.is_document_cleared,
+                'status':driver.driver_status
+                }
+            elif user.is_superuser:
+
+                message = {
+                'user': 'admin'
+                }
+            else:
+                message = {
+                'user':'user'
+                }
+
         except TokenError as e:
             raise InvalidToken(e.args[0])
 
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        return Response({**serializer.validated_data,**message}, status=status.HTTP_200_OK)
 
 class TokenObtainPairView(TokenViewBase):
     """
