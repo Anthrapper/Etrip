@@ -1,6 +1,7 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
-import 'package:etrip/app/data/Widgets/customButton.dart';
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/data/Widgets/logo.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/modules/Driver/driver_details/controllers/driver_details_controller.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              logo(),
+              LogoWidget(),
               heading(),
               form(),
               Padding(
@@ -30,16 +31,6 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget logo() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
-      child: CircleAvatar(
-        backgroundColor: (CustomColors.circleAvatar),
-        radius: Get.width * 0.11,
       ),
     );
   }
@@ -146,30 +137,6 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //       top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //       color: HexColorUtils.getColorFromHex(CustomColors.textField),
-            //       borderRadius: BorderRadius.all(Radius.circular(13)),
-            //     ),
-            //     child: FlatButton(
-            //       onPressed: () {},
-            //       child: ListTile(
-            //         title: Text(
-            //           'Upload your Vehicle’s photo',
-            //           style: TextStyle(
-            //             color: HexColorUtils.getColorFromHex(
-            //                 CustomColors.hintText),
-            //           ),
-            //         ),
-            //         trailing: Icon(Icons.upload_file),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
             Padding(
               padding: EdgeInsets.only(
                   top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),

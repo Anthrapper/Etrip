@@ -76,10 +76,6 @@ class VehicleformView extends GetView<VehicleformController> {
                       LocationHelper().getUserLocation();
                     },
                   ),
-                  // child: Icon(
-                  //   Icons.gps_fixed,
-                  //   color: CustomColors.buttonColor,
-                  // ),
                 ),
               ],
             ),
@@ -101,6 +97,8 @@ class VehicleformView extends GetView<VehicleformController> {
                 secureText: false,
               ),
             ),
+            // SearchMapPlaceWidget(
+            //     apiKey: 'AIzaSyAtUbZtjy7JT0gnEQUV7h3DvNlAHBUBfQs'),
           ],
         ),
       ),

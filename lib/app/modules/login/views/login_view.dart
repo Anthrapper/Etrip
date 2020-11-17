@@ -19,7 +19,7 @@ class LoginView extends GetView<LoginController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              logo(),
+              LogoWidget(),
               heading(),
               form(),
               button(),
@@ -28,16 +28,6 @@ class LoginView extends GetView<LoginController> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget logo() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
-      child: CircleAvatar(
-        backgroundColor: (CustomColors.circleAvatar),
-        radius: Get.width * 0.11,
       ),
     );
   }

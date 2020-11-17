@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/User/signup/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
@@ -16,23 +15,13 @@ class SignupView extends GetView<SignupController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              logo(),
+              LogoWidget(),
               heading(),
               form(),
               button(),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget logo() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
-      child: CircleAvatar(
-        backgroundColor: (CustomColors.circleAvatar),
-        radius: Get.width * 0.11,
       ),
     );
   }

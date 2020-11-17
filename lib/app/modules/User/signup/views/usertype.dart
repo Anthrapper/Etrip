@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,22 +14,12 @@ class UserType extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              logo(),
+              LogoWidget(),
               heading(),
               button(),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget logo() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
-      child: CircleAvatar(
-        backgroundColor: (CustomColors.circleAvatar),
-        radius: Get.width * 0.11,
       ),
     );
   }

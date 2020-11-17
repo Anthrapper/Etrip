@@ -1,4 +1,3 @@
-import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/modules/Driver/signup_driver/controllers/signup_driver_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              logo(),
+              LogoWidget(),
               heading(),
               form(),
               Padding(
@@ -33,16 +32,6 @@ class SignupDriverView extends GetView<SignupDriverController> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget logo() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
-      child: CircleAvatar(
-        backgroundColor: (CustomColors.circleAvatar),
-        radius: Get.width * 0.11,
       ),
     );
   }
