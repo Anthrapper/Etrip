@@ -1,5 +1,4 @@
 import 'package:etrip/app/data/Constants/colors.dart';
-import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/modules/home/views/vehicle_card.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -62,8 +61,8 @@ class HomeView extends GetView<HomeController> {
                 items: cardList.map((card) {
                   return Builder(builder: (BuildContext context) {
                     return Container(
-                      height: MediaQuery.of(context).size.height * 0.30,
-                      width: MediaQuery.of(context).size.width,
+                      height: Get.height * 0.30,
+                      width: Get.width,
                       child: Card(
                         color: Colors.blueAccent,
                         child: card,
@@ -113,7 +112,9 @@ class HomeView extends GetView<HomeController> {
                               )
                             ]),
                         child: FlatButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await Get.toNamed(AppPages.MY_TRIP);
+                          },
                           child: ListTile(
                             title: Text(
                               'My Trip',

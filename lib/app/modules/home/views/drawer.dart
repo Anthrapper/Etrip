@@ -48,38 +48,37 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
             child: Container(
-                color: Colors.white,
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'My Trip',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'My Trip',
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
-                    SizedBox(
-                      height: 20,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Trip History',
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
-                    Text(
-                      'Trip History',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Settings',
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'Settings',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Column(
@@ -87,7 +86,6 @@ class MyDrawer extends StatelessWidget {
               children: [
                 Divider(
                   thickness: 0.5,
-                  // color: HexColorUtils.getColorFromHex(CustomColors.buttonColor1),
                 ),
                 FlatButton(
                   onPressed: () async {

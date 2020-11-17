@@ -1,5 +1,4 @@
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:etrip/app/data/Functions/validator.dart';
 import 'package:etrip/app/data/Widgets/customform.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';

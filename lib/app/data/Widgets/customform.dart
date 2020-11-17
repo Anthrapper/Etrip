@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
-import 'package:etrip/app/data/Functions/hexcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
