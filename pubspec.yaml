@@ -33,3 +33,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: BoringSans
+      fonts:
+        - asset: assets/fonts/Boring-Sans-A-Bold.ttf
+
