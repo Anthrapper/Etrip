@@ -15,9 +15,7 @@ class SignupController extends GetxController {
   TextEditingController confPass;
   TextEditingController password;
   var showText = true.obs;
-  var en = true.obs;
-  var ml = false.obs;
-  final formKey = GlobalKey<FormState>();
+  final regKey = GlobalKey<FormState>();
 
   vidUpdate(String verificationId) {
     vId.value = verificationId;

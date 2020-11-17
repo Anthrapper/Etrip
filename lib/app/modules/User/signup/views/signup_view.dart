@@ -1,8 +1,10 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Functions/validator.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/User/signup/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 
 class SignupView extends GetView<SignupController> {
@@ -41,8 +43,10 @@ class SignupView extends GetView<SignupController> {
       child: CustomButton(
         text: 'SIGNUP',
         onpressed: () {
-          CustomNotifiers().progressIndicator();
-          controller.doSignUp();
+          if (controller.regKey.currentState.validate()) {
+            CustomNotifiers().progressIndicator();
+            controller.doSignUp();
+          }
         },
       ),
     );
@@ -52,7 +56,7 @@ class SignupView extends GetView<SignupController> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
       child: Form(
-        key: controller.formKey,
+        key: controller.regKey,
         child: Column(
           children: [
             CustomTextField(
@@ -60,6 +64,7 @@ class SignupView extends GetView<SignupController> {
               controller: controller.name,
               hintText: 'Name',
               secureText: false,
+              validator: FormValidator().reqValidator,
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -74,6 +79,7 @@ class SignupView extends GetView<SignupController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  validator: FormValidator().passwordValidator,
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
                   suffixChecker: true,
@@ -87,6 +93,9 @@ class SignupView extends GetView<SignupController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  validator: (val) =>
+                      MatchValidator(errorText: 'passwords do not match')
+                          .validateMatch(val, controller.password.text),
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
                   suffixChecker: true,
