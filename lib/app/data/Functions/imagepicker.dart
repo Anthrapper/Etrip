@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -7,16 +8,19 @@ class ImagePick {
 
   Future getImageFromGallery() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
-    _image = File(pickedFile.path);
-    print(_image.path);
+    if (pickedFile != null) {
+      _image = File(pickedFile.path);
+      print(_image.path);
+      Get.back();
+    }
   }
 
   Future getImageFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
-
-    _image = File(pickedFile.path);
-    print(_image.path);
+    if (pickedFile != null) {
+      _image = File(pickedFile.path);
+      print(_image.path);
+      Get.back();
+    }
   }
-
 }

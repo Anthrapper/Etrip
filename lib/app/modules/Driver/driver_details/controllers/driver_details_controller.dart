@@ -2,23 +2,19 @@ import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
 
 class DriverDetailsController extends GetxController {
+  var photo = "".obs;
+  var licenseFront = "".obs;
+  var licenseBack = "".obs;
+
   List myActivities = [].obs;
   var vehicleData = [].obs;
 
-  var otp = ''.obs;
-  var vId = ''.obs;
-  TextEditingController licenseNum;
-
-  var showText = true.obs;
-  var en = true.obs;
-  var ml = false.obs;
   final formKey2 = GlobalKey<FormState>();
 
-  vidUpdate(String verificationId) {
-    vId.value = verificationId;
-  }
 
   Future getVehicleList() async {
     try {
@@ -37,37 +33,23 @@ class DriverDetailsController extends GetxController {
     }
   }
 
-
-  // manualVerify(String filename) async {
-  //   print(filename);
-  //
-  //   var uri = Uri.parse(ApiData.driverDetails);
-  //   var req = http.MultipartRequest('POST', uri);
-  //   req.files
-  //       .add(await http.MultipartFile.fromPath('verification_file', filename));
-  //   req.fields['token'] = sharedPreferences.getString('token');
-  //   var res = await req.send();
-  //   print(res.reasonPhrase);
-  //   print(res.statusCode);
-  //   if (res.statusCode == 201) {
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-  //
-  //     _onAlertButtonPressed(context);
-  //   } else if (res.statusCode == 400) {
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-  //     _errorMessage(context);
-  //   }
-  // }
-
+  photoUpload() async {
+    var uri = Uri.parse(ApiData.driverDetails);
+    var req = http.MultipartRequest('POST', uri);
+    req.files.add(await http.MultipartFile.fromPath('photo', photo.value));
+    req.files.add(
+        await http.MultipartFile.fromPath('license_back', licenseBack.value));
+    req.files.add(
+        await http.MultipartFile.fromPath('license_front', licenseFront.value));
+    // req.fields['token'] = sharedPreferences.getString('token');
+    var res = await req.send();
+    print(res.reasonPhrase);
+    print(res.statusCode);
+  }
 
   @override
   void onInit() {
     // getVehicleList();
-    licenseNum = TextEditingController();
     super.onInit();
   }
 
@@ -78,7 +60,6 @@ class DriverDetailsController extends GetxController {
 
   @override
   void onClose() {
-    licenseNum?.dispose();
     super.onClose();
   }
 }

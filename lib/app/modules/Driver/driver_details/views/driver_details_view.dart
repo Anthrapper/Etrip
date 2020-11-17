@@ -60,6 +60,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
           text: 'Submit',
           onpressed: () {
             CustomNotifiers().progressIndicator();
+            controller.photoUpload();
             // controller.doDetailsSubmit();
           }),
     );

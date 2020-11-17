@@ -78,55 +78,49 @@ class CustomNotifiers {
     );
   }
 
-  uploadSelection(){
-    return  Get.bottomSheet(
-        Container(
-          height: Get.height * 0.2,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(Get.height * 0.02),
-            child: Wrap(
-              children: <Widget>[
-                Text(
-                  'Upload From :',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+  uploadSelection() {
+    return Get.bottomSheet(
+      Container(
+        height: Get.height * 0.2,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(Get.height * 0.02),
+          child: Wrap(
+            children: <Widget>[
+              Text(
+                'Upload From :',
+                style: TextStyle(
+                  fontSize: 20,
                 ),
-                SizedBox(
-                  height: 30,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              FlatButton(
+                onPressed: () {
+                  ImagePick().getImageFromCamera();
+                },
+                child: ListTile(
+                  leading: Icon(Icons.camera),
+                  title: Text('Camera'),
                 ),
-                FlatButton(
-                  onPressed: (){
-
-                  },
-                  child: ListTile(
-                      leading: Icon(Icons.camera),
-                      title: Text('Camera'),
-                      onTap: () {
-                        ImagePick().getImageFromCamera();
-                      }
-                  ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  ImagePick().getImageFromGallery();
+                },
+                child: ListTile(
+                  leading: Icon(Icons.image),
+                  title: Text('Gallery'),
                 ),
-                FlatButton(
-                  onPressed: (){
-
-                  },
-                  child: ListTile(
-                    leading: Icon(Icons.image),
-                    title: Text('Gallery'),
-                    onTap: (){
-                    ImagePick().getImageFromGallery();
-                    },
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 
