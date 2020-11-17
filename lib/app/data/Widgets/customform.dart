@@ -24,37 +24,49 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.085),
-      child: Container(
-        decoration: BoxDecoration(
-          color: (CustomColors.textField),
-          border: Border.all(
-            color: (CustomColors.textField),
+      child: TextFormField(
+        autofocus: false,
+        style: TextStyle(color: Colors.black),
+        textAlign: TextAlign.justify,
+        controller: controller,
+        cursorColor: Colors.blueGrey,
+        obscureText: secureText,
+        validator: validator,
+        decoration: InputDecoration(
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.textField),
+            borderRadius: BorderRadius.circular(13),
           ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(13),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.textField),
+            borderRadius: BorderRadius.circular(13),
           ),
-        ),
-        child: TextFormField(
-          style: TextStyle(color: Colors.black),
-          textAlign: TextAlign.justify,
-          controller: controller,
-          cursorColor: Colors.blueGrey,
-          obscureText: secureText,
-          validator: validator,
-          decoration: InputDecoration(
-            suffixIcon: this.suffixChecker
-                ? GestureDetector(
-                    onTap: this.obsecure,
-                    child: Icon(this.icon),
-                  )
-                : SizedBox(),
-            prefixIcon: Padding(
-              padding: EdgeInsets.only(),
-            ),
-            border: InputBorder.none,
-            hintText: hintText,
-            hintStyle: CustomTextStyles().textFieldStyle,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.textField),
+            borderRadius: BorderRadius.circular(13),
           ),
+          disabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.textField),
+            borderRadius: BorderRadius.circular(13),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.textField),
+            borderRadius: BorderRadius.circular(13),
+          ),
+          filled: true,
+          fillColor: CustomColors.textField,
+          suffixIcon: this.suffixChecker
+              ? GestureDetector(
+                  onTap: this.obsecure,
+                  child: Icon(this.icon),
+                )
+              : SizedBox(),
+          prefixIcon: Padding(
+            padding: EdgeInsets.only(),
+          ),
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: CustomTextStyles().textFieldStyle,
         ),
       ),
     );
