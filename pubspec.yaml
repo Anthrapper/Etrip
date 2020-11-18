@@ -6,6 +6,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  geolocator: 6.1.7
+  device_info: 1.0.0
+  get_storage: 1.3.2
   search_map_place: 0.3.0
   location: 3.0.2
   geocoder: 0.2.1
@@ -37,4 +40,3 @@ flutter:
     - family: BoringSans
       fonts:
         - asset: assets/fonts/Boring-Sans-A-Bold.ttf
-

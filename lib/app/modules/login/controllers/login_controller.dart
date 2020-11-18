@@ -5,8 +5,10 @@ import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
+  final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
   TextEditingController userName;
   TextEditingController password;
@@ -27,9 +29,16 @@ class LoginController extends GetxController {
       if (Get.isDialogOpen) {
         Get.back();
         if (tokenData['user'] == 'driver') {
-          print('driver');
+          if (tokenData['is_document_cleared'] == false) {
+            await box
+                .write('is_document_cleared', false)
+                .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
+          } else {
+            await Get.offAllNamed(AppPages.INITIAL);
+          }
+        } else {
+          await Get.offAllNamed(AppPages.INITIAL);
         }
-        await Get.offAllNamed(AppPages.INITIAL);
       }
     });
   }
@@ -44,7 +53,6 @@ class LoginController extends GetxController {
       url: ApiData.login,
     ).then(
       (postData) async {
-        print(postData);
         if (postData[0] == 200) {
           successfulLogin(postData[1]);
         } else if (postData[0] == 401) {

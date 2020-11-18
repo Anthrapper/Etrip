@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
@@ -7,10 +6,12 @@ import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthHelper {
   final storage = FlutterSecureStorage();
+  final box = GetStorage();
 
   Future getToken() async {
     List tokens = await readToken();
@@ -30,11 +31,11 @@ class AuthHelper {
             url: ApiData.refresh,
             headers: ApiData.jsonHeader,
           );
-          var jsonData = json.decode(response.body);
-          print(jsonData);
-          if (response.statusCode == 200) {
-            await storeToken(jsonData['access'], jsonData['refresh']);
-            return jsonData['access'];
+
+          if (response[0] == 200) {
+            await storage.write(
+                key: 'accesstoken', value: response[1]['access']);
+            return response[1]['access'];
           } else {
             await CustomNotifiers().snackBar(
                 'Error', 'Session Expired, Please Login again', Icons.error);
@@ -59,7 +60,12 @@ class AuthHelper {
       print('ACCESS TOKEN EXISTS');
       if (JwtDecoder.isExpired(loginToken) == false) {
         print('ACCESS TOKEN is LIVE');
-        Get.offAllNamed(AppPages.INITIAL);
+        if (await box.read('is_document_cleared') == false) {
+          Get.offAllNamed(AppPages.DRIVER_DETAILS);
+          //TODO clear this value after adding data
+        } else {
+          Get.offAllNamed(AppPages.INITIAL);
+        }
       } else {
         print('ACCESS TOKEN EXPIRED');
 
@@ -70,10 +76,11 @@ class AuthHelper {
               'refresh': refreshToken,
             }, url: ApiData.refresh, headers: ApiData.jsonHeader).then(
               (response) async {
-                if (response.statusCode == 200) {
+                print(response[0]);
+                if (response[0] == 200) {
                   print('new access token recieved');
                   await storage
-                      .write(key: 'accesstoken', value: response['access'])
+                      .write(key: 'accesstoken', value: response[1]['access'])
                       .whenComplete(() => Get.offAllNamed('home'));
                 } else {
                   print('error getting token');

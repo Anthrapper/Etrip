@@ -17,7 +17,9 @@ class ApiCalls {
         body: jsonEncode(body),
         headers: headers,
       );
-      print(body);
+      print(url);
+      print(response.statusCode);
+
       print(response.body);
       print(response.statusCode);
       return [response.statusCode, json.decode(response.body)];

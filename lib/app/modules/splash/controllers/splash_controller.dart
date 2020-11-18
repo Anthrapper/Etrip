@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 class SplashController extends GetxController {
   Future checkAuth() async {
     Timer(
-      Duration(milliseconds: 2300),
+      Duration(
+        milliseconds: 2300,
+      ),
       () {
         AuthHelper().checkLoginStatus();
       },
