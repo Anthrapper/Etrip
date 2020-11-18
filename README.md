@@ -26,6 +26,11 @@
 |:---------:	|:--------:	|:------:	|:------:	|:----------:	|
 |     etrpiml      	|    [@P7[T}c(vWR8al      	|    AKIASATQSK4MMRBTTO7M    	|       hIjKALJDkmiNypQdc0qVu8wwlk7L6DOTahPJPgfu 	|      https://138748778264.signin.aws.amazon.com/console      	|
 
+ ### Messages and Notifications
+ - [PUSH] FCM API KEY `AAAArC5C74A:APA91bG2fn_WloWSXJziVeo3l6NwdYUu7vFdhOiOYc1PY0VKwrqoxPPMKtr9EuvjpEXeYGOxTqkXbc0tbm-OqzMSfEETOr3OtifCpFHRfJlDLRnRjoTPCBfCZrM0LoaTKnxcaN9Nm6-m`
+ - [SMS NOTIFICATIONS] TWILIO 
+  - Secret ``
+  - API Key ``
 ### Frontend : Development Build
 
 [![Build CI](https://github.com/TomerconDevelopers/etrip/workflows/Flutter%20CI/badge.svg)](https://github.com/TomerconDevelopers/etrip/actions)
