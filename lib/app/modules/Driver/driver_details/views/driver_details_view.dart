@@ -50,9 +50,11 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
       child: CustomButton(
           text: 'Submit',
           onpressed: () {
+            print(controller.photo.value);
+            print(controller.licenseBack.value);
+            print(controller.licenseFront.value);
             CustomNotifiers().progressIndicator();
             controller.photoUpload();
-            // controller.doDetailsSubmit();
           }),
     );
   }
@@ -67,7 +69,10 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  top: 20.0, right: Get.width * 0.085, left: Get.width * 0.085),
+                top: 20.0,
+                right: Get.width * 0.085,
+                left: Get.width * 0.085,
+              ),
               child: Container(
                 decoration: BoxDecoration(
                   color: (CustomColors.textField),
@@ -75,7 +80,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    CustomNotifiers().uploadSelection();
+                    CustomNotifiers().uploadSelection(controller.photo);
                   },
                   child: ListTile(
                     title: Text(
@@ -99,7 +104,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    CustomNotifiers().uploadSelection();
+                    CustomNotifiers().uploadSelection(controller.licenseFront);
                   },
                   child: ListTile(
                     title: Text(
@@ -123,7 +128,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    CustomNotifiers().uploadSelection();
+                    CustomNotifiers().uploadSelection(controller.licenseBack);
                   },
                   child: ListTile(
                     title: Text(

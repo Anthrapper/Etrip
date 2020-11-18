@@ -19,7 +19,7 @@ class CustomNotifiers {
   Future submitOtp({Function otpSave, Function otpSend}) async {
     await Get.bottomSheet(
       Container(
-        height: Get.height / 2.6,
+        height: Get.height * 0.42,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
@@ -78,17 +78,17 @@ class CustomNotifiers {
     );
   }
 
-  uploadSelection() {
+  uploadSelection(RxString val) {
     return Get.bottomSheet(
       Container(
-        height: Get.height * 0.2,
+        height: Get.height * 0.3,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
         child: Padding(
           padding: EdgeInsets.all(Get.height * 0.02),
-          child: Wrap(
+          child: Column(
             children: <Widget>[
               Text(
                 'Upload From :',
@@ -96,12 +96,9 @@ class CustomNotifiers {
                   fontSize: 20,
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
               FlatButton(
-                onPressed: () {
-                  ImagePick().getImageFromCamera();
+                onPressed: () async {
+                  val.value = await ImagePick().getImageFromCamera();
                 },
                 child: ListTile(
                   leading: Icon(Icons.camera),
@@ -109,8 +106,8 @@ class CustomNotifiers {
                 ),
               ),
               FlatButton(
-                onPressed: () {
-                  ImagePick().getImageFromGallery();
+                onPressed: () async {
+                  val.value = await ImagePick().getImageFromGallery();
                 },
                 child: ListTile(
                   leading: Icon(Icons.image),

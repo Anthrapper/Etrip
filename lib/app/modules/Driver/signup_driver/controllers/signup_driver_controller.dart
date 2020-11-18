@@ -68,8 +68,15 @@ class SignupDriverController extends GetxController {
         isPhone();
       } else {
         print(postData[0]);
-        CustomNotifiers().snackBar('Registration failed',
-            'Email or Phone Number already exists', Icons.error);
+        if (Get.isDialogOpen) {
+          Get.back();
+        }
+        //TODO proper msg
+        CustomNotifiers().snackBar(
+          'Registration failed',
+          'Email or Phone Number already exists',
+          Icons.error,
+        );
       }
     });
   }
