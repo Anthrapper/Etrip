@@ -3,11 +3,13 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
   TextEditingController userName;
@@ -21,6 +23,21 @@ class LoginController extends GetxController {
     }
     CustomNotifiers().snackBar('Login Failed', reason.toString(), Icons.error);
   }
+
+
+  //
+  // _firebaseMessaging.requestNotificationPermissions(
+  // const IosNotificationSettings(sound: true, badge: true, alert: true));
+  // _firebaseMessaging.onIosSettingsRegistered
+  //     .listen((IosNotificationSettings settings) {
+  // print("Settings registered: $settings");
+  // });
+  // _firebaseMessaging.getToken().then((String token) {
+  // assert(token != null);
+  // print(token);
+  // firebaseToken = token;
+  // setState(() => {});
+  // });
 
   successfulLogin(var tokenData) async {
     await _authHelper
@@ -93,7 +110,26 @@ class LoginController extends GetxController {
     userName = TextEditingController();
     password = TextEditingController();
     super.onInit();
-  }
+
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) {
+        print('on message ${message}');
+        // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+        // displayNotification(message);
+        // _showItemDialog(message);
+      },
+      onResume: (Map<String, dynamic> message) {
+        print('on resume $message');
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print('on launch $message');
+      },
+    );
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      print(token);
+     });
+    }
 
   @override
   void onReady() {
@@ -106,4 +142,6 @@ class LoginController extends GetxController {
     password?.dispose();
     super.onClose();
   }
+
+
 }
