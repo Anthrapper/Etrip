@@ -199,7 +199,7 @@ class TokenViewBase(generics.GenericAPIView):
             serializer.is_valid(raise_exception=True)
             username = request.data['username']
             user =  get_object_or_404(User,username=username)
-            if 'device_id' request.data:
+            if 'device_id' in request.data:
                 device_id = request.data['device_id']
                 user.device_id = device_id
                 user.save()
