@@ -164,9 +164,6 @@ class TokenViewBase(generics.GenericAPIView):
         )
 
     def post(self, request, *args, **kwargs):
-        #request.data._mutable = True
-        #print(request.data)
-
         serializer = self.get_serializer(data=request.data)
         username = request.data['username']
         phone_email_match = re.match(regex,username)
@@ -202,6 +199,10 @@ class TokenViewBase(generics.GenericAPIView):
             serializer.is_valid(raise_exception=True)
             username = request.data['username']
             user =  get_object_or_404(User,username=username)
+            if request.data['device_id']:
+                device_id = request.data['device_id']
+                user.device_id = device_id
+                user.save()
             if Driver.objects.filter(user=user).exists():
                 driver = get_object_or_404(Driver, user=user)
                 message = {

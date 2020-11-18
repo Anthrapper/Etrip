@@ -29,6 +29,7 @@ class User(AbstractUser):
     name = CharField(_("Name of User"), blank=True, max_length=255)
     phone = models.CharField(blank=True,max_length=10)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    device_id = models.CharField(max_length=500,null=True,blank=True)
     def get_absolute_url(self):
         """Get url for user's detail view.
 
