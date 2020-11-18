@@ -19,7 +19,8 @@ class HomeController extends GetxController {
       );
       if (vehicleList != null) {
         print(vehicleList);
-        vehicleData.value = vehicleList;
+        //TODO check
+        vehicleData.assignAll(vehicleList);
         isLoading.value = false;
       } else {
         throw Exception('Failed to load cars');

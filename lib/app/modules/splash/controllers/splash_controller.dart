@@ -1,13 +1,21 @@
+import 'dart:async';
+
+import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
-  Future test() async {
-    print('hfh');
+  Future checkAuth() async {
+    Timer(
+      Duration(milliseconds: 2300),
+      () {
+        AuthHelper().checkLoginStatus();
+      },
+    );
   }
 
   @override
   void onInit() {
-    test();
+    checkAuth();
     super.onInit();
   }
 

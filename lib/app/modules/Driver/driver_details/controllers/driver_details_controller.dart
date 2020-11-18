@@ -19,7 +19,8 @@ class DriverDetailsController extends GetxController {
       );
       if (vehicleList != null) {
         print(vehicleList);
-        vehicleData.value = vehicleList;
+        //TODO check req
+        vehicleData.assignAll(vehicleList);
       } else {
         throw Exception('Failed to load cars');
       }

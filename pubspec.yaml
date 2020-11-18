@@ -20,7 +20,7 @@ dependencies:
   multiselect_formfield: 0.1.4
   carousel_slider: ^2.3.1
   image_picker: ^0.6.7+14
-  get: 3.15.0
+  get: 3.17.1
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
