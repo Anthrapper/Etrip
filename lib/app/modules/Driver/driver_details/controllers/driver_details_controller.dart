@@ -3,19 +3,14 @@ import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:io';
 
 class DriverDetailsController extends GetxController {
   var photo = "".obs;
   var licenseFront = "".obs;
   var licenseBack = "".obs;
-
   List myActivities = [].obs;
   var vehicleData = [].obs;
-
   final formKey2 = GlobalKey<FormState>();
-
-
   Future getVehicleList() async {
     try {
       var vehicleList = await ApiCalls().getRequest(
@@ -41,7 +36,7 @@ class DriverDetailsController extends GetxController {
         await http.MultipartFile.fromPath('license_back', licenseBack.value));
     req.files.add(
         await http.MultipartFile.fromPath('license_front', licenseFront.value));
-    // req.fields['token'] = sharedPreferences.getString('token');
+    req.fields["vehicles"] = [1, 2].toString();
     var res = await req.send();
     print(res.reasonPhrase);
     print(res.statusCode);

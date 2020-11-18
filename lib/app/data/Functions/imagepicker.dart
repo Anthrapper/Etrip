@@ -12,6 +12,7 @@ class ImagePick {
       _image = File(pickedFile.path);
       print(_image.path);
       Get.back();
+      return _image.path;
     }
   }
 
@@ -21,6 +22,7 @@ class ImagePick {
       _image = File(pickedFile.path);
       print(_image.path);
       Get.back();
+      return _image.path;
     }
   }
 }

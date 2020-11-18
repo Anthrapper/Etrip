@@ -26,6 +26,9 @@ class LoginController extends GetxController {
         .whenComplete(() async {
       if (Get.isDialogOpen) {
         Get.back();
+        if (tokenData['user'] == 'driver') {
+          print('driver');
+        }
         await Get.offAllNamed(AppPages.INITIAL);
       }
     });
@@ -36,7 +39,6 @@ class LoginController extends GetxController {
       body: {
         "username": userName.text,
         "password": password.text,
-        "_mutable": 1
       },
       headers: ApiData.jsonHeader,
       url: ApiData.login,

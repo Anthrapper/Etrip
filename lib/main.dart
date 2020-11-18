@@ -20,8 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.LOGIN,
+      initialRoute: AppPages.SPLASH,
       getPages: AppPages.routes,
+      defaultTransition: Transition.fadeIn,
       translations: Messages(),
       theme: ThemeData(
         fontFamily: GoogleFonts.hind().fontFamily,
