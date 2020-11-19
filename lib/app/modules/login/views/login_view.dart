@@ -36,7 +36,7 @@ class LoginView extends GetView<LoginController> {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.01, 0, 0),
       child: Text(
-        'Login',
+        'login'.tr,
         style: CustomTextStyles().headingStyle,
       ),
     );

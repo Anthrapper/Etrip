@@ -12,4 +12,5 @@ abstract class Routes {
   static const MY_TRIP = '/my-trip';
   static const NEW_WORKS_DRIVER = '/new-works-driver';
   static const SPLASH = '/splash';
+  static const NOTIFICATION = '/notifications';
 }

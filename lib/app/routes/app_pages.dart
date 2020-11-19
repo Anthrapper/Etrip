@@ -18,6 +18,7 @@ import 'package:etrip/app/modules/User/vehicleform/views/vehicleform_view.dart';
 import 'package:etrip/app/modules/login/views/login_view.dart';
 import 'package:etrip/app/modules/login/bindings/login_binding.dart';
 import 'package:etrip/app/modules/home/views/home_view.dart';
+import 'package:etrip/app/modules/home/views/notifications.dart';
 import 'package:etrip/app/modules/home/bindings/home_binding.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
@@ -33,6 +34,7 @@ class AppPages {
   static const DRIVER_DETAILS = Routes.DRIVER_DETAILS;
   static const MY_TRIP = Routes.MY_TRIP;
   static const SPLASH = Routes.SPLASH;
+  static const NOTIFICATION = Routes.NOTIFICATION;
 
   static final routes = [
     GetPage(
@@ -88,6 +90,10 @@ class AppPages {
       name: Routes.SPLASH, 
       page:()=> SplashView(), 
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: Routes.NOTIFICATION,
+      page:()=> NotificationsPage(),
     ),
   ];
 }

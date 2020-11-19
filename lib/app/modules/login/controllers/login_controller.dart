@@ -77,11 +77,15 @@ class LoginController extends GetxController {
   enSelected() {
     en.value = true;
     ml.value = false;
+    // Get.updateLocale(en);
+    box.write('language', 'en');
   }
 
   mlSelected() {
     en.value = false;
     ml.value = true;
+
+    box.write('language', 'ml');
   }
 
   obscure() {

@@ -44,7 +44,9 @@ class HomeView extends GetView<HomeController> {
               Icons.notifications,
               color: Colors.black,
             ),
-            onPressed: (){},
+            onPressed: (){
+              Get.toNamed(AppPages.NOTIFICATION);
+            },
           )
         ],
       ),

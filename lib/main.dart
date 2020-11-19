@@ -19,9 +19,11 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: box.hasData('language') ? Locale(box.read('language')) : Locale('en'),
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.SPLASH,
       getPages: AppPages.routes,
