@@ -149,51 +149,40 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: MultiSelectFormField(
-                  autovalidate: false,
-                  chipBackGroundColor: (CustomColors.buttonColor1),
-                  chipLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-                  dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
-                  checkBoxActiveColor: Colors.red,
-                  checkBoxCheckColor: Colors.green,
-                  dialogShapeBorder: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                  title: Text(
-                    "Vehicles",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  dataSource: [
-                    {
-                      "display": "Car",
-                      "value": "Car",
-                    },
-                    {
-                      "display": "Bus",
-                      "value": "Bus",
-                    },
-                    {
-                      "display": "Lorry",
-                      "value": "Lorry",
-                    },
-                    {
-                      "display": "Auto",
-                      "value": "Auto",
-                    },
-                    {
-                      "display": "MiniBus",
-                      "value": "MiniBus",
-                    },
-                  ],
-                  textField: 'display',
-                  valueField: 'value',
-                  okButtonLabel: 'OK',
-                  cancelButtonLabel: 'CANCEL',
-                  hintWidget: Text('Please select your vehicles'),
-                  initialValue: controller.myActivities,
-                  onSaved: (value) {
-                    if (value == null) return;
+                child: Obx(
+                  () {
+                    return controller.showWidget.value == false
+                        ? SizedBox()
+                        : MultiSelectFormField(
+                            autovalidate: false,
+                            fillColor: CustomColors.textField,
+                            chipBackGroundColor: (CustomColors.buttonColor1),
+                            chipLabelStyle:
+                                TextStyle(fontWeight: FontWeight.bold),
+                            dialogTextStyle:
+                                TextStyle(fontWeight: FontWeight.bold),
+                            checkBoxActiveColor: Colors.red,
+                            checkBoxCheckColor: Colors.green,
+                            dialogShapeBorder: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0))),
+                            title: Text(
+                              "Vehicles",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            dataSource: controller.vehicleData,
+                            textField: 'name',
+                            valueField: 'id',
+                            okButtonLabel: 'OK',
+                            cancelButtonLabel: 'CANCEL',
+                            hintWidget: Text('Please select your vehicles'),
+                            initialValue: controller.myActivities,
+                            onSaved: (value) {
+                              if (value == null) return;
 
-                    controller.myActivities = value;
+                              controller.myActivities = value;
+                            },
+                          );
                   },
                 ),
               ),

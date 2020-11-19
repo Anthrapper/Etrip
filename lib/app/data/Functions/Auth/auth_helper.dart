@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
@@ -60,12 +61,19 @@ class AuthHelper {
       print('ACCESS TOKEN EXISTS');
       if (JwtDecoder.isExpired(loginToken) == false) {
         print('ACCESS TOKEN is LIVE');
-        if (await box.read('is_document_cleared') == false) {
-          Get.offAllNamed(AppPages.DRIVER_DETAILS);
-          //TODO clear this value after adding data
-        } else {
-          Get.offAllNamed(AppPages.INITIAL);
-        }
+        Timer(
+          Duration(
+            milliseconds: 2300,
+          ),
+          () async {
+            if (await box.read('is_document_cleared') == false) {
+              Get.offAllNamed(AppPages.DRIVER_DETAILS);
+              //TODO clear this value after adding data
+            } else {
+              Get.offAllNamed(AppPages.INITIAL);
+            }
+          },
+        );
       } else {
         print('ACCESS TOKEN EXPIRED');
 
@@ -81,7 +89,14 @@ class AuthHelper {
                   print('new access token recieved');
                   await storage
                       .write(key: 'accesstoken', value: response[1]['access'])
-                      .whenComplete(() => Get.offAllNamed('home'));
+                      .whenComplete(() async {
+                    if (await box.read('is_document_cleared') == false) {
+                      Get.offAllNamed(AppPages.DRIVER_DETAILS);
+                      //TODO clear this value after adding data
+                    } else {
+                      Get.offAllNamed(AppPages.INITIAL);
+                    }
+                  });
                 } else {
                   print('error getting token');
                   Get.offAllNamed(AppPages.LOGIN);

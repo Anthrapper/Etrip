@@ -14,6 +14,7 @@ class LoginController extends GetxController {
   final AuthHelper _authHelper = AuthHelper();
   TextEditingController userName;
   TextEditingController password;
+  var deviceId = ''.obs;
   var showText = true.obs;
   var en = true.obs;
   var ml = false.obs;
@@ -23,21 +24,6 @@ class LoginController extends GetxController {
     }
     CustomNotifiers().snackBar('Login Failed', reason.toString(), Icons.error);
   }
-
-
-  //
-  // _firebaseMessaging.requestNotificationPermissions(
-  // const IosNotificationSettings(sound: true, badge: true, alert: true));
-  // _firebaseMessaging.onIosSettingsRegistered
-  //     .listen((IosNotificationSettings settings) {
-  // print("Settings registered: $settings");
-  // });
-  // _firebaseMessaging.getToken().then((String token) {
-  // assert(token != null);
-  // print(token);
-  // firebaseToken = token;
-  // setState(() => {});
-  // });
 
   successfulLogin(var tokenData) async {
     await _authHelper
@@ -61,10 +47,16 @@ class LoginController extends GetxController {
   }
 
   Future login() async {
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      print(token);
+      deviceId.value = token;
+    });
     await ApiCalls().postRequest(
       body: {
         "username": userName.text,
         "password": password.text,
+        "device_id": deviceId.value,
       },
       headers: ApiData.jsonHeader,
       url: ApiData.login,
@@ -85,17 +77,14 @@ class LoginController extends GetxController {
   enSelected() {
     en.value = true;
     ml.value = false;
-    print('english selected, $en');
   }
 
   mlSelected() {
     en.value = false;
     ml.value = true;
-    print('ml selected, $ml');
   }
 
   obscure() {
-    print('called ');
     print(showText.value);
 
     if (showText.value == false) {
@@ -111,25 +100,21 @@ class LoginController extends GetxController {
     password = TextEditingController();
     super.onInit();
 
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) {
-        print('on message ${message}');
-        // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-        // displayNotification(message);
-        // _showItemDialog(message);
-      },
-      onResume: (Map<String, dynamic> message) {
-        print('on resume $message');
-      },
-      onLaunch: (Map<String, dynamic> message) {
-        print('on launch $message');
-      },
-    );
-    _firebaseMessaging.getToken().then((String token) {
-      assert(token != null);
-      print(token);
-     });
-    }
+    // _firebaseMessaging.configure(
+    //   onMessage: (Map<String, dynamic> message) {
+    //     print('on message ${message}');
+    //     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    //     // displayNotification(message);
+    //     // _showItemDialog(message);
+    //   },
+    //   onResume: (Map<String, dynamic> message) {
+    //     print('on resume $message');
+    //   },
+    //   onLaunch: (Map<String, dynamic> message) {
+    //     print('on launch $message');
+    //   },
+    // );
+  }
 
   @override
   void onReady() {
@@ -142,6 +127,4 @@ class LoginController extends GetxController {
     password?.dispose();
     super.onClose();
   }
-
-
 }

@@ -10,6 +10,7 @@ class DriverDetailsController extends GetxController {
   var licenseBack = "".obs;
   List myActivities = [].obs;
   var vehicleData = [].obs;
+  var showWidget = false.obs;
   final formKey2 = GlobalKey<FormState>();
   Future getVehicleList() async {
     try {
@@ -19,8 +20,8 @@ class DriverDetailsController extends GetxController {
       );
       if (vehicleList != null) {
         print(vehicleList);
-        //TODO check req
         vehicleData.assignAll(vehicleList);
+        showWidget.value = true;
       } else {
         throw Exception('Failed to load cars');
       }
@@ -31,13 +32,17 @@ class DriverDetailsController extends GetxController {
 
   photoUpload() async {
     var uri = Uri.parse(ApiData.driverDetails);
+    print(uri);
     var req = http.MultipartRequest('POST', uri);
-    req.files.add(await http.MultipartFile.fromPath('photo', photo.value));
+    req.headers.addAll(await ApiData().getHeader());
     req.files.add(
-        await http.MultipartFile.fromPath('license_back', licenseBack.value));
-    req.files.add(
-        await http.MultipartFile.fromPath('license_front', licenseFront.value));
-    req.fields["vehicles"] = [1, 2].toString();
+      await http.MultipartFile.fromPath('photo', photo.value),
+    );
+    // req.files.add(
+    //     await http.MultipartFile.fromPath('license_back', licenseBack.value));
+    // req.files.add(
+    //     await http.MultiparztFile.fromPath('license_front', licenseFront.value));
+    // req.fields["vehicles"] = [1, 2].toString();
     var res = await req.send();
     print(res.reasonPhrase);
     print(res.statusCode);
@@ -45,12 +50,12 @@ class DriverDetailsController extends GetxController {
 
   @override
   void onInit() {
-    // getVehicleList();
     super.onInit();
   }
 
   @override
   void onReady() {
+    getVehicleList();
     super.onReady();
   }
 
