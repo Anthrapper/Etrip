@@ -38,6 +38,15 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            onPressed: (){},
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
