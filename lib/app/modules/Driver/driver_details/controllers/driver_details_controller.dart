@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:flutter/material.dart';
@@ -33,19 +35,31 @@ class DriverDetailsController extends GetxController {
   photoUpload() async {
     var uri = Uri.parse(ApiData.driverDetails);
     print(uri);
-    var req = http.MultipartRequest('POST', uri);
+    var req = http.MultipartRequest('PUT', uri);
     req.headers.addAll(await ApiData().getHeader());
     req.files.add(
       await http.MultipartFile.fromPath('photo', photo.value),
     );
-    // req.files.add(
-    //     await http.MultipartFile.fromPath('license_back', licenseBack.value));
-    // req.files.add(
-    //     await http.MultiparztFile.fromPath('license_front', licenseFront.value));
-    // req.fields["vehicles"] = [1, 2].toString();
+    req.files.add(
+        await http.MultipartFile.fromPath('license_back', licenseBack.value));
+    req.files.add(
+        await http.MultipartFile.fromPath('license_front', licenseFront.value));
+    req.fields["vehicles"] = jsonEncode("[1, 2]");
     var res = await req.send();
     print(res.reasonPhrase);
     print(res.statusCode);
+    if (Get.isDialogOpen) {
+      Get.back();
+    }
+    if (res.statusCode == 200) {}
+  }
+
+  fieldUpload() async {
+    var response = await http.put(
+      ApiData.driverDetails,
+      headers: ApiData.jsonHeader,
+      body: jsonEncode('e'),
+    );
   }
 
   @override
