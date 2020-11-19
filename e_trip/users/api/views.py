@@ -69,7 +69,6 @@ class CreateUserAPIView(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        # We create a token than will be used for future auth
         user=serializer.instance
         print(serializer.data)
         email_match = re.match(regex_mail, user.username)
@@ -142,7 +141,7 @@ class DriverUpdate(UpdateAPIView):
     def get_object(self):
         obj = Driver.objects.get(user=self.request.user)
         return obj
-    def update(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

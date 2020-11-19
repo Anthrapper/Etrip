@@ -126,12 +126,13 @@ class DriverUserUpdateSerializer(serializers.ModelSerializer):
         model = Driver
         fields = ["user","vehicles","photo","license_front","license_back"]
     def validate(self,data):
-        data['user'] = self.context.get('request').user
+        #data['user'] = self.context.get('request').user
         print(data)
         if not Driver.objects.filter(user=self.context.get('request').user).exists():
             raise serializers.ValidationError("No Driver User Found")
         else:
-            data['user'] = self.context.get('request').user
+            #data['user'] = self.context.get('request').user
+            pass
         return data
     def get_user(self,obj):
         print(self.context.get('request').user)
