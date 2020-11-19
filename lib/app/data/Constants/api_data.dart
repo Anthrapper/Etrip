@@ -11,6 +11,14 @@ class ApiData {
   static const jsonHeader = {"Content-Type": "application/json"};
   static const driverSignUp = baseUrl + version + "driver/registration/basic";
   static const driverDetails = baseUrl + version + "driver/registration/docs";
+  Future contentHeader() async {
+    var loginToken = await AuthHelper().getToken();
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $loginToken',
+    };
+    return headers;
+  }
 
   Future getHeader() async {
     var loginToken = await AuthHelper().getToken();

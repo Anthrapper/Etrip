@@ -82,7 +82,7 @@ class CustomNotifiers {
   uploadSelection(RxString val) {
     return Get.bottomSheet(
       Container(
-        height: Get.height * 0.3,
+        height: Get.height * 0.26,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -90,6 +90,7 @@ class CustomNotifiers {
         child: Padding(
           padding: EdgeInsets.all(Get.height * 0.02),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'Upload From :',
@@ -122,16 +123,14 @@ class CustomNotifiers {
     );
   }
 
-  selectPlace(bool fromCheck){
+  selectPlace(bool fromCheck) {
     return Get.bottomSheet(
       Container(
-        padding: EdgeInsets.all(
-          Get.height * 0.02
-        ),
+        padding: EdgeInsets.all(Get.height * 0.02),
         height: Get.height * 5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
-             top: Radius.circular(20),
+            top: Radius.circular(20),
           ),
           color: Colors.white,
         ),
@@ -142,20 +141,19 @@ class CustomNotifiers {
             apiKey: 'AIzaSyDVlIcJGpqZrY6UCC7s3YTIy22V9jTl7Cg',
             hasClearButton: true,
             placeType: PlaceType.address,
-            onSelected: (place) async{
+            onSelected: (place) async {
               Geolocation geolocation = await place.geolocation;
-             await print(place.description);
-             await print(place.fullJSON);
-             await print(place.placeId);
-             await print(geolocation.coordinates);
-             if(fromCheck == true) {
+              print(place.description);
+              print(place.fullJSON);
+              print(place.placeId);
+              print(geolocation.coordinates);
+              if (fromCheck == true) {
                 Get.find<VehicleformController>().fromDes.value =
-                    await place.description;
+                    place.description;
+              } else {
+                Get.find<VehicleformController>().toDes.value =
+                    place.description;
               }
-             else{
-               Get.find<VehicleformController>().toDes.value =
-               await place.description;
-             }
             },
             // location: (9.7108379, 76.4860073),
           ),
