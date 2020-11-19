@@ -4,6 +4,7 @@ import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/User/vehicleform/controllers/vehicleform_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:etrip/app/data/Widgets/notifiers.dart';
 
 class VehicleformView extends GetView<VehicleformController> {
   @override
@@ -11,7 +12,15 @@ class VehicleformView extends GetView<VehicleformController> {
     return Scaffold(
       backgroundColor: CustomColors.background,
       appBar: AppBar(
-        title: Text('VEHICLE FORM'),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        iconTheme: new IconThemeData(color: Colors.black),
+        title: Text(
+          'Vehicle Form',
+          style: TextStyle(
+            color: (CustomColors.headings),
+          ),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -25,6 +34,24 @@ class VehicleformView extends GetView<VehicleformController> {
         ),
       ),
     );
+  }
+
+  Future _selectDate() async {
+    DateTime picked = await showDatePicker(
+      context: Get.context,
+      initialDate: new DateTime.now(),
+      firstDate: new DateTime.now(),
+      lastDate: new DateTime(
+        2022,
+        08,
+        30,
+      ),
+    );
+    if (picked != null){
+      print(picked);
+      controller.passDate.value = picked.toString();
+      controller.readDate.value = picked.toString().substring(0, picked.toString().indexOf(' 0'));
+    }
   }
 
   Widget heading() {
@@ -56,13 +83,34 @@ class VehicleformView extends GetView<VehicleformController> {
             Row(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: Get.width * 0.001),
-                    child: CustomTextField(
-                      suffixChecker: false,
-                      controller: controller.from,
-                      hintText: 'From',
-                      secureText: false,
+                  // TODO: Add a FlatButton instead of the GestureDetector
+                  child: GestureDetector(
+                    onTap: () {
+                      CustomNotifiers().selectPlace(true);
+                    },
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Get.width * 0.085),
+                      child: Container(
+                        height: Get.height * 0.055,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            color: CustomColors.textField,
+                            borderRadius: BorderRadius.circular(13)),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: Get.height * 0.015,
+                            left: Get.width * 0.1,
+                          ),
+                          child: Obx(
+                            () => Text(
+                              controller.fromDes.value,
+                              style: CustomTextStyles().textFieldStyle,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -79,22 +127,74 @@ class VehicleformView extends GetView<VehicleformController> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: CustomTextField(
-                suffixChecker: true,
-                controller: controller.to,
-                hintText: 'To',
-                secureText: false,
+            GestureDetector(
+              onTap: () {
+                CustomNotifiers().selectPlace(false);
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Padding(
+                  padding: EdgeInsets.only(right: Get.width * 0.001),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Get.width * 0.085),
+                    child: Container(
+                      height: Get.height * 0.055,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          color: CustomColors.textField,
+                          borderRadius: BorderRadius.circular(13)),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: Get.height * 0.015,
+                          left: Get.width * 0.1,
+                        ),
+                        child: Obx(
+                              () => Text(
+                            controller.toDes.value,
+                            style: CustomTextStyles().textFieldStyle,
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: CustomTextField(
-                suffixChecker: true,
-                controller: controller.to,
-                hintText: 'Date',
-                secureText: false,
+            GestureDetector(
+              onTap: () {
+                _selectDate();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Padding(
+                  padding: EdgeInsets.only(right: Get.width * 0.001),
+                  child: Padding(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: Get.width * 0.085),
+                    child: Container(
+                      height: Get.height * 0.055,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          color: CustomColors.textField,
+                          borderRadius: BorderRadius.circular(13)),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: Get.height * 0.015,
+                          left: Get.width * 0.1,
+                        ),
+                        child: Obx(
+                              () => Text(
+                            controller.readDate.value,
+                            style: CustomTextStyles().textFieldStyle,
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
             // SearchMapPlaceWidget(

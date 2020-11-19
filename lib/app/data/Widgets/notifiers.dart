@@ -1,9 +1,10 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/imagepicker.dart';
+import 'package:etrip/app/modules/User/vehicleform/controllers/vehicleform_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
-
+import 'package:search_map_place/search_map_place.dart';
 import 'customwidgets.dart';
 
 class CustomNotifiers {
@@ -115,6 +116,48 @@ class CustomNotifiers {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  selectPlace(bool fromCheck){
+    return Get.bottomSheet(
+      Container(
+        padding: EdgeInsets.all(
+          Get.height * 0.02
+        ),
+        height: Get.height * 5,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+             top: Radius.circular(20),
+          ),
+          color: Colors.white,
+        ),
+        child: SingleChildScrollView(
+          child: SearchMapPlaceWidget(
+            iconColor: CustomColors.buttonColor,
+            language: 'en',
+            apiKey: 'AIzaSyDVlIcJGpqZrY6UCC7s3YTIy22V9jTl7Cg',
+            hasClearButton: true,
+            placeType: PlaceType.address,
+            onSelected: (place) async{
+              Geolocation geolocation = await place.geolocation;
+             await print(place.description);
+             await print(place.fullJSON);
+             await print(place.placeId);
+             await print(geolocation.coordinates);
+             if(fromCheck == true) {
+                Get.find<VehicleformController>().fromDes.value =
+                    await place.description;
+              }
+             else{
+               Get.find<VehicleformController>().toDes.value =
+               await place.description;
+             }
+            },
+            // location: (9.7108379, 76.4860073),
           ),
         ),
       ),

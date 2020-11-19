@@ -27,6 +27,7 @@ class LocationHelper {
     // var currentLocation = myLocation;
     final coordinates =
         new Coordinates(myLocation.latitude, myLocation.longitude);
+            print(myLocation.latitude.toString() + ' ' + myLocation.longitude.toString());
     var addresses =
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses.first;
