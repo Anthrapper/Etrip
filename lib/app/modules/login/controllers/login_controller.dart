@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
+  final loginKey = GlobalKey<FormState>();
+
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
@@ -16,8 +18,9 @@ class LoginController extends GetxController {
   TextEditingController password;
   var deviceId = ''.obs;
   var showText = true.obs;
-  var en = true.obs;
+  var en = false.obs;
   var ml = false.obs;
+  var iconController = Icons.visibility.obs;
   failedLogin(var reason) {
     if (Get.isDialogOpen) {
       Get.back();
@@ -74,50 +77,56 @@ class LoginController extends GetxController {
     );
   }
 
-  enSelected() {
+  Future enSelected() async {
     en.value = true;
     ml.value = false;
-    // Get.updateLocale(en);
-    box.write('language', 'en');
+    await box.write('language', 'en').whenComplete(
+          () => Get.updateLocale(
+            Locale('en'),
+          ),
+        );
   }
 
-  mlSelected() {
+  Future mlSelected() async {
     en.value = false;
     ml.value = true;
 
-    box.write('language', 'ml');
+    await box.write('language', 'ml').whenComplete(
+          () => Get.updateLocale(
+            Locale('ml'),
+          ),
+        );
   }
 
   obscure() {
-    print(showText.value);
-
     if (showText.value == false) {
       showText.value = true;
+      iconController.value = Icons.visibility_off;
     } else {
       showText.value = false;
+      iconController.value = Icons.visibility;
+    }
+  }
+
+  langIntialize() async {
+    if (await box.read('language') == null) {
+      en.value = true;
+      ml.value = false;
+    } else if (await box.read('language') == 'en') {
+      en.value = true;
+      ml.value = false;
+    } else {
+      ml.value = true;
+      en.value = false;
     }
   }
 
   @override
-  void onInit() {
+  void onInit() async {
+    await langIntialize();
     userName = TextEditingController();
     password = TextEditingController();
     super.onInit();
-
-    // _firebaseMessaging.configure(
-    //   onMessage: (Map<String, dynamic> message) {
-    //     print('on message ${message}');
-    //     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    //     // displayNotification(message);
-    //     // _showItemDialog(message);
-    //   },
-    //   onResume: (Map<String, dynamic> message) {
-    //     print('on resume $message');
-    //   },
-    //   onLaunch: (Map<String, dynamic> message) {
-    //     print('on launch $message');
-    //   },
-    // );
   }
 
   @override

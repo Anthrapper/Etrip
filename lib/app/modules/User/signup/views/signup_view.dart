@@ -32,7 +32,7 @@ class SignupView extends GetView<SignupController> {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.01, 0, 0),
       child: Text(
-        'Sign Up',
+        'signup'.tr,
         style: CustomTextStyles().headingStyle,
       ),
     );
@@ -41,7 +41,7 @@ class SignupView extends GetView<SignupController> {
   Widget button() {
     return Center(
       child: CustomButton(
-        text: 'SIGNUP',
+        text: 'signup'.tr,
         onpressed: () {
           if (controller.regKey.currentState.validate()) {
             CustomNotifiers().progressIndicator();
@@ -60,7 +60,6 @@ class SignupView extends GetView<SignupController> {
         child: Column(
           children: [
             CustomTextField(
-              suffixChecker: true,
               controller: controller.name,
               hintText: 'Name',
               secureText: false,
@@ -69,7 +68,7 @@ class SignupView extends GetView<SignupController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
-                suffixChecker: true,
+                validator: FormValidator().reqValidator,
                 controller: controller.username,
                 hintText: 'Enter email or phone number',
                 secureText: false,
@@ -81,8 +80,7 @@ class SignupView extends GetView<SignupController> {
                 () => CustomTextField(
                   validator: FormValidator().passwordValidator,
                   obsecure: controller.obscure,
-                  icon: Icons.visibility,
-                  suffixChecker: true,
+                  icon: controller.iconController.value,
                   controller: controller.password,
                   hintText: 'New Password',
                   secureText: controller.showText.value,
@@ -97,8 +95,7 @@ class SignupView extends GetView<SignupController> {
                       MatchValidator(errorText: 'passwords do not match')
                           .validateMatch(val, controller.password.text),
                   obsecure: controller.obscure,
-                  icon: Icons.visibility,
-                  suffixChecker: true,
+                  icon: controller.iconController.value,
                   controller: controller.confPass,
                   hintText: 'Confirm Password',
                   secureText: controller.showText.value,

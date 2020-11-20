@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 
 class SignupController extends GetxController {
   var otp = ''.obs;
+  var iconController = Icons.visibility.obs;
+
   var vId = ''.obs;
   TextEditingController username;
   TextEditingController name;
@@ -76,27 +78,28 @@ class SignupController extends GetxController {
   }
 
   obscure() {
-    print('called ');
-    print(showText.value);
-
     if (showText.value == false) {
       showText.value = true;
+      iconController.value = Icons.visibility_off;
     } else {
       showText.value = false;
+      iconController.value = Icons.visibility;
     }
   }
 
   @override
   void onInit() {
+    super.onInit();
+
     username = TextEditingController();
     name = TextEditingController();
     confPass = TextEditingController();
     password = TextEditingController();
-    super.onInit();
   }
 
   @override
   void onReady() {
+    print('done');
     super.onReady();
   }
 

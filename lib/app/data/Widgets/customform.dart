@@ -9,15 +9,13 @@ class CustomTextField extends StatelessWidget {
   final IconData icon;
   final bool secureText;
   final Function validator;
-  final bool suffixChecker;
   final Function obsecure;
   CustomTextField({
     @required this.hintText,
     this.icon,
     @required this.controller,
-    this.secureText,
-    this.validator,
-    this.suffixChecker,
+    @required this.secureText,
+    @required this.validator,
     this.obsecure,
   });
   @override
@@ -55,7 +53,7 @@ class CustomTextField extends StatelessWidget {
           ),
           filled: true,
           fillColor: CustomColors.textField,
-          suffixIcon: this.suffixChecker
+          suffixIcon: this.obsecure != null
               ? GestureDetector(
                   onTap: this.obsecure,
                   child: Icon(this.icon),

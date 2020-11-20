@@ -1,6 +1,8 @@
 import 'package:etrip/app/modules/Driver/signup_driver/controllers/signup_driver_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:etrip/app/data/Functions/validator.dart';
+
 import 'package:get/get.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
@@ -66,7 +68,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
         child: Column(
           children: [
             CustomTextField(
-              suffixChecker: true,
+              validator: FormValidator().reqValidator,
               controller: controller.name,
               hintText: 'Name',
               secureText: false,
@@ -74,7 +76,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
-                suffixChecker: true,
+                validator: FormValidator().emailValidator,
                 controller: controller.email,
                 hintText: 'Email',
                 secureText: false,
@@ -83,7 +85,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
-                suffixChecker: true,
+                validator: FormValidator().mobileValidator,
                 controller: controller.number,
                 hintText: 'Phone Number',
                 secureText: false,
@@ -93,9 +95,9 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  validator: FormValidator().passwordValidator,
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
-                  suffixChecker: true,
                   controller: controller.password,
                   hintText: 'Enter Password',
                   secureText: controller.showText.value,
@@ -106,9 +108,10 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  validator: FormValidator().confirmPassword(
+                      controller.confPass.text, controller.password.text),
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
-                  suffixChecker: true,
                   controller: controller.confPass,
                   hintText: 'Confirm Password',
                   secureText: controller.showText.value,

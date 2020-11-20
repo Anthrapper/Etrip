@@ -8,8 +8,6 @@ import 'package:get/get.dart';
 import 'package:etrip/app/modules/login/controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +45,7 @@ class LoginView extends GetView<LoginController> {
       child: CustomButton(
         text: 'LOGIN',
         onpressed: () {
-          if (formKey.currentState.validate()) {
+          if (controller.loginKey.currentState.validate()) {
             CustomNotifiers().progressIndicator();
             controller.login();
           }
@@ -60,12 +58,11 @@ class LoginView extends GetView<LoginController> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
       child: Form(
-        key: formKey,
+        key: controller.loginKey,
         child: Column(
           children: [
             CustomTextField(
               validator: FormValidator().reqValidator,
-              suffixChecker: true,
               controller: controller.userName,
               hintText: 'Enter email or phone number',
               secureText: false,
@@ -76,8 +73,7 @@ class LoginView extends GetView<LoginController> {
                 () => CustomTextField(
                   validator: FormValidator().reqValidator,
                   obsecure: controller.obscure,
-                  icon: Icons.visibility,
-                  suffixChecker: true,
+                  icon: controller.iconController.value,
                   controller: controller.password,
                   hintText: 'Password',
                   secureText: controller.showText.value,
@@ -149,7 +145,7 @@ class LoginView extends GetView<LoginController> {
             padding: EdgeInsets.only(left: Get.width * 0.03),
             child: InkWell(
               onTap: () {
-                Get.offAndToNamed(AppPages.SIGNUP_SELECTION);
+                Get.toNamed(AppPages.SIGNUP_SELECTION);
               },
               child: Text(
                 'SignUp',

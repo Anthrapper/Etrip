@@ -1,6 +1,12 @@
 import 'package:form_field_validator/form_field_validator.dart';
 
 class FormValidator {
+  confirmPassword(val, password) =>
+      MatchValidator(errorText: 'passwords do not match')
+          .validateMatch(val, password);
+
+  final emailValidator =
+      EmailValidator(errorText: 'enter a valid email address');
   final reqValidator = RequiredValidator(errorText: 'This Field Is Required');
 
   final passwordValidator = MultiValidator(

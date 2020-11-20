@@ -59,7 +59,7 @@ class UserType extends StatelessWidget {
                 },
                 child: ListTile(
                   title: Text(
-                    'Ride',
+                    'ride'.tr,
                     style: TextStyle(
                         color: (CustomColors.headings),
                         fontSize: Get.height * 0.024),
@@ -74,7 +74,7 @@ class UserType extends StatelessWidget {
                 },
                 child: ListTile(
                   title: Text(
-                    'Drive',
+                    'drive'.tr,
                     style: TextStyle(
                         color: (CustomColors.headings),
                         fontSize: Get.height * 0.024),
