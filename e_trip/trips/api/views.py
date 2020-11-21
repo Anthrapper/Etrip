@@ -13,7 +13,8 @@ from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView ,UpdateAPIView
 from rest_framework.permissions import AllowAny
-from .serializers import UserTripCreateSerializer
+from .serializers import UserTripCreateSerializer, UserTripListSerializer
+from e_trip.trips.models import Trip
 
 class CreateTripUser(CreateAPIView):
     serializer_class = UserTripCreateSerializer
@@ -28,3 +29,12 @@ class CreateTripUser(CreateAPIView):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
+
+
+class UserTripList(generics.ListAPIView):
+    serializer_class = UserTripListSerializer
+    queryset =Trip.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Trip.objects.filter(user=user).filter(trip_status = 0)

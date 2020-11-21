@@ -10,10 +10,18 @@ from botocore.client import Config
 from e_trip.trips.models import Trip
 
 class UserTripCreateSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
     class Meta:
         model = Trip
         fields = '__all__'
-    def get_user(self,obj):
-        print(self.context.get('request').user)
-        return self.context.get('request').user.id
+
+    def create(self, validated_data):
+        user = self.context.get('request').user
+        validated_data['user'] = user
+        user_trip = super(UserTripCreateSerializer, self).create(validated_data)
+        user_trip.save()
+        return user_trip
+
+class UserTripListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trip
+        fields = '__all__'
