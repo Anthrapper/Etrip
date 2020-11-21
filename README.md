@@ -20,9 +20,26 @@
 - [x] development server
 - [ ] api endpoints
   - [x] host : https://api.etrip.ml/
-  - [ ] v1/users/login
-  - [ ] v1/users/logout
-  - [ ] v1/users/signup
+  - [x] `v1/token`
+  - [x] `v1/token/refresh`
+  - [x] `v1/refresh/`
+  - [x] `v1/user/registration`
+  - [x] `v1/driver/registration/basic`
+  - [x] `v1/driver/registration/docs`
+  - [x] `v1/driver/vehicles/registration`
+  - [x] `v1/driver/vehicles/listed`
+  - [x] `v1/driver/vehicles`
+  - [ ] `v1/user/trips/create
+  - [ ] `v1/user/trips/cancel`
+  - [ ] `v1/driver/trips/bid`
+  - [ ] `v1/user/bids/select`
+  - [ ] `v1/notifications
+  - [ ] `v1/user/trips/active`
+  - [ ] `v1/user/trips/previous`
+  - [ ] `v1/driver/bids/active`
+  - [ ] `v1/driver/bids/previous`
+  - [ ] `v1/user/profile/update`
+  - [ ] `v1/driver/profile/update`
   - [ ] ...
 
 
