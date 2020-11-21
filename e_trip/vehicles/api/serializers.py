@@ -76,7 +76,7 @@ class DriverVehicleSerializer(serializers.ModelSerializer):
         return driver_vehicle
 
 class DriverVehicleListSerializer(serializers.ModelSerializer):
-    icon = AWSImageField()
+    #icon = AWSImageField()
     class Meta:
         model = Vehicle
         fields = '__all__'
