@@ -14,6 +14,7 @@ class Trip(models.Model):
     user = models.ForeignKey('users.User',on_delete=models.CASCADE,blank=True,null=True)
     driver = models.ForeignKey('users.Driver',on_delete=models.CASCADE,blank=True, null=True)
     amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+    vehicle = models.ForeignKey('vehicles.Vehicle',on_delete=models.CASCADE,blank=True,null=True)
     TYPE_VALUE_MAP = {
         "OnBid":0,
         "BidSelected": 1,
@@ -24,4 +25,4 @@ class Trip(models.Model):
     TYPE_CHOICES = [(value, name) for name, value in TYPE_VALUE_MAP.items()]
     models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
     def __str__(self):
-        return self.user.username + " " + self.from_place + " to " + self.to_place
+        return " " + self.from_place + " to " + self.to_place
