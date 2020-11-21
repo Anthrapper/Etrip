@@ -8,6 +8,11 @@ class CustomTextStyles {
     fontSize: Get.height * 0.05,
     fontWeight: FontWeight.bold,
   );
+  final medium = TextStyle(
+    color: (CustomColors.headings),
+    fontSize: Get.height * 0.03,
+    fontWeight: FontWeight.w400,
+  );
   final buttonTextStyle = TextStyle(
       color: (CustomColors.textColorThree), fontSize: Get.height * 0.024);
   final buttonTextStyle1 = TextStyle(

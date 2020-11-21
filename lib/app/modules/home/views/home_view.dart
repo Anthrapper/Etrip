@@ -225,33 +225,37 @@ class HomeView extends GetView<HomeController> {
                           fontSize: 18,
                         ),
                       ),
-                      Obx(() {
-                        return controller.isLoading.value
-                            ? Container(
-                                padding:
-                                    EdgeInsets.only(top: Get.height * 0.07),
-                                alignment: Alignment.center,
-                                child: CircularProgressIndicator(),
-                              )
-                            : GridView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: controller.vehicleData == null
-                                    ? 0
-                                    : controller.vehicleData.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                ),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return VehicleCard(
-                                    iconUrl: controller.vehicleData[index]
-                                        ['icon'],
-                                    name: controller.vehicleData[index]['name'],
-                                  );
-                                },
-                              );
-                      }),
+                      Obx(
+                        () {
+                          return controller.isLoading.value
+                              ? Container(
+                                  padding:
+                                      EdgeInsets.only(top: Get.height * 0.07),
+                                  alignment: Alignment.center,
+                                  child: CircularProgressIndicator(),
+                                )
+                              : GridView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: controller.vehicleData == null
+                                      ? 0
+                                      : controller.vehicleData.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                  ),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return VehicleCard(
+                                      iconUrl: controller.vehicleData[index]
+                                          ['icon'],
+                                      name: controller.vehicleData[index]
+                                          ['name'],
+                                    );
+                                  },
+                                );
+                        },
+                      ),
                     ],
                   ),
                 ),

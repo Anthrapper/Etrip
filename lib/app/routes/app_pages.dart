@@ -1,3 +1,5 @@
+import 'package:etrip/app/modules/Driver/VehicleDetails/bindings/vehicle_details_binding.dart';
+import 'package:etrip/app/modules/Driver/VehicleDetails/views/vehicle_details_view.dart';
 import 'package:etrip/app/modules/splash/views/splash_view.dart';
 import 'package:etrip/app/modules/splash/bindings/splash_binding.dart';
 import 'package:etrip/app/modules/Driver/driver_details/bindings/driver_details_binding.dart';
@@ -35,6 +37,7 @@ class AppPages {
   static const MY_TRIP = Routes.MY_TRIP;
   static const SPLASH = Routes.SPLASH;
   static const NOTIFICATION = Routes.NOTIFICATION;
+  static const VEHICLE_DETAILS = Routes.VEHICLE_DETAILS;
 
   static final routes = [
     GetPage(
@@ -87,13 +90,18 @@ class AppPages {
       binding: NewWorksDriverBinding(),
     ),
     GetPage(
-      name: Routes.SPLASH, 
-      page:()=> SplashView(), 
+      name: Routes.SPLASH,
+      page: () => SplashView(),
       binding: SplashBinding(),
     ),
     GetPage(
       name: Routes.NOTIFICATION,
-      page:()=> NotificationsPage(),
+      page: () => NotificationsPage(),
+    ),
+    GetPage(
+      name: Routes.VEHICLE_DETAILS,
+      page: () => VehicleDetailsView(),
+      binding: VehicleDetailsBinding(),
     ),
   ];
 }

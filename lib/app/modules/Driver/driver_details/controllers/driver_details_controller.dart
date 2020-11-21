@@ -1,6 +1,7 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +13,6 @@ class DriverDetailsController extends GetxController {
   List myActivities = [].obs;
   var vehicleData = [].obs;
   var showWidget = false.obs;
-  final formKey2 = GlobalKey<FormState>();
   Future getVehicleList() async {
     try {
       var vehicleList = await ApiCalls().getRequest(
@@ -72,7 +72,9 @@ class DriverDetailsController extends GetxController {
       );
       print(response.statusCode);
       print(response.body);
-      //TODO vehicle picture upload
+      if (response.statusCode == 200) {
+        Get.toNamed(AppPages.VEHICLE_DETAILS);
+      }
     } on Exception catch (e) {
       CustomNotifiers().snackBar('Error', e.toString(), Icons.error);
     }
