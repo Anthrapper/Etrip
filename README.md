@@ -29,7 +29,7 @@
   - [x] `v1/driver/vehicles/registration`
   - [x] `v1/driver/vehicles/listed`
   - [x] `v1/driver/vehicles`
-  - [ ] `v1/user/trips/create
+  - [x] `v1/user/trips/create
   - [ ] `v1/user/trips/cancel`
   - [ ] `v1/driver/trips/bid`
   - [ ] `v1/user/bids/select`
