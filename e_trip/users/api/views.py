@@ -168,7 +168,6 @@ class TokenViewBase(generics.GenericAPIView):
         phone_email_match = re.match(regex,username)
         phone_match = re.match(regex_contact, username)
         email_match = re.match(regex_mail, username)
-        print(request.data)
         if phone_match:
             if User.objects.filter(phone=username).exclude(is_superuser=True).exists():
                 user =  get_object_or_404(User,phone=username)
@@ -177,8 +176,6 @@ class TokenViewBase(generics.GenericAPIView):
             if User.objects.filter(email=username).exclude(is_superuser=True).exists():
                 user =  get_object_or_404(User,email=username)
                 request.data.update({"username":user.username})
-        print(request.data['username'])
-        print(serializer)
         message = {}
         if User.objects.filter(username=username).exclude(is_superuser=True).exists():
             if phone_email_match:
