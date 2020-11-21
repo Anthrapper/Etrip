@@ -10,9 +10,12 @@ class CustomTextField extends StatelessWidget {
   final bool secureText;
   final Function validator;
   final Function obsecure;
+
+  final bool suffixChecker;
   CustomTextField({
     @required this.hintText,
     this.icon,
+    @required this.suffixChecker,
     @required this.controller,
     @required this.secureText,
     @required this.validator,
@@ -28,8 +31,8 @@ class CustomTextField extends StatelessWidget {
         textAlign: TextAlign.justify,
         controller: controller,
         cursorColor: Colors.blueGrey,
-        obscureText: secureText,
-        validator: validator,
+        obscureText: this.secureText,
+        validator: this.validator,
         decoration: InputDecoration(
           errorBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: CustomColors.textField),
@@ -53,7 +56,7 @@ class CustomTextField extends StatelessWidget {
           ),
           filled: true,
           fillColor: CustomColors.textField,
-          suffixIcon: this.obsecure != null
+          suffixIcon: this.suffixChecker
               ? GestureDetector(
                   onTap: this.obsecure,
                   child: Icon(this.icon),

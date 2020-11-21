@@ -62,6 +62,7 @@ class LoginView extends GetView<LoginController> {
         child: Column(
           children: [
             CustomTextField(
+              suffixChecker: false,
               validator: FormValidator().reqValidator,
               controller: controller.userName,
               hintText: 'Enter email or phone number',
@@ -71,6 +72,7 @@ class LoginView extends GetView<LoginController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  suffixChecker: true,
                   validator: FormValidator().reqValidator,
                   obsecure: controller.obscure,
                   icon: controller.iconController.value,

@@ -60,6 +60,7 @@ class SignupView extends GetView<SignupController> {
         child: Column(
           children: [
             CustomTextField(
+              suffixChecker: false,
               controller: controller.name,
               hintText: 'Name',
               secureText: false,
@@ -68,6 +69,7 @@ class SignupView extends GetView<SignupController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
+                suffixChecker: false,
                 validator: FormValidator().reqValidator,
                 controller: controller.username,
                 hintText: 'Enter email or phone number',
@@ -78,6 +80,7 @@ class SignupView extends GetView<SignupController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  suffixChecker: true,
                   validator: FormValidator().passwordValidator,
                   obsecure: controller.obscure,
                   icon: controller.iconController.value,
@@ -91,6 +94,7 @@ class SignupView extends GetView<SignupController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  suffixChecker: true,
                   validator: (val) =>
                       MatchValidator(errorText: 'passwords do not match')
                           .validateMatch(val, controller.password.text),

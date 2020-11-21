@@ -10,7 +10,6 @@ import 'app/routes/app_pages.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-
   await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
@@ -23,9 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      locale: box.hasData('language') ? Locale(box.read('language')) : Locale('en'),
+      locale:
+          box.hasData('language') ? Locale(box.read('language')) : Locale('en'),
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.SPLASH,
+      enableLog: true,
       getPages: AppPages.routes,
       defaultTransition: Transition.fadeIn,
       translations: Messages(),

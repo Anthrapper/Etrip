@@ -20,7 +20,7 @@ class LoginController extends GetxController {
   var showText = true.obs;
   var en = false.obs;
   var ml = false.obs;
-  var iconController = Icons.visibility.obs;
+  var iconController = Icons.visibility_off.obs;
   failedLogin(var reason) {
     if (Get.isDialogOpen) {
       Get.back();
@@ -52,7 +52,7 @@ class LoginController extends GetxController {
   Future login() async {
     _firebaseMessaging.getToken().then((String token) {
       assert(token != null);
-      print(token);
+      print(password.text);
       deviceId.value = token;
     });
     await ApiCalls().postRequest(
@@ -123,9 +123,10 @@ class LoginController extends GetxController {
 
   @override
   void onInit() async {
-    await langIntialize();
     userName = TextEditingController();
     password = TextEditingController();
+    await langIntialize();
+
     super.onInit();
   }
 

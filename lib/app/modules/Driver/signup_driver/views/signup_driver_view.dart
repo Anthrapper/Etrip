@@ -68,6 +68,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
         child: Column(
           children: [
             CustomTextField(
+              suffixChecker: false,
               validator: FormValidator().reqValidator,
               controller: controller.name,
               hintText: 'Name',
@@ -76,6 +77,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
+                suffixChecker: false,
                 validator: FormValidator().emailValidator,
                 controller: controller.email,
                 hintText: 'Email',
@@ -85,6 +87,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: CustomTextField(
+                suffixChecker: false,
                 validator: FormValidator().mobileValidator,
                 controller: controller.number,
                 hintText: 'Phone Number',
@@ -95,6 +98,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  suffixChecker: true,
                   validator: FormValidator().passwordValidator,
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
@@ -108,6 +112,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
+                  suffixChecker: true,
                   validator: FormValidator().confirmPassword(
                       controller.confPass.text, controller.password.text),
                   obsecure: controller.obscure,

@@ -114,7 +114,13 @@ class AuthHelper {
       }
     } else {
       print('no token found, you need to login again');
-      Get.offAllNamed(AppPages.LOGIN);
+
+      Timer(
+          Duration(
+            milliseconds: 2300,
+          ), () async {
+        await Get.offAllNamed(AppPages.LOGIN);
+      });
     }
   }
 
