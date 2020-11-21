@@ -16,7 +16,7 @@ def material_directory_path(instance, filename):
 def driver_directory_path(instance, filename):
     basefilename, file_extension= os.path.splitext(filename)
     timenow = timezone.now()
-    return 'driver/{username}/vehicles/{basename}{time}{ext}'.format( username=instance.user.username,basename=basefilename, time=timenow.strftime("%Y%m%d%H%M%S"), ext=file_extension)
+    return 'driver/{username}/vehicles/{basename}{time}{ext}'.format( username=instance.driver.user.username,basename=basefilename, time=timenow.strftime("%Y%m%d%H%M%S"), ext=file_extension)
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=10)
