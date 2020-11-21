@@ -47,10 +47,11 @@ class VehicleformView extends GetView<VehicleformController> {
         30,
       ),
     );
-    if (picked != null){
+    if (picked != null) {
       print(picked);
       controller.passDate.value = picked.toString();
-      controller.readDate.value = picked.toString().substring(0, picked.toString().indexOf(' 0'));
+      controller.readDate.value =
+          picked.toString().substring(0, picked.toString().indexOf(' 0'));
     }
   }
 
@@ -68,7 +69,9 @@ class VehicleformView extends GetView<VehicleformController> {
     return Center(
       child: CustomButton(
         text: 'Submit',
-        onpressed: () {},
+        onpressed: () {
+          controller.submitForm();
+        },
       ),
     );
   }
@@ -76,70 +79,21 @@ class VehicleformView extends GetView<VehicleformController> {
   Widget form() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
-      child: Form(
-        key: controller.vehicleKey,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  // TODO: Add a FlatButton instead of the GestureDetector
-                  child: GestureDetector(
-                    onTap: () {
-                      CustomNotifiers().selectPlace(true);
-                    },
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: Get.width * 0.085),
-                      child: Container(
-                        height: Get.height * 0.055,
-                        width: Get.width,
-                        decoration: BoxDecoration(
-                            color: CustomColors.textField,
-                            borderRadius: BorderRadius.circular(13)),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: Get.height * 0.015,
-                            left: Get.width * 0.1,
-                          ),
-                          child: Obx(
-                            () => Text(
-                              controller.fromDes.value,
-                              style: CustomTextStyles().textFieldStyle,
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: Get.width * 0.085),
-                  child: IconButton(
-                    icon: Icon(Icons.gps_fixed),
-                    color: CustomColors.buttonColor,
-                    iconSize: Get.width * 0.075,
-                    onPressed: () {
-                      LocationHelper().getUserLocation();
-                    },
-                  ),
-                ),
-              ],
-            ),
-            GestureDetector(
-              onTap: () {
-                CustomNotifiers().selectPlace(false);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Padding(
-                  padding: EdgeInsets.only(right: Get.width * 0.001),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                // TODO: Add a FlatButton instead of the GestureDetector
+                child: GestureDetector(
+                  onTap: () {
+                    CustomNotifiers().selectPlace(true);
+                  },
                   child: Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: Get.width * 0.085),
                     child: Container(
-                      height: Get.height * 0.055,
+                      // height: Get.height * 0.055,
                       width: Get.width,
                       decoration: BoxDecoration(
                           color: CustomColors.textField,
@@ -148,10 +102,11 @@ class VehicleformView extends GetView<VehicleformController> {
                         padding: EdgeInsets.only(
                           top: Get.height * 0.015,
                           left: Get.width * 0.1,
+                          bottom: Get.height * 0.015,
                         ),
                         child: Obx(
-                              () => Text(
-                            controller.toDes.value,
+                          () => Text(
+                            controller.fromDes.value,
                             style: CustomTextStyles().textFieldStyle,
                             textAlign: TextAlign.start,
                           ),
@@ -161,35 +116,45 @@ class VehicleformView extends GetView<VehicleformController> {
                   ),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                _selectDate();
-              },
+              Padding(
+                padding: EdgeInsets.only(right: Get.width * 0.085),
+                child: IconButton(
+                  icon: Icon(Icons.gps_fixed),
+                  color: CustomColors.buttonColor,
+                  iconSize: Get.width * 0.075,
+                  onPressed: () {
+                    LocationHelper().getUserLocation();
+                  },
+                ),
+              ),
+            ],
+          ),
+          GestureDetector(
+            onTap: () {
+              CustomNotifiers().selectPlace(false);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: EdgeInsets.only(right: Get.width * 0.001),
                 child: Padding(
-                  padding: EdgeInsets.only(right: Get.width * 0.001),
-                  child: Padding(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: Get.width * 0.085),
-                    child: Container(
-                      height: Get.height * 0.055,
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          color: CustomColors.textField,
-                          borderRadius: BorderRadius.circular(13)),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: Get.height * 0.015,
-                          left: Get.width * 0.1,
-                        ),
-                        child: Obx(
-                              () => Text(
-                            controller.readDate.value,
-                            style: CustomTextStyles().textFieldStyle,
-                            textAlign: TextAlign.start,
-                          ),
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.085),
+                  child: Container(
+                    height: Get.height * 0.055,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        color: CustomColors.textField,
+                        borderRadius: BorderRadius.circular(13)),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: Get.height * 0.015,
+                        left: Get.width * 0.1,
+                      ),
+                      child: Obx(
+                        () => Text(
+                          controller.toDes.value,
+                          style: CustomTextStyles().textFieldStyle,
+                          textAlign: TextAlign.start,
                         ),
                       ),
                     ),
@@ -197,10 +162,42 @@ class VehicleformView extends GetView<VehicleformController> {
                 ),
               ),
             ),
-            // SearchMapPlaceWidget(
-            //     apiKey: 'AIzaSyAtUbZtjy7JT0gnEQUV7h3DvNlAHBUBfQs'),
-          ],
-        ),
+          ),
+          GestureDetector(
+            onTap: () {
+              _selectDate();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Padding(
+                padding: EdgeInsets.only(right: Get.width * 0.001),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.085),
+                  child: Container(
+                    height: Get.height * 0.055,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        color: CustomColors.textField,
+                        borderRadius: BorderRadius.circular(13)),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: Get.height * 0.015,
+                        left: Get.width * 0.1,
+                      ),
+                      child: Obx(
+                        () => Text(
+                          controller.readDate.value,
+                          style: CustomTextStyles().textFieldStyle,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

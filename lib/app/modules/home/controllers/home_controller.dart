@@ -18,11 +18,11 @@ class HomeController extends GetxController {
         header: await ApiData().getHeader(),
       );
       if (vehicleList != null) {
-        print(vehicleList);
-        //TODO check
         vehicleData.assignAll(vehicleList);
         isLoading.value = false;
       } else {
+        isLoading.value = false;
+
         throw Exception('Failed to load cars');
       }
     } on Exception catch (e) {

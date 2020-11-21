@@ -1,3 +1,4 @@
+import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Translation/translations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.hind().fontFamily,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryColor: Colors.lightBlue[700],
+        accentColor: CustomColors.buttonColor,
         textTheme: TextTheme().apply(fontFamily: GoogleFonts.hind().fontFamily),
       ),
     );

@@ -1,22 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VehicleformController extends GetxController {
-  TextEditingController from;
-  TextEditingController to;
-  TextEditingController date;
+  var toCo = ''.obs;
   var fromDes = 'From'.obs;
   var toDes = 'To'.obs;
   var vehicleType = ''.obs;
   var readDate = 'Date'.obs;
   var passDate = ''.obs;
-  final vehicleKey = GlobalKey<FormState>();
   @override
   void onInit() {
     vehicleType.value = Get.arguments;
-    from = TextEditingController();
-    to = TextEditingController();
-    date = TextEditingController();
     super.onInit();
   }
 
@@ -28,8 +21,9 @@ class VehicleformController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    from?.dispose();
-    to?.dispose();
-    date?.dispose();
+  }
+
+  Future submitForm() async {
+    print(toCo.value);
   }
 }
