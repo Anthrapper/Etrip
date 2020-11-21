@@ -168,6 +168,7 @@ class TokenViewBase(generics.GenericAPIView):
         phone_email_match = re.match(regex,username)
         phone_match = re.match(regex_contact, username)
         email_match = re.match(regex_mail, username)
+        print(request.data)
         if phone_match:
             if User.objects.filter(phone=username).exclude(is_superuser=True).exists():
                 user =  get_object_or_404(User,phone=username)
