@@ -25,4 +25,4 @@ class Trip(models.Model):
     TYPE_CHOICES = [(value, name) for name, value in TYPE_VALUE_MAP.items()]
     trip_status = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
     def __str__(self):
-        return self.user.username + " " + self.from_place + " to " + self.to_place
+        return " " + self.from_place + " to " + self.to_place
