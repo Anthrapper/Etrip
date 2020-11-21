@@ -1,6 +1,5 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VehicleDetailsController extends GetxController {

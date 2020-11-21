@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VehicleDetailsView extends GetView<VehicleDetailsController> {
+  final List<TextEditingController> _controllers = new List();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,34 +27,53 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
                   style: CustomTextStyles().medium,
                 ),
               ),
-              Obx(() {
-                return controller.isLoading.value
-                    ? Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: controller.vehicleData == null
-                            ? 0
-                            : controller.vehicleData.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              CustomImageField(
-                                text:
-                                    '${controller.vehicleData[index]['name']}',
-                              ),
-                              // CustomTextField(
-                              //   suffixChecker: false,
-                              //   validator: FormValidator().reqValidator,
-                              //   controller: controller.userName,
-                              //   hintText:'Registration No of${controller.vehicleData[index]['name']}',
-                              //   secureText: false,
-                              // ),
-                            ],
-                          );
-                        },
-                      );
-              }),
+              Obx(
+                () {
+                  return controller.isLoading.value
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: controller.vehicleData == null
+                              ? 0
+                              : controller.vehicleData.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (controller.vehicleData != null) {
+                              print(controller.vehicleData.length);
+                              for (var i = 1;
+                                  i <= controller.vehicleData.length;
+                                  i++) {
+                                _controllers.add(new TextEditingController());
+                                print(index);
+                              }
+                              return Column(
+                                children: [
+                                  CustomImageField(
+                                    text:
+                                        '${controller.vehicleData[index]['name']}',
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: CustomTextField(
+                                      suffixChecker: false,
+                                      validator: FormValidator().reqValidator,
+                                      controller: _controllers[index],
+                                      hintText:
+                                          'Registration No of ${controller.vehicleData[index]['name']}',
+                                      secureText: false,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return SizedBox();
+                            }
+                          },
+                        );
+                },
+              ),
               Padding(
                 padding: EdgeInsets.only(
                   top: Get.height * 0.03,
@@ -82,7 +103,8 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
       child: CustomButton(
         text: 'Submit',
         onpressed: () {
-          CustomNotifiers().progressIndicator();
+          print(_controllers[1].text);
+          // CustomNotifiers().progressIndicator();
           // controller.photoUpload();
         },
       ),
