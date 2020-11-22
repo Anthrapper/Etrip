@@ -5,12 +5,14 @@ import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   final loginKey = GlobalKey<FormState>();
 
+  final storage = FlutterSecureStorage();
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
@@ -50,21 +52,25 @@ class LoginController extends GetxController {
   }
 
   Future login() async {
-    _firebaseMessaging.getToken().then((String token) {
-      assert(token != null);
-      print(password.text);
-      deviceId.value = token;
-    });
+    // _firebaseMessaging.getToken().then((String token) {
+    //   assert(token != null);
+    //   print(password.text);
+    //   deviceId.value = token;
+    //   print(deviceId);
+    // });
+    String devToken = await storage.read(key: 'deviceId');
+    print(devToken);
     await ApiCalls().postRequest(
       body: {
         "username": userName.text,
         "password": password.text,
-        "device_id": deviceId.value,
+        "device_id": devToken.toString(),
       },
       headers: ApiData.jsonHeader,
       url: ApiData.login,
     ).then(
       (postData) async {
+        print('inside then ' + deviceId.toString());
         if (postData[0] == 200) {
           successfulLogin(postData[1]);
         } else if (postData[0] == 401) {
@@ -126,7 +132,8 @@ class LoginController extends GetxController {
     userName = TextEditingController();
     password = TextEditingController();
     await langIntialize();
-
+    String value = await storage.read(key: 'deviceId');
+    print(value);
     super.onInit();
   }
 
