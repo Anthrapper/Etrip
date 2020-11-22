@@ -16,6 +16,7 @@ from rest_framework_simplejwt import serializers
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from .serializers import UserSerializer, UserCreateSerializer, DriverUserCreateSerializer, DriverUserUpdateSerializer, UserProfileSerializer
+from .serializers import  DriverUserLocationUpdateSerializer
 from e_trip.users.models import Driver
 
 from requests.exceptions import HTTPError
@@ -236,6 +237,21 @@ class TokenViewBase(generics.GenericAPIView):
             raise InvalidToken(e.args[0])
 
         return Response({**serializer.validated_data,**message}, status=status.HTTP_200_OK)
+
+
+class DriverLocationUpdate(UpdateAPIView):
+    serializer_class =  DriverUserLocationUpdateSerializer
+    queryset = Driver.objects.all()
+
+    def get_object(self):
+        obj = Driver.objects.get(user=self.request.user)
+        return obj
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 class TokenObtainPairView(TokenViewBase):
     """

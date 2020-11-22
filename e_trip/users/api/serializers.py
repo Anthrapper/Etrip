@@ -146,6 +146,23 @@ class DriverUserUpdateSerializer(serializers.ModelSerializer):
         print(self.context.get('request').user)
         return self.context.get('request').user.id
 
+class DriverUserLocationUpdateSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+    class Meta:
+        model = Driver
+        fields = ["user","current_place_coordinates"]
+    def validate(self,data):
+        #data['user'] = self.context.get('request').user
+        print(data)
+        if not Driver.objects.filter(user=self.context.get('request').user).exists():
+            raise serializers.ValidationError("No Driver User Found")
+        else:
+            #data['user'] = self.context.get('request').user
+            pass
+        return data
+    def get_user(self,obj):
+        print(self.context.get('request').user)
+        return self.context.get('request').user.id
 class UserActivationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
