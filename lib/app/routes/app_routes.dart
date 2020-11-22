@@ -14,4 +14,6 @@ abstract class Routes {
   static const SPLASH = '/splash';
   static const NOTIFICATION = '/notifications';
   static const VEHICLE_DETAILS = '/vehicle-details';
+  static const BIDS = '/bids';
+  static const SELECTED_BID = '/selected-bid';
 }

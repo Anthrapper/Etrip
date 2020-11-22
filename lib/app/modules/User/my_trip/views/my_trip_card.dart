@@ -1,5 +1,6 @@
 import 'package:etrip/app/data/Widgets/customButton2.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,7 +49,9 @@ class MyTripCard extends StatelessWidget {
             right: 20,
             child: CustomButton2(
               text: 'bids'.tr,
-              onpressed: () {},
+              onpressed: () {
+                Get.toNamed(AppPages.BIDS);
+              },
             ),
           ),
           Positioned(
@@ -56,7 +59,9 @@ class MyTripCard extends StatelessWidget {
             right: 20,
             child: CustomButton2(
               text: 'selbid'.tr,
-              onpressed: () {},
+              onpressed: () {
+                Get.toNamed(AppPages.SELECTED_BID);
+              },
             ),
           ),
           Positioned(
@@ -64,7 +69,9 @@ class MyTripCard extends StatelessWidget {
             right: 20,
             child: CustomButton1(
               text: 'tripcomp'.tr,
-              onpressed: () {},
+              onpressed: () {
+              //  TODO: Add a dialog for confirming
+              },
             ),
           ),
           Positioned(

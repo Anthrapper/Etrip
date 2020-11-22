@@ -1,3 +1,7 @@
+import 'package:etrip/app/modules/User/selected_bid/views/selected_bid_view.dart';
+import 'package:etrip/app/modules/User/selected_bid/bindings/selected_bid_binding.dart';
+import 'package:etrip/app/modules/User/bids/views/bids_view.dart';
+import 'package:etrip/app/modules/User/bids/bindings/bids_binding.dart';
 import 'package:etrip/app/modules/Driver/VehicleDetails/bindings/vehicle_details_binding.dart';
 import 'package:etrip/app/modules/Driver/VehicleDetails/views/vehicle_details_view.dart';
 import 'package:etrip/app/modules/splash/views/splash_view.dart';
@@ -22,6 +26,7 @@ import 'package:etrip/app/modules/login/bindings/login_binding.dart';
 import 'package:etrip/app/modules/home/views/home_view.dart';
 import 'package:etrip/app/modules/home/views/notifications.dart';
 import 'package:etrip/app/modules/home/bindings/home_binding.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -38,6 +43,8 @@ class AppPages {
   static const SPLASH = Routes.SPLASH;
   static const NOTIFICATION = Routes.NOTIFICATION;
   static const VEHICLE_DETAILS = Routes.VEHICLE_DETAILS;
+  static const BIDS = Routes.BIDS;
+  static const SELECTED_BID = Routes.SELECTED_BID;
 
   static final routes = [
     GetPage(
@@ -102,6 +109,16 @@ class AppPages {
       name: Routes.VEHICLE_DETAILS,
       page: () => VehicleDetailsView(),
       binding: VehicleDetailsBinding(),
+    ),
+    GetPage(
+      name: Routes.BIDS, 
+      page:()=> BidsView(), 
+      binding: BidsBinding(),
+    ),
+    GetPage(
+      name: Routes.SELECTED_BID, 
+      page:()=> SelectedBidView(), 
+      binding: SelectedBidBinding(),
     ),
   ];
 }

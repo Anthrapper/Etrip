@@ -33,9 +33,11 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: Colors.white,
         iconTheme: new IconThemeData(color: Colors.black),
         title: Text(
-          'HomeView',
+          'eTRIP',
           style: TextStyle(
-            color: (CustomColors.headings),
+            color: Color(0xff121214),
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
           ),
         ),
         centerTitle: true,
@@ -112,7 +114,8 @@ class HomeView extends GetView<HomeController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        // width: 350,
+                        padding: EdgeInsets.only(bottom: 9),
+                        width: Get.width * 0.85,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -162,7 +165,8 @@ class HomeView extends GetView<HomeController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        width: 350,
+                        padding: EdgeInsets.only(bottom: 9),
+                        width: Get.width * 0.85,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
