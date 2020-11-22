@@ -1,7 +1,7 @@
 import 'package:etrip/app/modules/Driver/signup_driver/controllers/signup_driver_controller.dart';
-import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:etrip/app/data/Functions/validator.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 import 'package:get/get.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
@@ -95,23 +95,23 @@ class SignupDriverView extends GetView<SignupDriverController> {
                   suffixChecker: true,
                   validator: FormValidator().passwordValidator,
                   obsecure: controller.obscure,
-                  icon: Icons.visibility,
+                  icon: controller.iconController.value,
                   controller: controller.password,
-                  hintText: 'password'.tr,
+                  hintText: 'newpassword'.tr,
                   secureText: controller.showText.value,
                 ),
               ),
             ),
             Padding(
-              // TODO: Error string
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
                   suffixChecker: true,
-                  validator: FormValidator().confirmPassword(
-                      controller.confPass.text, controller.password.text),
+                  validator: (val) =>
+                      MatchValidator(errorText: 'Passwords do not match')
+                          .validateMatch(val, controller.password.text),
                   obsecure: controller.obscure,
-                  icon: Icons.visibility,
+                  icon: controller.iconController.value,
                   controller: controller.confPass,
                   hintText: 'confirmpassword'.tr,
                   secureText: controller.showText.value,

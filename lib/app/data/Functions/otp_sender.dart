@@ -25,7 +25,10 @@ class OtpSender {
         if (value.user != null) {
           // Handle loogged in state
           print(value.user.phoneNumber);
-          Get.offAllNamed(AppPages.LOGIN);
+          Get.back();
+          Get.offNamedUntil(AppPages.LOGIN, (route) => route.isFirst);
+          // Get.offAllNamed(AppPages.LOGIN);
+          //TODO checck
         } else {
           Get.snackbar("Error validating OTP", 'try again');
         }
@@ -64,7 +67,8 @@ class OtpSender {
         // Handle loogged in state
         print(value.user.phoneNumber);
         Get.back();
-        await Get.offAllNamed(AppPages.LOGIN);
+
+        await Get.offAndToNamed(AppPages.LOGIN);
       } else {
         Get.snackbar("Error validating OTP, try again", 'Colors.red');
       }

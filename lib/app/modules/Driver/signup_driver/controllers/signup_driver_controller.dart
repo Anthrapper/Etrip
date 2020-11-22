@@ -17,6 +17,7 @@ class SignupDriverController extends GetxController {
   TextEditingController password;
   var showText = true.obs;
   final formKey1 = GlobalKey<FormState>();
+  var iconController = Icons.visibility_off.obs;
 
   vidUpdate(String verificationId) {
     vId.value = verificationId;
@@ -71,7 +72,6 @@ class SignupDriverController extends GetxController {
         if (Get.isDialogOpen) {
           Get.back();
         }
-        //TODO proper msg
         CustomNotifiers().snackBar(
           'Registration failed',
           'Email or Phone Number already exists',
@@ -82,13 +82,12 @@ class SignupDriverController extends GetxController {
   }
 
   obscure() {
-    print('called ');
-    print(showText.value);
-
     if (showText.value == false) {
       showText.value = true;
+      iconController.value = Icons.visibility_off;
     } else {
       showText.value = false;
+      iconController.value = Icons.visibility;
     }
   }
 

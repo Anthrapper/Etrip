@@ -3,6 +3,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CustomTextStyles {
+  final mlHome = TextStyle(
+    color: (CustomColors.headings),
+    fontSize: Get.height * 0.03,
+  );
+  final enHome = TextStyle(
+    color: (CustomColors.headings),
+    fontSize: Get.height * 0.031,
+  );
+  final drawer = TextStyle(
+    color: (CustomColors.headings),
+    fontSize: Get.height * 0.025,
+    fontWeight: FontWeight.w400,
+  );
+
   final headingStyle = TextStyle(
     color: (CustomColors.headings),
     fontSize: Get.height * 0.05,

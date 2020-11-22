@@ -45,10 +45,6 @@ class SignupController extends GetxController {
 
   isEmail() async {
     await Get.offAllNamed(AppPages.LOGIN);
-    // CustomSnackbars().snackBar(
-    //     'Success',
-    //     'Your account has been created successfully. Activate your account by validating your email',
-    //     Icons.check);
   }
 
   Future doSignUp() async {
@@ -99,7 +95,6 @@ class SignupController extends GetxController {
 
   @override
   void onReady() {
-    print('done');
     super.onReady();
   }
 

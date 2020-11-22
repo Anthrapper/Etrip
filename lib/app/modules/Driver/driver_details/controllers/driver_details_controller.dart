@@ -45,9 +45,7 @@ class DriverDetailsController extends GetxController {
       var res = await req.send();
       print(res.reasonPhrase);
       print(res.statusCode);
-      if (Get.isDialogOpen) {
-        Get.back();
-      }
+
       if (res.statusCode == 200) {
         await fieldUpload();
       }
@@ -72,6 +70,9 @@ class DriverDetailsController extends GetxController {
       );
       print(response.statusCode);
       print(response.body);
+      if (Get.isDialogOpen) {
+        Get.back();
+      }
       if (response.statusCode == 200) {
         Get.toNamed(AppPages.VEHICLE_DETAILS);
       }

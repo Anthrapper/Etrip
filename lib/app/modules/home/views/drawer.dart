@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/colors.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -103,14 +104,12 @@ class MyDrawer extends StatelessWidget {
                       children: [
                         Text(
                           'logout'.tr,
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
+                          style: CustomTextStyles().drawer,
                         ),
                         SizedBox(
                           width: Get.width * 0.4,
                         ),
-                        Icon(Icons.exit_to_app),
+                        Expanded(child: Icon(Icons.exit_to_app)),
                       ],
                     ),
                   ),

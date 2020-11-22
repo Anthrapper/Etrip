@@ -3,7 +3,6 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,6 @@ class LoginController extends GetxController {
   final loginKey = GlobalKey<FormState>();
 
   final storage = FlutterSecureStorage();
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
   TextEditingController userName;
@@ -146,6 +144,7 @@ class LoginController extends GetxController {
   void onClose() {
     userName?.dispose();
     password?.dispose();
+
     super.onClose();
   }
 }

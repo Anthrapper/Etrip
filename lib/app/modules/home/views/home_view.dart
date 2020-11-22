@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/colors.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/modules/home/views/vehicle_card.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,7 @@ class HomeView extends GetView<HomeController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        width: 350,
+                        // width: 350,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -129,9 +130,7 @@ class HomeView extends GetView<HomeController> {
                           child: ListTile(
                             title: Text(
                               'mytrip'.tr,
-                              style: TextStyle(
-                                fontSize: 23,
-                              ),
+                              style: CustomTextStyles().mlHome,
                             ),
                             subtitle: Text('seetrip'.tr),
                             trailing: Container(
@@ -181,7 +180,7 @@ class HomeView extends GetView<HomeController> {
                           child: ListTile(
                             title: Text(
                               'triphistory'.tr,
-                              style: TextStyle(fontSize: 23),
+                              style: CustomTextStyles().mlHome,
                             ),
                             subtitle: Text('seetriphistory'.tr),
                             trailing: Container(
