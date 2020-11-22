@@ -51,7 +51,6 @@ class TripHistoryCard extends StatelessWidget {
               onpressed: () {},
             ),
           ),
-          // TODO: TEXT OVERFLOW IN MALAYALAM
           Positioned(
             top: Get.height * 0.23,
             right: 20,

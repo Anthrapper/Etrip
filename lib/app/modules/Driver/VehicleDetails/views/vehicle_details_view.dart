@@ -120,17 +120,15 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
               CustomNotifiers().progressIndicator();
               for (var i = 0; i <= controller.vehicleData.length - 1; i++) {
                 await controller.uploadDocuments(
-                    controller.items[i].value,
-                    controller.vehicleData[i]['id'].toString(),
-                    controller.textController[i].text,
-                    i);
+                  controller.items[i].value,
+                  controller.vehicleData[i]['id'].toString(),
+                  controller.textController[i].text,
+                  i,
+                );
               }
             }
           }
         },
-
-        // CustomNotifiers().progressIndicator();
-        // controller.photoUpload();
       ),
     );
   }

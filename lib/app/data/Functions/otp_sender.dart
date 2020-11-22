@@ -26,9 +26,7 @@ class OtpSender {
           // Handle loogged in state
           print(value.user.phoneNumber);
           Get.back();
-          Get.offNamedUntil(AppPages.LOGIN, (route) => route.isFirst);
-          // Get.offAllNamed(AppPages.LOGIN);
-          //TODO checck
+          Get.offNamed(AppPages.LOGIN);
         } else {
           Get.snackbar("Error validating OTP", 'try again');
         }

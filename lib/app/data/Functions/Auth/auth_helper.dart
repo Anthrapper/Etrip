@@ -68,7 +68,6 @@ class AuthHelper {
           () async {
             if (await box.read('is_document_cleared') == false) {
               Get.offAllNamed(AppPages.DRIVER_DETAILS);
-              //TODO clear this value after adding data
             } else {
               Get.offAllNamed(AppPages.INITIAL);
             }
@@ -92,7 +91,6 @@ class AuthHelper {
                       .whenComplete(() async {
                     if (await box.read('is_document_cleared') == false) {
                       Get.offAllNamed(AppPages.DRIVER_DETAILS);
-                      //TODO clear this value after adding data
                     } else {
                       Get.offAllNamed(AppPages.INITIAL);
                     }

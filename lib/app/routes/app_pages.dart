@@ -26,7 +26,6 @@ import 'package:etrip/app/modules/login/bindings/login_binding.dart';
 import 'package:etrip/app/modules/home/views/home_view.dart';
 import 'package:etrip/app/modules/home/views/notifications.dart';
 import 'package:etrip/app/modules/home/bindings/home_binding.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -111,13 +110,13 @@ class AppPages {
       binding: VehicleDetailsBinding(),
     ),
     GetPage(
-      name: Routes.BIDS, 
-      page:()=> BidsView(), 
+      name: Routes.BIDS,
+      page: () => BidsView(),
       binding: BidsBinding(),
     ),
     GetPage(
-      name: Routes.SELECTED_BID, 
-      page:()=> SelectedBidView(), 
+      name: Routes.SELECTED_BID,
+      page: () => SelectedBidView(),
       binding: SelectedBidBinding(),
     ),
   ];

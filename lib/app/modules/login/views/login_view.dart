@@ -57,7 +57,6 @@ class LoginView extends GetView<LoginController> {
   Widget form() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
-      // TODO: error when navigating back to login
       child: Form(
         key: controller.loginKey,
         child: Column(
@@ -148,7 +147,7 @@ class LoginView extends GetView<LoginController> {
             padding: EdgeInsets.only(left: Get.width * 0.03),
             child: InkWell(
               onTap: () {
-                Get.toNamed(AppPages.SIGNUP_SELECTION);
+                Get.offAllNamed(AppPages.SIGNUP_SELECTION);
               },
               child: Text(
                 'dosignup'.tr,

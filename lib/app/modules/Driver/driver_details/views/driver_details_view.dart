@@ -1,9 +1,11 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
+import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/data/Widgets/logo.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/modules/Driver/driver_details/controllers/driver_details_controller.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
@@ -18,6 +20,21 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                padding: const EdgeInsets.only(right: 10),
+                alignment: Alignment.topRight,
+                child: FlatButton(
+                  onPressed: () async {
+                    await AuthHelper().removeToken().whenComplete(
+                          () async => await Get.offAllNamed(AppPages.LOGIN),
+                        );
+                  },
+                  child: Text(
+                    'Log Out',
+                    style: CustomTextStyles().drawer,
+                  ),
+                ),
+              ),
               LogoWidget(),
               heading(),
               form(),

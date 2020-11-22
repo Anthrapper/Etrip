@@ -1,6 +1,6 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/imagepicker.dart';
-import 'package:etrip/app/modules/User/vehicleform/controllers/search_place_widget.dart';
+import 'package:etrip/app/modules/User/vehicleform/views/search_place_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
