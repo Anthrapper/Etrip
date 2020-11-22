@@ -3,7 +3,8 @@ from django.db.models import CharField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-#from django.contrib.gis.db import models as geo_models
+from django.contrib.gis.db import models as geo_models
+from django.contrib.gis.geos import Point
 
 import uuid
 import os
@@ -25,7 +26,6 @@ class User(AbstractUser):
     TYPE_CHOICES = [(value, name) for name, value in TYPE_VALUE_MAP.items()]
     user_type = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
 
-    #: First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
     phone = models.CharField(blank=True,max_length=10)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -47,6 +47,7 @@ class Driver(models.Model):
     license_back = models.FileField(upload_to=driver_directory_path,default='license.jpeg')
     driver_status = models.BooleanField(default=True)
     is_document_cleared = models.BooleanField(default=False)
+    current_place_coordinates = geo_models.PointField(srid=4326,default=Point(75.7804, 11.2588))
 
 
     def __str__(self):
