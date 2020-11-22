@@ -23,11 +23,14 @@ class UserTripCreateSerializer(serializers.ModelSerializer):
         user_trip.save()
         return user_trip
 
+
+
 class UserTripListSerializer(serializers.ModelSerializer):
     from_place_coordinates = serializers.SerializerMethodField()
     to_place_coordinates = serializers.SerializerMethodField()
     trip_status = serializers.SerializerMethodField()
     vehicle =  serializers.SerializerMethodField()
+    date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     class Meta:
         model = Trip
         fields = '__all__'
