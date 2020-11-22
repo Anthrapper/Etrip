@@ -41,7 +41,7 @@ class Messages extends Translations {
           'date': 'Date',
           'vehicleform': 'Vehicle Form',
           'otpprompt': 'Please enter 6-digit code sent to your number as SMS',
-          'uploadfrm': 'Upload  from',
+          'uploadfrm': 'Upload from',
           'camera': 'Camera',
           'gallery': 'Gallery'
 
