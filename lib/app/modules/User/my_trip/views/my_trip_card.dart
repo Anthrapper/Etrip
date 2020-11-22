@@ -1,3 +1,4 @@
+import 'package:etrip/app/data/Widgets/customButton2.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,16 +46,16 @@ class MyTripCard extends StatelessWidget {
           Positioned(
             top: Get.height * 0.18,
             right: 20,
-            child: CustomButton1(
-              text: 'Bids',
+            child: CustomButton2(
+              text: 'bids'.tr,
               onpressed: () {},
             ),
           ),
           Positioned(
             top: Get.height * 0.23,
             right: 20,
-            child: CustomButton1(
-              text: 'Selected Bid',
+            child: CustomButton2(
+              text: 'selbid'.tr,
               onpressed: () {},
             ),
           ),
@@ -62,7 +63,7 @@ class MyTripCard extends StatelessWidget {
             top: Get.height * 0.28,
             right: 20,
             child: CustomButton1(
-              text: 'Trip Completed',
+              text: 'tripcomp'.tr,
               onpressed: () {},
             ),
           ),
@@ -77,7 +78,7 @@ class MyTripCard extends StatelessWidget {
           Positioned(
             left: 20,
             top: Get.height * 0.24,
-            child: Text('Amount: ${this.amount}'),
+            child: Text('amount'.tr + ': ${this.amount}'),
           ),
           Positioned(
             left: 20,

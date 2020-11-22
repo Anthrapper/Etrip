@@ -11,7 +11,7 @@ class NotificationsPage extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: new IconThemeData(color: Colors.black),
         title: Text(
-          'Notifications',
+          'notification'.tr,
           style: TextStyle(
             color: (CustomColors.headings),
           ),

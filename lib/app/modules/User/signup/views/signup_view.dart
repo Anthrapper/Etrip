@@ -62,7 +62,7 @@ class SignupView extends GetView<SignupController> {
             CustomTextField(
               suffixChecker: false,
               controller: controller.name,
-              hintText: 'Name',
+              hintText: 'name'.tr,
               secureText: false,
               validator: FormValidator().reqValidator,
             ),
@@ -72,7 +72,7 @@ class SignupView extends GetView<SignupController> {
                 suffixChecker: false,
                 validator: FormValidator().reqValidator,
                 controller: controller.username,
-                hintText: 'Enter email or phone number',
+                hintText: 'emailornumber'.tr,
                 secureText: false,
               ),
             ),
@@ -85,7 +85,7 @@ class SignupView extends GetView<SignupController> {
                   obsecure: controller.obscure,
                   icon: controller.iconController.value,
                   controller: controller.password,
-                  hintText: 'New Password',
+                  hintText: 'newpassword'.tr,
                   secureText: controller.showText.value,
                 ),
               ),
@@ -96,12 +96,12 @@ class SignupView extends GetView<SignupController> {
                 () => CustomTextField(
                   suffixChecker: true,
                   validator: (val) =>
-                      MatchValidator(errorText: 'passwords do not match')
+                      MatchValidator(errorText: 'Passwords do not match')
                           .validateMatch(val, controller.password.text),
                   obsecure: controller.obscure,
                   icon: controller.iconController.value,
                   controller: controller.confPass,
-                  hintText: 'Confirm Password',
+                  hintText: 'confirmpassword'.tr,
                   secureText: controller.showText.value,
                 ),
               ),

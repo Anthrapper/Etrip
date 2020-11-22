@@ -16,7 +16,7 @@ class VehicleformView extends GetView<VehicleformController> {
         backgroundColor: Colors.white,
         iconTheme: new IconThemeData(color: Colors.black),
         title: Text(
-          'Vehicle Form',
+          'vehicleform'.tr,
           style: TextStyle(
             color: (CustomColors.headings),
           ),
@@ -68,7 +68,7 @@ class VehicleformView extends GetView<VehicleformController> {
   Widget button() {
     return Center(
       child: CustomButton(
-        text: 'Submit',
+        text: 'submit'.tr,
         onpressed: () {
           controller.submitForm();
         },

@@ -1,3 +1,4 @@
+import 'package:etrip/app/data/Widgets/customButton2.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,16 +46,17 @@ class TripHistoryCard extends StatelessWidget {
           Positioned(
             top: Get.height * 0.18,
             right: 20,
-            child: CustomButton1(
-              text: 'Bids',
+            child: CustomButton2(
+              text: 'bids'.tr,
               onpressed: () {},
             ),
           ),
+          // TODO: TEXT OVERFLOW IN MALAYALAM
           Positioned(
             top: Get.height * 0.23,
             right: 20,
-            child: CustomButton1(
-              text: 'Selected Bid',
+            child: CustomButton2(
+              text: 'selbid'.tr,
               onpressed: () {},
             ),
           ),
@@ -68,7 +70,7 @@ class TripHistoryCard extends StatelessWidget {
           Positioned(
             left: 20,
             top: Get.height * 0.24,
-            child: Text('Amount: ₹ ${this.amount}'),
+            child: Text('amount'.tr + ': ₹ ${this.amount}'),
           ),
           Positioned(
             left: 20,

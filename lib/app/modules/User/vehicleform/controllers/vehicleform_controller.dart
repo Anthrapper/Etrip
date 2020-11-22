@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 
 class VehicleformController extends GetxController {
   var toCo = ''.obs;
-  var fromDes = 'From'.obs;
-  var toDes = 'To'.obs;
+  var fromDes = 'from'.tr.obs;
+  var toDes = 'to'.tr.obs;
   var vehicleType = ''.obs;
-  var readDate = 'Date'.obs;
+  var readDate = 'date'.tr.obs;
   var passDate = ''.obs;
   @override
   void onInit() {

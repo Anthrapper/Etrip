@@ -44,7 +44,7 @@ class CustomNotifiers {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                'Please enter 4-digit code sent to your number as SMS',
+                'otpprompt'.tr,
                 textAlign: TextAlign.center,
                 style: CustomTextStyles().smallText,
               ),
@@ -53,7 +53,7 @@ class CustomNotifiers {
               padding: const EdgeInsets.all(20.0),
               child: Center(
                 child: CustomButton(
-                  text: 'SUBMIT',
+                  text: 'submit'.tr,
                   onpressed: otpSend,
                 ),
               ),
@@ -92,7 +92,7 @@ class CustomNotifiers {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Upload From :',
+                'uploadfrm' +' :',
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -103,7 +103,7 @@ class CustomNotifiers {
                 },
                 child: ListTile(
                   leading: Icon(Icons.camera),
-                  title: Text('Camera'),
+                  title: Text('camera'.tr),
                 ),
               ),
               FlatButton(
@@ -112,7 +112,7 @@ class CustomNotifiers {
                 },
                 child: ListTile(
                   leading: Icon(Icons.image),
-                  title: Text('Gallery'),
+                  title: Text('gallery'.tr),
                 ),
               ),
             ],

@@ -43,7 +43,7 @@ class LoginView extends GetView<LoginController> {
   Widget button() {
     return Center(
       child: CustomButton(
-        text: 'LOGIN',
+        text: 'login'.tr,
         onpressed: () {
           if (controller.loginKey.currentState.validate()) {
             CustomNotifiers().progressIndicator();
@@ -57,6 +57,7 @@ class LoginView extends GetView<LoginController> {
   Widget form() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
+      // TODO: error when navigating back to login
       child: Form(
         key: controller.loginKey,
         child: Column(
@@ -65,7 +66,7 @@ class LoginView extends GetView<LoginController> {
               suffixChecker: false,
               validator: FormValidator().reqValidator,
               controller: controller.userName,
-              hintText: 'Enter email or phone number',
+              hintText: 'emailornumber'.tr,
               secureText: false,
             ),
             Padding(
@@ -77,7 +78,7 @@ class LoginView extends GetView<LoginController> {
                   obsecure: controller.obscure,
                   icon: controller.iconController.value,
                   controller: controller.password,
-                  hintText: 'Password',
+                  hintText: 'password'.tr,
                   secureText: controller.showText.value,
                 ),
               ),
@@ -96,7 +97,7 @@ class LoginView extends GetView<LoginController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Choose a language',
+            'chooselanguage'.tr,
             style: CustomTextStyles().smallText,
           ),
           Obx(
@@ -140,7 +141,7 @@ class LoginView extends GetView<LoginController> {
       child: Row(
         children: [
           Text(
-            'Don\'\ t have an account?',
+            'noaccount'.tr,
             style: CustomTextStyles().smallText,
           ),
           Padding(
@@ -150,7 +151,7 @@ class LoginView extends GetView<LoginController> {
                 Get.toNamed(AppPages.SIGNUP_SELECTION);
               },
               child: Text(
-                'SignUp',
+                'dosignup'.tr,
                 style: CustomTextStyles().smallButtonText,
               ),
             ),

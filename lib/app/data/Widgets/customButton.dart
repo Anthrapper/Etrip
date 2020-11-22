@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     return Container(
       color: CustomColors.buttonColor,
       height: Get.height * 0.055,
-      width: Get.width * 0.4,
+      width: Get.width * 0.44,
       child: FlatButton(
         onPressed: onpressed,
         child: Text(

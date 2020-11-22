@@ -128,12 +128,12 @@ class HomeView extends GetView<HomeController> {
                           },
                           child: ListTile(
                             title: Text(
-                              'My Trip',
+                              'mytrip'.tr,
                               style: TextStyle(
                                 fontSize: 23,
                               ),
                             ),
-                            subtitle: Text('See your trips'),
+                            subtitle: Text('seetrip'.tr),
                             trailing: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -180,10 +180,10 @@ class HomeView extends GetView<HomeController> {
                           },
                           child: ListTile(
                             title: Text(
-                              'Trip History',
+                              'triphistory'.tr,
                               style: TextStyle(fontSize: 23),
                             ),
-                            subtitle: Text('See your trip history'),
+                            subtitle: Text('seetriphistory'.tr),
                             trailing: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -220,7 +220,7 @@ class HomeView extends GetView<HomeController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Start a new trip',
+                        'startnewtrip'.tr,
                         style: TextStyle(
                           fontSize: 18,
                         ),

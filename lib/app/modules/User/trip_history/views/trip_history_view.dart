@@ -15,7 +15,7 @@ class TripHistoryView extends GetView<TripHistoryController> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'Trip History',
+          'triphistory'.tr,
           style: TextStyle(
             color: (CustomColors.headings),
           ),

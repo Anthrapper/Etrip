@@ -25,12 +25,6 @@ class SignupDriverView extends GetView<SignupDriverController> {
                     top: Get.height * 0.03, bottom: Get.height * 0.05),
                 child: button(),
               ),
-              FlatButton(
-                onPressed: () {
-                  Get.toNamed(AppPages.DRIVER_DETAILS);
-                },
-                child: Text('DriverDetails'),
-              ),
             ],
           ),
         ),
@@ -42,7 +36,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.01, 0, 0),
       child: Text(
-        'Sign Up',
+        'signup'.tr,
         style: CustomTextStyles().headingStyle,
       ),
     );
@@ -51,7 +45,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
   Widget button() {
     return Center(
       child: CustomButton(
-          text: 'Submit',
+          text: 'submit'.tr,
           onpressed: () {
             CustomNotifiers().progressIndicator();
             controller.doSignUp();
@@ -71,7 +65,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
               suffixChecker: false,
               validator: FormValidator().reqValidator,
               controller: controller.name,
-              hintText: 'Name',
+              hintText: 'name'.tr,
               secureText: false,
             ),
             Padding(
@@ -80,7 +74,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
                 suffixChecker: false,
                 validator: FormValidator().emailValidator,
                 controller: controller.email,
-                hintText: 'Email',
+                hintText: 'email'.tr,
                 secureText: false,
               ),
             ),
@@ -90,7 +84,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
                 suffixChecker: false,
                 validator: FormValidator().mobileValidator,
                 controller: controller.number,
-                hintText: 'Phone Number',
+                hintText: 'number'.tr,
                 secureText: false,
               ),
             ),
@@ -103,12 +97,13 @@ class SignupDriverView extends GetView<SignupDriverController> {
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
                   controller: controller.password,
-                  hintText: 'Enter Password',
+                  hintText: 'password'.tr,
                   secureText: controller.showText.value,
                 ),
               ),
             ),
             Padding(
+              // TODO: Error string
               padding: const EdgeInsets.only(top: 20.0),
               child: Obx(
                 () => CustomTextField(
@@ -118,7 +113,7 @@ class SignupDriverView extends GetView<SignupDriverController> {
                   obsecure: controller.obscure,
                   icon: Icons.visibility,
                   controller: controller.confPass,
-                  hintText: 'Confirm Password',
+                  hintText: 'confirmpassword'.tr,
                   secureText: controller.showText.value,
                 ),
               ),

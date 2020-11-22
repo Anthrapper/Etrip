@@ -28,7 +28,7 @@ class UserType extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.01, 0, 0),
       child: Text(
-        'Welcome,',
+        'welcome'.tr,
         style: CustomTextStyles().headingStyle,
       ),
     );
@@ -46,7 +46,7 @@ class UserType extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
                 child: Text(
-                  'Lorem ipsum dolor sit amet?',
+                  'whatdo'.tr,
                   style: TextStyle(
                     fontSize: Get.height * 0.028,
                     fontWeight: FontWeight.w500,

@@ -53,7 +53,7 @@ class MyDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'My Trip',
+                    'mytrip'.tr,
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -62,7 +62,7 @@ class MyDrawer extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    'Trip History',
+                    'triphistory'.tr,
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -71,7 +71,7 @@ class MyDrawer extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    'Settings',
+                    'settings'.tr,
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -102,7 +102,7 @@ class MyDrawer extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'Logout',
+                          'logout'.tr,
                           style: TextStyle(
                             fontSize: 20,
                           ),
