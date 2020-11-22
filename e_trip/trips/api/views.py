@@ -77,3 +77,11 @@ class DriverTripList(generics.ListAPIView):
         vehicle_filter = Trip.objects.filter(trip_status = 0).filter(vehicle__in=driver.vehicles.all())
         distance_filter = vehicle_filter.filter(from_place_coordinates__distance_lte =(driver.current_place_coordinates,D(km=25)))
         return distance_filter
+
+class UserTripListCompleted(generics.ListAPIView):
+    serializer_class = UserTripListSerializer
+    queryset =Trip.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Trip.objects.filter(user=user).filter(trip_status = 4)

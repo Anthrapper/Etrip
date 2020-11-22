@@ -8,8 +8,8 @@ from django.urls import path
 from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair,CreateDriverUser,DriverUpdate
 from e_trip.vehicles.api.views import VehicleList, DriverVehicleList
 from e_trip.vehicles.api.views import CreateDriverVehicle
-from e_trip.trips.api.views import CreateTripUser,UserTripList, DriverTripList
-from e_trip.trips.api.views import CreateBidDriver, DriverBidList
+from e_trip.trips.api.views import CreateTripUser,UserTripList, UserTripListCompleted
+from e_trip.trips.api.views import CreateBidDriver, DriverBidList, DriverTripList
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -31,6 +31,7 @@ urlpatterns = [
     path('user/registration', CreateUserAPIView.as_view()),
     path('user/trips/create', CreateTripUser.as_view()),
     path('user/trips/list', UserTripList.as_view()),
+    path('user/trips/completed', UserTripListCompleted.as_view()),
     path('token/', token_obtain_pair, name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     #path('user/password/token/', PasswordResetAPI.as_view()),
