@@ -39,8 +39,9 @@ class LoginController extends GetxController {
             await box
                 .write('is_document_cleared', false)
                 .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
-          } else {
-            await Get.offAllNamed(AppPages.DRIVER_HOME);
+          }
+          if (tokenData['user'] == 'user') {
+            await Get.offAllNamed(AppPages.INITIAL);
           }
         } else {
           await box.write('user_type', 'user');
@@ -65,7 +66,6 @@ class LoginController extends GetxController {
     ).then(
       (postData) async {
         print(postData);
-        print('inside then ' + deviceId.toString());
         if (postData[0] == 200) {
           successfulLogin(postData[1]);
         } else if (postData[0] == 401) {

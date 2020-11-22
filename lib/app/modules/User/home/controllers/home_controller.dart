@@ -6,9 +6,22 @@ class HomeController extends GetxController {
   var currentIndex = 0.obs;
   var vehicleData = [].obs;
   var isLoading = true.obs;
+  var profileData = [].obs;
 
   indexChange(int index) {
     currentIndex.value = index;
+  }
+
+  Future getProfileData() async {
+    await ApiCalls()
+        .getRequest(
+      url: ApiData.profile,
+      header: await ApiData().getHeader(),
+    )
+        .then((value) {
+      print(value);
+      profileData.assignAll(value);
+    });
   }
 
   Future getVehicleList() async {
@@ -32,6 +45,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
+    await getProfileData();
     await getVehicleList();
     super.onInit();
   }

@@ -1,5 +1,8 @@
 import 'package:etrip/app/modules/Driver/driver_home/bindings/driver_home_binding.dart';
 import 'package:etrip/app/modules/Driver/driver_home/views/driver_home_view.dart';
+import 'package:etrip/app/modules/User/home/bindings/home_binding.dart';
+import 'package:etrip/app/modules/User/home/views/home_view.dart';
+import 'package:etrip/app/modules/User/home/views/notifications.dart';
 import 'package:etrip/app/modules/User/selected_bid/views/selected_bid_view.dart';
 import 'package:etrip/app/modules/User/selected_bid/bindings/selected_bid_binding.dart';
 import 'package:etrip/app/modules/User/bids/views/bids_view.dart';
@@ -25,9 +28,7 @@ import 'package:etrip/app/modules/User/vehicleform/bindings/vehicleform_binding.
 import 'package:etrip/app/modules/User/vehicleform/views/vehicleform_view.dart';
 import 'package:etrip/app/modules/login/views/login_view.dart';
 import 'package:etrip/app/modules/login/bindings/login_binding.dart';
-import 'package:etrip/app/modules/home/views/home_view.dart';
-import 'package:etrip/app/modules/home/views/notifications.dart';
-import 'package:etrip/app/modules/home/bindings/home_binding.dart';
+
 import 'package:get/get.dart';
 part 'app_routes.dart';
 

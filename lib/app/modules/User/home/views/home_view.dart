@@ -1,10 +1,10 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/modules/home/views/vehicle_card.dart';
+import 'package:etrip/app/modules/User/home/controllers/home_controller.dart';
+import 'package:etrip/app/modules/User/home/views/vehicle_card.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:etrip/app/modules/home/controllers/home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'drawer.dart';
 

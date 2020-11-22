@@ -1,6 +1,5 @@
+import 'package:etrip/app/modules/User/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
-
-import 'package:etrip/app/modules/home/controllers/home_controller.dart';
 
 class HomeBinding extends Bindings {
   @override

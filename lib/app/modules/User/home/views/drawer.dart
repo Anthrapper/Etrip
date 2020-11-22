@@ -1,6 +1,7 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
+import 'package:etrip/app/modules/User/home/controllers/home_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,11 +40,13 @@ class MyDrawer extends StatelessWidget {
                     SizedBox(
                       height: Get.height * 0.01,
                     ),
-                    Text(
-                      'John Doe',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                    Obx(
+                      () => Text(
+                        Get.find<HomeController>().profileData[0]['name'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ],

@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';
-import 'package:etrip/app/modules/home/views/drawer.dart';
+import 'package:etrip/app/modules/Driver/driver_home/views/driver_drawer.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +26,7 @@ class DriverHomeView extends GetView<DriverHomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: DriverDrawer(),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
