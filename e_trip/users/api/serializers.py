@@ -182,18 +182,6 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
     # The response contains the presigned URL
     return response
 
-class AWSImageField(serializers.ImageField):
-    def to_representation(self, value):
-        if not value:
-            return None
-
-        # `media/` is `MEDIA_URL`, but it is being used with `public-config`. I don't want to mess up the common use case
-        url = create_presigned_url(settings.AWS_STORAGE_BUCKET_NAME, 'media/' + value.name)
-        if url is not None:
-            res = requests.get(url)
-
-        return res.url
-
 class UserProfileSerializer(serializers.ModelSerializer):
     photo = serializers.SerializerMethodField()
     def get_photo(self,obj):
