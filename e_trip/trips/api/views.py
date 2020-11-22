@@ -16,7 +16,7 @@ from rest_framework.permissions import AllowAny
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.contrib.gis.measure import D
 
-from .serializers import UserTripCreateSerializer, UserTripListSerializer
+from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer
 from .serializers import DriverBidCreateSerializer, DriverBidListSerializer
 from e_trip.trips.models import Trip,Bid
 from e_trip.users.models import Driver
@@ -77,6 +77,16 @@ class DriverTripList(generics.ListAPIView):
         vehicle_filter = Trip.objects.filter(trip_status = 0).filter(vehicle__in=driver.vehicles.all())
         distance_filter = vehicle_filter.filter(from_place_coordinates__distance_lte =(driver.current_place_coordinates,D(km=25)))
         return distance_filter
+
+class BidLogsByTrip(generics.ListAPIView):
+    serializer_class = DriverBidListSerializer
+    queryset =Bid.objects.all()
+
+    def get_queryset(self):
+        id = self.kwargs.get('id')
+        trip = get_object_or_404(Trip, id=id)
+        bids = Bid.objects.filter(trip=trip)
+        return bids
 
 class UserTripListCompleted(generics.ListAPIView):
     serializer_class = UserTripListSerializer

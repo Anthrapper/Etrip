@@ -64,3 +64,32 @@ class DriverBidListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bid
         fields = '__all__'
+
+class DriverBidCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bid
+        fields = '__all__'
+    def create(self, validated_data):
+        user = self.context.get('request').user
+        driver = get_object_or_404(Driver, user=user)
+        validated_data['driver'] = driver
+        driver_bid = super(DriverBidCreateSerializer, self).create(validated_data)
+        driver_bid.status = 1
+        driver_bid.save()
+        return driver_bid
+
+
+class TripBidSelectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bid
+        fields = ['id','status']
+    def validate(self,data):
+        #data['user'] = self.context.get('request').user
+        print(data)
+        bid = get_object_or_404(Bid,id=data['id'])
+        if not Trip.objects.filter(user=self.context.get('request').user).filter(id= bid.trip.id).exists():
+            raise serializers.ValidationError("No Driver User Found")
+        else:
+            #data['user'] = self.context.get('request').user
+            pass
+        return data
