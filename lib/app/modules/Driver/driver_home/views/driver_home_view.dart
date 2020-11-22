@@ -1,14 +1,13 @@
-import 'package:etrip/app/data/Constants/colors.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/modules/home/views/vehicle_card.dart';
+import 'package:etrip/app/data/Widgets/customButton.dart';
+import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';
+import 'package:etrip/app/modules/home/views/drawer.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:etrip/app/modules/home/controllers/home_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'drawer.dart';
 
-class HomeView extends GetView<HomeController> {
+class DriverHomeView extends GetView<DriverHomeController> {
   final List cardList = [
     Item1(),
     Item2(),
@@ -217,51 +216,14 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.09),
+                padding: EdgeInsets.symmetric(
+                  horizontal: Get.width * 0.09,
+                  vertical: Get.height * 0.03,
+                ),
                 child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'startnewtrip'.tr,
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                      Obx(
-                        () {
-                          return controller.isLoading.value
-                              ? Container(
-                                  padding:
-                                      EdgeInsets.only(top: Get.height * 0.07),
-                                  alignment: Alignment.center,
-                                  child: CircularProgressIndicator(),
-                                )
-                              : GridView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: controller.vehicleData == null
-                                      ? 0
-                                      : controller.vehicleData.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                  ),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return VehicleCard(
-                                      id: controller.vehicleData[index]['id']
-                                          .toString(),
-                                      iconUrl: controller.vehicleData[index]
-                                          ['icon'],
-                                      name: controller.vehicleData[index]
-                                          ['name'],
-                                    );
-                                  },
-                                );
-                        },
-                      ),
-                    ],
+                  child: CustomButton(
+                    onpressed: () {},
+                    text: 'Start New Bid',
                   ),
                 ),
               ),
@@ -390,13 +352,11 @@ class Item4 extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold)),
-          Text(
-            "Data",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 17.0,
-                fontWeight: FontWeight.w600),
-          ),
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w600)),
         ],
       ),
     );

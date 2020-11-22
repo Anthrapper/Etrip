@@ -10,7 +10,6 @@ import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   final loginKey = GlobalKey<FormState>();
-
   final storage = FlutterSecureStorage();
   final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
@@ -35,15 +34,18 @@ class LoginController extends GetxController {
       if (Get.isDialogOpen) {
         Get.back();
         if (tokenData['user'] == 'driver') {
+          await box.write('user_type', 'driver');
           if (tokenData['is_document_cleared'] == false) {
             await box
                 .write('is_document_cleared', false)
                 .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
           } else {
-            await Get.offAllNamed(AppPages.INITIAL);
+            await Get.offAllNamed(AppPages.DRIVER_HOME);
           }
         } else {
-          await Get.offAllNamed(AppPages.INITIAL);
+          await box.write('user_type', 'user');
+
+          await Get.offAllNamed(AppPages.DRIVER_HOME);
         }
       }
     });
@@ -62,6 +64,7 @@ class LoginController extends GetxController {
       url: ApiData.login,
     ).then(
       (postData) async {
+        print(postData);
         print('inside then ' + deviceId.toString());
         if (postData[0] == 200) {
           successfulLogin(postData[1]);

@@ -10,13 +10,14 @@ class VehicleformController extends GetxController {
   var fromDes = 'from'.tr.obs;
   var toDes = 'to'.obs;
   var vehicleType = ''.obs;
+  var vehicleId = ''.obs;
   var readDate = 'date'.tr.obs;
   var time = 'Time'.obs;
   var passTime = ''.obs;
 
   Future createNewTrip() async {
-    print(fromCo);
-    print(toCo);
+    print(toDes.value);
+
     var date = readDate.value + ' ' + passTime.value;
     print(date);
     await ApiCalls().postRequest(
@@ -26,12 +27,12 @@ class VehicleformController extends GetxController {
         "date": date,
         "from_place": fromDes.value,
         "to_place": toDes.value,
+        "vehicle": vehicleId.value,
       },
       headers: await ApiData().getHeader(),
       url: ApiData.newTrip,
     ).then((value) {
       if (value[0] == 201) {
-        //TODO nav
         CustomNotifiers()
             .snackBar('Success', 'Trip has been successfully', Icons.check);
       }
@@ -40,7 +41,9 @@ class VehicleformController extends GetxController {
 
   @override
   void onInit() {
-    vehicleType.value = Get.arguments;
+    print(Get.arguments);
+    vehicleId.value = Get.arguments[0];
+    vehicleType.value = Get.arguments[1];
     super.onInit();
   }
 
@@ -85,6 +88,3 @@ class VehicleformController extends GetxController {
     }
   }
 }
-//2020-11-2416:16:00
-
-//2020-11-22 20:34:50

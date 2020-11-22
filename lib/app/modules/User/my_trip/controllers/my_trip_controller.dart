@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class MyTripController extends GetxController {
   var myTrips = [].obs;
+  var isLoading = true.obs;
 
   Future getMyTrips() async {
     await ApiCalls()
@@ -14,6 +15,7 @@ class MyTripController extends GetxController {
         .then((value) {
       print(value);
       myTrips.assignAll(value);
+      isLoading.value = false;
     });
   }
 

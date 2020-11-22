@@ -66,11 +66,19 @@ class AuthHelper {
             milliseconds: 2300,
           ),
           () async {
-            if (await box.read('is_document_cleared') == false) {
-              Get.offAllNamed(AppPages.DRIVER_DETAILS);
-            } else {
+            if (await box.read('user_type') == 'driver') {
+              if (await box.read('is_document_cleared') == false) {
+                Get.offAllNamed(AppPages.DRIVER_DETAILS);
+              } else {
+                Get.offAllNamed(AppPages.DRIVER_HOME);
+              }
+            }
+            if (await box.read('user_type') == 'user') {
               Get.offAllNamed(AppPages.INITIAL);
             }
+            // else {
+            //   Get.offAllNamed(AppPages.INITIAL);
+            // }
           },
         );
       } else {
@@ -89,9 +97,14 @@ class AuthHelper {
                   await storage
                       .write(key: 'accesstoken', value: response[1]['access'])
                       .whenComplete(() async {
-                    if (await box.read('is_document_cleared') == false) {
-                      Get.offAllNamed(AppPages.DRIVER_DETAILS);
-                    } else {
+                    if (await box.read('user_type') == 'driver') {
+                      if (await box.read('is_document_cleared') == false) {
+                        Get.offAllNamed(AppPages.DRIVER_DETAILS);
+                      } else {
+                        Get.offAllNamed(AppPages.DRIVER_HOME);
+                      }
+                    }
+                    if (await box.read('user_type') == 'user') {
                       Get.offAllNamed(AppPages.INITIAL);
                     }
                   });

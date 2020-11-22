@@ -17,6 +17,7 @@ class ApiData {
   static const mapApiKey = 'AIzaSyDVlIcJGpqZrY6UCC7s3YTIy22V9jTl7Cg';
   static const newTrip = baseUrl + version + 'user/trips/create';
   static const myTrips = baseUrl + version + 'user/trips/list';
+  static const profile = baseUrl + version + 'user/profiles/';
   Future contentHeader() async {
     var loginToken = await AuthHelper().getToken();
     var headers = {

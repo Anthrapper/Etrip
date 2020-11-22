@@ -5,8 +5,11 @@ import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class MyDrawer extends StatelessWidget {
+  final getbox = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,8 +93,10 @@ class MyDrawer extends StatelessWidget {
                 ),
                 FlatButton(
                   onPressed: () async {
-                    await AuthHelper().removeToken().whenComplete(
-                        () async => await Get.offAllNamed(AppPages.LOGIN));
+                    await AuthHelper().removeToken().whenComplete(() async {
+                      await getbox.erase();
+                      await Get.offAllNamed(AppPages.LOGIN);
+                    });
                   },
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(

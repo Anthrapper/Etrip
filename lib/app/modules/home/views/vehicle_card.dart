@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 class VehicleCard extends StatelessWidget {
   final String name;
   final String iconUrl;
-  VehicleCard({this.name, this.iconUrl});
+  final String id;
+  VehicleCard({this.name, this.iconUrl, this.id});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,9 +27,10 @@ class VehicleCard extends StatelessWidget {
         ),
         child: FlatButton(
           onPressed: () async {
+            List arg = [this.id, this.name.capitalizeFirst];
             await Get.toNamed(
               AppPages.VEHICLEFORM,
-              arguments: this.name.capitalizeFirst,
+              arguments: arg,
             );
           },
           child: Image.network(

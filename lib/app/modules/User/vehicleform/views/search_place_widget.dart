@@ -32,13 +32,14 @@ class SearchWidget extends StatelessWidget {
             print(location.longitude);
             if (fromCheck == true) {
               Get.find<VehicleformController>().fromDes.value =
-                  place.description;
+                  place.fullJSON['terms'][0]['value'];
               Get.find<VehicleformController>().fromCo.value =
                   'Point(${location.longitude} ${location.latitude})';
 
               Get.back();
             } else {
-              Get.find<VehicleformController>().toDes.value = place.description;
+              Get.find<VehicleformController>().toDes.value =
+                  place.fullJSON['terms'][0]['value'];
               Get.find<VehicleformController>().toCo.value =
                   'Point(${location.longitude} ${location.latitude})';
               Get.back();

@@ -1,3 +1,5 @@
+import 'package:etrip/app/modules/Driver/driver_home/bindings/driver_home_binding.dart';
+import 'package:etrip/app/modules/Driver/driver_home/views/driver_home_view.dart';
 import 'package:etrip/app/modules/User/selected_bid/views/selected_bid_view.dart';
 import 'package:etrip/app/modules/User/selected_bid/bindings/selected_bid_binding.dart';
 import 'package:etrip/app/modules/User/bids/views/bids_view.dart';
@@ -44,6 +46,7 @@ class AppPages {
   static const VEHICLE_DETAILS = Routes.VEHICLE_DETAILS;
   static const BIDS = Routes.BIDS;
   static const SELECTED_BID = Routes.SELECTED_BID;
+  static const DRIVER_HOME = Routes.DRIVER_HOME;
 
   static final routes = [
     GetPage(
@@ -118,6 +121,11 @@ class AppPages {
       name: Routes.SELECTED_BID,
       page: () => SelectedBidView(),
       binding: SelectedBidBinding(),
+    ),
+    GetPage(
+      name: Routes.DRIVER_HOME,
+      page: () => DriverHomeView(),
+      binding: DriverHomeBinding(),
     ),
   ];
 }

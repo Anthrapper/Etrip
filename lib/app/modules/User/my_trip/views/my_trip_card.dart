@@ -86,7 +86,7 @@ class MyTripCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      height: Get.height * 0.3,
+                      height: Get.height * 0.33,
                       width: Get.width * 0.8,
                       child: Scaffold(
                         body: Column(
@@ -98,7 +98,9 @@ class MyTripCard extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     'Are you sure that the trip is completed?',
-                                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -117,7 +119,8 @@ class MyTripCard extends StatelessWidget {
                                     height: Get.height * 0.05,
                                     child: FlatButton(
                                       shape: new RoundedRectangleBorder(
-                                          borderRadius: new BorderRadius.circular(10.0)),
+                                          borderRadius:
+                                              new BorderRadius.circular(10.0)),
                                       color: CustomColors.buttonColor1,
                                       child: Text(
                                         'Yes',
@@ -137,7 +140,9 @@ class MyTripCard extends StatelessWidget {
                                       height: Get.height * 0.05,
                                       child: FlatButton(
                                         shape: new RoundedRectangleBorder(
-                                            borderRadius: new BorderRadius.circular(10.0)),
+                                            borderRadius:
+                                                new BorderRadius.circular(
+                                                    10.0)),
                                         color: Color(0xffB82424),
                                         child: Text(
                                           'No',
@@ -171,11 +176,11 @@ class MyTripCard extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            left: 20,
-            top: Get.height * 0.24,
-            child: Text('amount'.tr + ': ${this.amount}'),
-          ),
+          // Positioned(
+          //   left: 20,
+          //   top: Get.height * 0.24,
+          //   child: Text('amount'.tr + ': ${this.amount}'),
+          // ),
           Positioned(
             left: 20,
             top: Get.height * 0.2,
