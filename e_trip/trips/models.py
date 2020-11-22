@@ -39,6 +39,6 @@ class Bid(models.Model):
         "Cancelled": 3
         }
     TYPE_CHOICES = [(value, name) for name, value in TYPE_VALUE_MAP.items()]
-    bid_status = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
+    status = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
     def __str__(self):
         return " " + self.trip.from_place + " to " + self.trip.to_place
