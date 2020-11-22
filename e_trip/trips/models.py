@@ -6,8 +6,8 @@ from django.utils import timezone
 from datetime import datetime
 
 class Trip(models.Model):
-    from_place_coordinates = geo_models.PointField(default=Point(0.0, 0.0))
-    to_place_coordinates = geo_models.PointField(default=Point(0.0, 0.0))
+    from_place_coordinates = geo_models.PointField(srid=4326,default=Point(0.0, 0.0))
+    to_place_coordinates = geo_models.PointField(srid=4326,default=Point(0.0, 0.0))
     date =  models.DateTimeField(default=timezone.now)
     from_place = models.CharField(blank=True,max_length=200)
     to_place = models.CharField(blank=True,max_length=200)
