@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Functions/location_helper.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';
 import 'package:etrip/app/modules/Driver/driver_home/views/driver_drawer.dart';
@@ -222,7 +223,10 @@ class DriverHomeView extends GetView<DriverHomeController> {
                 ),
                 child: Container(
                   child: CustomButton(
-                    onpressed: () {},
+                    onpressed: () {
+                      LocationHelper().getUserLocation();
+                      Get.toNamed(AppPages.NEW_WORKS);
+                    },
                     text: 'Start New Bid',
                   ),
                 ),
