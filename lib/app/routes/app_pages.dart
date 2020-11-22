@@ -1,5 +1,7 @@
 import 'package:etrip/app/modules/Driver/driver_home/bindings/driver_home_binding.dart';
 import 'package:etrip/app/modules/Driver/driver_home/views/driver_home_view.dart';
+import 'package:etrip/app/modules/Driver/new_works/views/new_works_view.dart';
+import 'package:etrip/app/modules/Driver/new_works/bindings/new_works_binding.dart';
 import 'package:etrip/app/modules/User/selected_bid/views/selected_bid_view.dart';
 import 'package:etrip/app/modules/User/selected_bid/bindings/selected_bid_binding.dart';
 import 'package:etrip/app/modules/User/bids/views/bids_view.dart';
@@ -10,8 +12,6 @@ import 'package:etrip/app/modules/splash/views/splash_view.dart';
 import 'package:etrip/app/modules/splash/bindings/splash_binding.dart';
 import 'package:etrip/app/modules/Driver/driver_details/bindings/driver_details_binding.dart';
 import 'package:etrip/app/modules/Driver/driver_details/views/driver_details_view.dart';
-import 'package:etrip/app/modules/Driver/new_works_driver/bindings/new_works_driver_binding.dart';
-import 'package:etrip/app/modules/Driver/new_works_driver/views/new_works_driver_view.dart';
 import 'package:etrip/app/modules/Driver/signup_driver/bindings/signup_driver_binding.dart';
 import 'package:etrip/app/modules/Driver/signup_driver/views/signup_driver_view.dart';
 import 'package:etrip/app/modules/User/my_trip/bindings/my_trip_binding.dart';
@@ -47,6 +47,7 @@ class AppPages {
   static const BIDS = Routes.BIDS;
   static const SELECTED_BID = Routes.SELECTED_BID;
   static const DRIVER_HOME = Routes.DRIVER_HOME;
+  static const NEW_WORKS = Routes.NEW_WORKS;
 
   static final routes = [
     GetPage(
@@ -94,11 +95,6 @@ class AppPages {
       binding: MyTripBinding(),
     ),
     GetPage(
-      name: Routes.NEW_WORKS_DRIVER,
-      page: () => NewWorksDriverView(),
-      binding: NewWorksDriverBinding(),
-    ),
-    GetPage(
       name: Routes.SPLASH,
       page: () => SplashView(),
       binding: SplashBinding(),
@@ -126,6 +122,11 @@ class AppPages {
       name: Routes.DRIVER_HOME,
       page: () => DriverHomeView(),
       binding: DriverHomeBinding(),
+    ),
+    GetPage(
+      name: Routes.NEW_WORKS, 
+      page:()=> NewWorksView(), 
+      binding: NewWorksBinding(),
     ),
   ];
 }

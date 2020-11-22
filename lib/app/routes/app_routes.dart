@@ -17,4 +17,5 @@ abstract class Routes {
   static const BIDS = '/bids';
   static const SELECTED_BID = '/selected-bid';
   static const DRIVER_HOME = '/driver-home';
+  static const NEW_WORKS = '/new-works';
 }
