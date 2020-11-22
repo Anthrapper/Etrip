@@ -10,6 +10,7 @@ from e_trip.vehicles.api.views import VehicleList, DriverVehicleList
 from e_trip.vehicles.api.views import CreateDriverVehicle
 from e_trip.trips.api.views import CreateTripUser,UserTripList, UserTripListCompleted
 from e_trip.trips.api.views import CreateBidDriver, DriverBidList, DriverTripList , BidLogsByTrip
+from e_trip.management.api.views import AdvertisementList
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -34,6 +35,7 @@ urlpatterns = [
     path('user/trips/list', UserTripList.as_view()),
     path('trip/bids/<int:id>',BidLogsByTrip.as_view()),
     path('user/trips/completed', UserTripListCompleted.as_view()),
+    path('management/ads', AdvertisementList.as_view()),
     path('token/', token_obtain_pair, name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     #path('user/password/token/', PasswordResetAPI.as_view()),
