@@ -16,7 +16,7 @@ from rest_framework.permissions import AllowAny
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.contrib.gis.measure import D
 
-from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer
+from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer,BidLogSerializer
 from .serializers import DriverBidCreateSerializer, DriverBidListSerializer
 from e_trip.trips.models import Trip,Bid
 from e_trip.users.models import Driver
@@ -79,7 +79,7 @@ class DriverTripList(generics.ListAPIView):
         return distance_filter
 
 class BidLogsByTrip(generics.ListAPIView):
-    serializer_class = DriverBidListSerializer
+    serializer_class = BidLogSerializer
     queryset =Bid.objects.all()
 
     def get_queryset(self):

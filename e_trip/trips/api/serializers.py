@@ -78,6 +78,13 @@ class DriverBidCreateSerializer(serializers.ModelSerializer):
         driver_bid.save()
         return driver_bid
 
+class BidLogSerializer(serializers.ModelSerializer):
+    driver = serializers.SerializerMethodField()
+    class Meta:
+        model = Bid
+        fields = '__all__'
+    def get_driver(self,obj):
+        return obj.driver.user.name
 
 class TripBidSelectSerializer(serializers.ModelSerializer):
     class Meta:
