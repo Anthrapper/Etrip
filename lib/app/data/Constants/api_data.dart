@@ -15,6 +15,8 @@ class ApiData {
       baseUrl + version + 'driver/vehicles/listed';
   static const vehicleReg = baseUrl + version + 'driver/vehicles/registration';
   static const mapApiKey = 'AIzaSyDVlIcJGpqZrY6UCC7s3YTIy22V9jTl7Cg';
+  static const newTrip = baseUrl + version + 'user/trips/create';
+  static const myTrips = baseUrl + version + 'user/trips/list';
   Future contentHeader() async {
     var loginToken = await AuthHelper().getToken();
     var headers = {

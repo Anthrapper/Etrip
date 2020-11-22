@@ -52,7 +52,12 @@ class VehicleformView extends GetView<VehicleformController> {
       child: CustomButton(
         text: 'submit'.tr,
         onpressed: () {
-          controller.submitForm();
+          if (controller.toDes.value != '' &&
+              controller.fromDes.value != '' &&
+              controller.readDate.value != '' &&
+              controller.time.value != '') {
+            controller.createNewTrip();
+          }
         },
       ),
     );
@@ -74,7 +79,6 @@ class VehicleformView extends GetView<VehicleformController> {
                     padding:
                         EdgeInsets.symmetric(horizontal: Get.width * 0.085),
                     child: Container(
-                      // height: Get.height * 0.055,
                       width: Get.width,
                       decoration: BoxDecoration(
                           color: CustomColors.textField,

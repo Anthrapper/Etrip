@@ -29,17 +29,22 @@ class MyTripView extends GetView<MyTripController> {
           Get.width * 0.04,
           Get.height * 0.02,
         ),
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            return MyTripCard(
-              amount: '5500',
-              from: 'Kannur',
-              to: 'Alappuzha',
-              date: 'Nov 10, 2020',
-            );
-          },
+        child: Obx(
+          () => ListView.builder(
+            shrinkWrap: true,
+            itemCount:
+                controller.myTrips == null ? 0 : controller.myTrips.length,
+            itemBuilder: (context, index) {
+              print(controller.myTrips[index]['from_place']);
+
+              return MyTripCard(
+                amount: '5500',
+                from: controller.myTrips[index]['from_place'],
+                to: controller.myTrips[index]['to_place'],
+                date: 'Nov 10, 2020',
+              );
+            },
+          ),
         ),
       ),
     );

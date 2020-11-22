@@ -27,14 +27,21 @@ class SearchWidget extends StatelessWidget {
           placeType: PlaceType.address,
           onSelected: (place) async {
             Geolocation geolocation = await place.geolocation;
-
-            print(geolocation.coordinates);
+            var location = geolocation.coordinates;
+            print(location.latitude);
+            print(location.longitude);
             if (fromCheck == true) {
               Get.find<VehicleformController>().fromDes.value =
                   place.description;
+              Get.find<VehicleformController>().fromCo.value =
+                  'Point(${location.longitude} ${location.latitude})';
+
               Get.back();
             } else {
               Get.find<VehicleformController>().toDes.value = place.description;
+              Get.find<VehicleformController>().toCo.value =
+                  'Point(${location.longitude} ${location.latitude})';
+              Get.back();
             }
           },
         ),

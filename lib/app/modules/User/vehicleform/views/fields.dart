@@ -28,6 +28,8 @@ class CustomField extends StatelessWidget {
                 padding: EdgeInsets.only(
                   top: Get.height * 0.015,
                   left: Get.width * 0.1,
+                  right: Get.width * 0.1,
+                  bottom: Get.height * 0.015,
                 ),
                 child: Text(
                   text,

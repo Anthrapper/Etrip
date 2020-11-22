@@ -50,12 +50,6 @@ class LoginController extends GetxController {
   }
 
   Future login() async {
-    // _firebaseMessaging.getToken().then((String token) {
-    //   assert(token != null);
-    //   print(password.text);
-    //   deviceId.value = token;
-    //   print(deviceId);
-    // });
     String devToken = await storage.read(key: 'deviceId');
     print(devToken);
     await ApiCalls().postRequest(
