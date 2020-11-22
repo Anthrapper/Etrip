@@ -29,9 +29,9 @@
   - [x] `v1/driver/vehicles/registration`
   - [x] `v1/driver/vehicles/listed`
   - [x] `v1/driver/vehicles`
-  - [x] `v1/user/trips/create
-  - [ ] `v1/user/trips/cancel`
-  - [ ] `v1/driver/trips/bid`
+  - [x] `v1/user/trips/create`
+  - [x] `v1/user/trips/list`
+  - [x] `v1/driver/bids/create`
   - [ ] `v1/user/bids/select`
   - [ ] `v1/notifications
   - [ ] `v1/user/trips/active`
