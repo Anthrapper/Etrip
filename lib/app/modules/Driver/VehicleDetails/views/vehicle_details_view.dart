@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VehicleDetailsView extends GetView<VehicleDetailsController> {
-  final List<TextEditingController> _controllers = new List();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,23 +41,28 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
                                 : controller.vehicleData.length,
                             itemBuilder: (BuildContext context, int index) {
                               if (controller.vehicleData != null) {
-                                for (var i = 1;
-                                    i <= controller.vehicleData.length;
-                                    i++) {
-                                  _controllers.add(new TextEditingController());
-                                }
+                                // for (var i = 1;
+                                //     i <= controller.vehicleData.length;
+                                //     i++) {
+                                //   _controllers.add(new TextEditingController());
+                                // }
                                 return Column(
                                   children: [
                                     CustomImageField(
                                       text:
                                           '${controller.vehicleData[index]['name']}',
+                                      onTap: () {
+                                        CustomNotifiers().uploadSelection(
+                                            controller.items[index]);
+                                      },
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomTextField(
                                         suffixChecker: false,
                                         validator: FormValidator().reqValidator,
-                                        controller: _controllers[index],
+                                        controller:
+                                            controller.textController[index],
                                         hintText:
                                             'Registration No of ${controller.vehicleData[index]['name']}',
                                         secureText: false,
@@ -103,19 +106,29 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
     return Center(
       child: CustomButton(
         text: 'Submit',
-        onpressed: () {
-          print(controller.vehPics);
-          if (controller.vehicleDetailsKey.currentState.validate()) {
-            // CustomNotifiers().progressIndicator();
-            print('hello');
+        onpressed: () async {
+          List<String> argList = controller.items
+              .asMap()
+              .entries
+              .map((e) => '${e.value}')
+              .toList();
+          if (argList.contains('null')) {
+            CustomNotifiers()
+                .snackBar('Error', 'Please Upload all photos', Icons.error);
+          } else {
+            if (controller.vehicleDetailsKey.currentState.validate()) {
+              CustomNotifiers().progressIndicator();
+              for (var i = 0; i <= controller.vehicleData.length - 1; i++) {
+                await controller.uploadDocuments(
+                    controller.items[i].value,
+                    controller.vehicleData[i]['id'].toString(),
+                    controller.textController[i].text,
+                    i);
+              }
+            }
           }
         },
-        // for (var i = 0; i <= controller.vehicleData.length; i++) {
-        //   // if (_controllers[i].text != '') {
-        //   //   print(_controllers[i].text);
-        //   //   print(i);
-        //   // }
-        // }
+
         // CustomNotifiers().progressIndicator();
         // controller.photoUpload();
       ),

@@ -48,16 +48,20 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
   Widget button() {
     return Center(
       child: CustomButton(
-          text: 'Submit',
-          onpressed: () {
-            if (controller.myActivities.isNotEmpty) {
-              print(controller.photo.value);
-              print(controller.licenseBack.value);
-              print(controller.licenseFront.value);
-              CustomNotifiers().progressIndicator();
-              controller.photoUpload();
-            }
-          }),
+        text: 'Submit',
+        onpressed: () {
+          if (controller.myActivities.isNotEmpty &&
+              controller.licenseBack.value != '' &&
+              controller.photo.value != '' &&
+              controller.licenseFront.value != '') {
+            print(controller.photo.value);
+            print(controller.licenseBack.value);
+            print(controller.licenseFront.value);
+            CustomNotifiers().progressIndicator();
+            controller.photoUpload();
+          }
+        },
+      ),
     );
   }
 

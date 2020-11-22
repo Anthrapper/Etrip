@@ -92,7 +92,7 @@ class CustomNotifiers {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'uploadfrm' +' :',
+                'uploadfrm' + ' :',
                 style: TextStyle(
                   fontSize: 20,
                 ),
