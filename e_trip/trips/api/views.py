@@ -74,4 +74,6 @@ class DriverTripList(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         driver = get_object_or_404(Driver,user = user)
-        return Trip.objects.filter(trip_status = 0).filter(vehicle__in=driver.vehicles.all())
+        vehicle_filter = Trip.objects.filter(trip_status = 0).filter(vehicle__in=driver.vehicles.all())
+        distance_filter = vehicle_filter.filter(from_place_coordinates__distance_lte =(driver.current_place_coordinates,D(km=25)))
+        return distance_filter
