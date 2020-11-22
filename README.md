@@ -1,7 +1,7 @@
 # etrip
 
 
-[![Build CI](https://img.shields.io/badge/download%20apk-v0.6-green.svg)](https://github.com/TomerconDevelopers/etrip/releases/download/v0.6-beta/app-release.apk)
+[![Build CI](https://img.shields.io/badge/download%20apk-v0.7-green.svg)](https://github.com/TomerconDevelopers/etrip/releases/download/v0.7-beta/app-release.apk)
 
 - [x] frontend  https://github.com/TomerconDevelopers/etrip/tree/frontend
 
