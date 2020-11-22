@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
-from e_trip.users.api.views import UserViewSet
+from e_trip.users.api.views import UserViewSet, UserProfileViewSet
 from rest_framework_simplejwt import views as jwt_views
 from django.urls import path
 
@@ -17,7 +17,7 @@ else:
     router = SimpleRouter()
 
 router.register("users", UserViewSet)
-
+router.register("user/profiles", UserProfileViewSet)
 
 urlpatterns = [
     path('driver/vehicles',VehicleList.as_view()),
