@@ -81,6 +81,7 @@ LOCAL_APPS = [
     "e_trip.users.apps.UsersConfig",
     "e_trip.vehicles.apps.VehiclesConfig",
     "e_trip.trips.apps.TripsConfig",
+    "e_trip.management.apps.ManagementConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
