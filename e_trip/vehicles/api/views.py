@@ -14,7 +14,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView ,UpdateAPIView
 from .serializers import VehicleSerializer, DriverVehicleSerializer, DriverVehicleListSerializer
-from e_trip.vehicles.models import Vehicle
+from e_trip.vehicles.models import Vehicle, DriverVehicle
 from e_trip.users.models import Driver
 
 class VehicleList(generics.ListAPIView):
@@ -30,7 +30,10 @@ class CreateDriverVehicle(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        # We create a token than will be used for future auth
+        driver = get_object_or_404(Driver, user=request.user)
+        if driver.vehicles.all().count() <= DriverVehicle.objects.filter(driver=driver).count():
+            driver.is_document_cleared = True
+            driver.save()
         print('created vehicle')
         create_message = {"message": "created vehicle"}
         return Response(
