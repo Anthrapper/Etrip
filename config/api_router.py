@@ -9,6 +9,7 @@ from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair,CreateDri
 from e_trip.vehicles.api.views import VehicleList, DriverVehicleList
 from e_trip.vehicles.api.views import CreateDriverVehicle
 from e_trip.trips.api.views import CreateTripUser,UserTripList
+from e_trip.trips.api.views import CreateBidDriver
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -24,6 +25,7 @@ urlpatterns = [
     path('driver/vehicles/registration', CreateDriverVehicle.as_view()),
     path('driver/registration/basic', CreateDriverUser.as_view()),
     path('driver/registration/docs',DriverUpdate.as_view()),
+    path('driver/bids/create',CreateBidDriver.as_view()),
     path('user/registration', CreateUserAPIView.as_view()),
     path('user/trips/create', CreateTripUser.as_view()),
     path('user/trips/list', UserTripList.as_view()),

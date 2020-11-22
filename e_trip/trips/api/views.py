@@ -13,8 +13,11 @@ from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView ,UpdateAPIView
 from rest_framework.permissions import AllowAny
+from django.shortcuts import get_list_or_404, get_object_or_404
+
 from .serializers import UserTripCreateSerializer, UserTripListSerializer
-from e_trip.trips.models import Trip
+from .serializers import DriverBidCreateSerializer
+from e_trip.trips.models import Trip,Bid
 
 class CreateTripUser(CreateAPIView):
     serializer_class = UserTripCreateSerializer
@@ -38,3 +41,17 @@ class UserTripList(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Trip.objects.filter(user=user).filter(trip_status = 0)
+
+class CreateBidDriver(CreateAPIView):
+    serializer_class = DriverBidCreateSerializer
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        create_message = {"message": "Bid Created"}
+        return Response(
+            {**serializer.data, **create_message},
+            status=status.HTTP_201_CREATED,
+            headers=headers
+        )
