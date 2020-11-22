@@ -14,10 +14,12 @@ from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView ,UpdateAPIView
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_list_or_404, get_object_or_404
+from django.contrib.gis.measure import D
 
 from .serializers import UserTripCreateSerializer, UserTripListSerializer
-from .serializers import DriverBidCreateSerializer
+from .serializers import DriverBidCreateSerializer, DriverBidListSerializer
 from e_trip.trips.models import Trip,Bid
+from e_trip.users.models import Driver
 
 class CreateTripUser(CreateAPIView):
     serializer_class = UserTripCreateSerializer
@@ -55,3 +57,21 @@ class CreateBidDriver(CreateAPIView):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
+
+class DriverBidList(generics.ListAPIView):
+    serializer_class = DriverBidListSerializer
+    queryset =Bid.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        driver = get_object_or_404(Driver,user = user)
+        return Bid.objects.filter(driver=driver).filter(status = 1)
+
+class DriverTripList(generics.ListAPIView):
+    serializer_class = UserTripListSerializer
+    queryset =Trip.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        driver = get_object_or_404(Driver,user = user)
+        return Trip.objects.filter(trip_status = 0).filter(vehicle__in=driver.vehicles.all())

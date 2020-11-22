@@ -8,8 +8,8 @@ from django.urls import path
 from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair,CreateDriverUser,DriverUpdate
 from e_trip.vehicles.api.views import VehicleList, DriverVehicleList
 from e_trip.vehicles.api.views import CreateDriverVehicle
-from e_trip.trips.api.views import CreateTripUser,UserTripList
-from e_trip.trips.api.views import CreateBidDriver
+from e_trip.trips.api.views import CreateTripUser,UserTripList, DriverTripList
+from e_trip.trips.api.views import CreateBidDriver, DriverBidList
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -26,6 +26,8 @@ urlpatterns = [
     path('driver/registration/basic', CreateDriverUser.as_view()),
     path('driver/registration/docs',DriverUpdate.as_view()),
     path('driver/bids/create',CreateBidDriver.as_view()),
+    path('driver/bids/list', DriverBidList.as_view()),
+    path('driver/trips/available', DriverTripList.as_view()),
     path('user/registration', CreateUserAPIView.as_view()),
     path('user/trips/create', CreateTripUser.as_view()),
     path('user/trips/list', UserTripList.as_view()),
