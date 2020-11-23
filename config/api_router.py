@@ -9,7 +9,7 @@ from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair,CreateDri
 from e_trip.vehicles.api.views import VehicleList, DriverVehicleList
 from e_trip.vehicles.api.views import CreateDriverVehicle
 from e_trip.trips.api.views import CreateTripUser,UserTripList, UserTripListCompleted ,NotificationList
-from e_trip.trips.api.views import CreateBidDriver, DriverBidList, DriverTripList , BidLogsByTrip
+from e_trip.trips.api.views import CreateBidDriver, DriverBidList, DriverTripList , BidLogsByTrip, TripUpdate
 from e_trip.management.api.views import AdvertisementList
 
 if settings.DEBUG:
@@ -33,6 +33,7 @@ urlpatterns = [
     path('user/registration', CreateUserAPIView.as_view()),
     path('user/trips/create', CreateTripUser.as_view()),
     path('user/trips/list', UserTripList.as_view()),
+    path('user/trips/select/bid/<int:id>', TripUpdate.as_view()),
     path('trip/bids/<int:id>',BidLogsByTrip.as_view()),
     path('user/trips/completed', UserTripListCompleted.as_view()),
     path('management/ads', AdvertisementList.as_view()),

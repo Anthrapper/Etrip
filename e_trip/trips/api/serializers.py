@@ -144,17 +144,9 @@ class BidLogSerializer(serializers.ModelSerializer):
 
 class TripBidSelectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bid
-        fields = ['id','status']
+        model = Trip
+        fields = ['trip_status','selected_bid']
     def validate(self,data):
-        #data['user'] = self.context.get('request').user
-        print(data)
-        bid = get_object_or_404(Bid,id=data['id'])
-        if not Trip.objects.filter(user=self.context.get('request').user).filter(id= bid.trip.id).exists():
-            raise serializers.ValidationError("No Driver User Found")
-        else:
-            #data['user'] = self.context.get('request').user
-            pass
         return data
 
 class NotificationListSerializer(serializers.ModelSerializer):

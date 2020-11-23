@@ -24,6 +24,8 @@ class Trip(models.Model):
         }
     TYPE_CHOICES = [(value, name) for name, value in TYPE_VALUE_MAP.items()]
     trip_status = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
+    selected_bid = models.ForeignKey('trips.Bid',on_delete=models.CASCADE,blank=True,null=True, related_name='bid_selected')
+
     def __str__(self):
         return " " + self.from_place + " to " + self.to_place
 

@@ -18,7 +18,7 @@ from django.contrib.gis.measure import D
 from django.conf import settings
 
 from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer,BidLogSerializer
-from .serializers import DriverBidCreateSerializer, DriverBidListSerializer ,NotificationListSerializer
+from .serializers import DriverBidCreateSerializer, DriverBidListSerializer ,NotificationListSerializer , TripBidSelectSerializer
 from e_trip.trips.models import Trip,Bid,Notification
 from e_trip.users.models import Driver
 from e_trip.users.models import User as BaseUser
@@ -126,3 +126,19 @@ class UserTripListCompleted(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Trip.objects.filter(user=user).filter(trip_status = 4)
+
+
+class TripUpdate(UpdateAPIView):
+    serializer_class = TripBidSelectSerializer
+    queryset = Trip.objects.all()
+
+    def get_object(self):
+        id = self.kwargs.get('id')
+        obj = get_object_or_404(Trip,id=id)
+        return obj
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
