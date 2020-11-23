@@ -45,8 +45,9 @@ class DriverMyTripView extends GetView<DriverMyTripController> {
                             DateTime.parse(controller.myTrips[index]['date']));
 
                     return DriverMyTripCard(
+                      status: controller.myTrips[index]['trip_status'],
                       amount: controller.myTrips[index]['amount'].toString(),
-                      id: controller.myTrips[index]['id'].toString(),
+                      id: controller.myTrips[index]['trip'].toString(),
                       from: controller.myTrips[index]['from_place'],
                       to: controller.myTrips[index]['to_place'],
                       date: formattedDate,

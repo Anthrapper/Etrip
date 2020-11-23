@@ -9,7 +9,9 @@ class DriverMyTripCard extends StatelessWidget {
   final String date;
   final String amount;
   final String id;
-  DriverMyTripCard({this.from, this.to, this.date, this.amount, this.id});
+  final String status;
+  DriverMyTripCard(
+      {this.from, this.to, this.date, this.amount, this.id, this.status});
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -66,16 +68,18 @@ class DriverMyTripCard extends StatelessWidget {
               },
             ),
           ),
-          Positioned(
-            top: Get.height * 0.28,
-            right: 20,
-            child: CustomButton1(
-              text: 'tripcomp'.tr,
-              onpressed: () {
-                CustomNotifiers().tripCompletedDialog(() {});
-              },
-            ),
-          ),
+          this.status == 'Approved'
+              ? Positioned(
+                  top: Get.height * 0.28,
+                  right: 20,
+                  child: CustomButton1(
+                    text: 'tripcomp'.tr,
+                    onpressed: () {
+                      CustomNotifiers().tripCompletedDialog(() {});
+                    },
+                  ),
+                )
+              : SizedBox(),
           Positioned(
             // bottom: Get.height * 0.5,
             child: Center(
