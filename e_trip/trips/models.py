@@ -42,3 +42,12 @@ class Bid(models.Model):
     status = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
     def __str__(self):
         return " " + self.trip.from_place + " to " + self.trip.to_place
+
+class Notification(models.Model):
+    message = models.CharField(blank=True,max_length=200)
+    title = models.CharField(blank=True,max_length=200)
+    device_id = models.CharField(blank=True,max_length=500)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title

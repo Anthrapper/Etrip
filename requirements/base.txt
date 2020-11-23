@@ -25,3 +25,4 @@ django-nested-admin
 firebase-admin
 pyrebase
 boto3
+pyfcm
