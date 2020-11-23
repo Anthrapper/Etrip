@@ -19,7 +19,7 @@ from django.conf import settings
 
 from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer,BidLogSerializer
 from .serializers import DriverBidCreateSerializer, DriverBidListSerializer ,NotificationListSerializer , TripBidSelectSerializer
-from .serializers import SelectedBidDataForUserSerializer
+from .serializers import SelectedBidDataForUserSerializer, SelectedBidDataForDriverSerializer
 from e_trip.trips.models import Trip,Bid,Notification
 from e_trip.users.models import Driver
 from e_trip.users.models import User as BaseUser
@@ -195,6 +195,15 @@ class TripUpdate(UpdateAPIView):
 #####
 class UserTripSelectedBidList(generics.ListAPIView):
     serializer_class = SelectedBidDataForUserSerializer
+    queryset =Trip.objects.all()
+
+    def get_queryset(self):
+        id = self.kwargs.get('id')
+        trip = get_object_or_404(Trip, id=id)
+        return Trip.objects.filter(trip_status__in=[4,3,1]).filter(id=id)
+
+class DriverTripSelectedBidList(generics.ListAPIView):
+    serializer_class = SelectedBidDataForDriverSerializer
     queryset =Trip.objects.all()
 
     def get_queryset(self):

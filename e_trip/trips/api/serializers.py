@@ -179,3 +179,17 @@ class SelectedBidDataForUserSerializer(serializers.ModelSerializer):
         url = create_presigned_url(settings.AWS_STORAGE_BUCKET_NAME, 'media/' + obj.selected_bid.driver.photo.name)
         res = requests.get(url)
         return res.url
+
+class SelectedBidDataForDriverSerializer(serializers.ModelSerializer):
+    amount = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField()
+    phone = serializers.SerializerMethodField()
+    class Meta:
+        model = Trip
+        fields = '__all__'
+    def get_amount(self,obj):
+        return obj.selected_bid.amount
+    def get_name(self,obj):
+        return obj.user.name
+    def get_phone(self,obj):
+        return obj.user.phone
