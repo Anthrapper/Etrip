@@ -11,10 +11,23 @@ class DriverHomeController extends GetxController {
   var profileData = [].obs;
   var fromCo = ''.obs;
   var isLoading = true.obs;
+  var adImg = [].obs;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   indexChange(int index) {
     currentIndex.value = index;
+  }
+
+  Future getAds() async {
+    await ApiCalls()
+        .getRequest(url: ApiData.ads, header: await ApiData().getHeader())
+        .then(
+      (value) {
+        print(value);
+        adImg.assignAll(value);
+        isLoading.value = false;
+      },
+    );
   }
 
   Future updateLoc() async {
@@ -45,13 +58,15 @@ class DriverHomeController extends GetxController {
 
   @override
   void onInit() {
+    getAds();
     getProfile();
-    _firebaseMessaging.configure();
     super.onInit();
   }
 
   @override
   void onReady() {
+    _firebaseMessaging.configure();
+
     super.onReady();
   }
 

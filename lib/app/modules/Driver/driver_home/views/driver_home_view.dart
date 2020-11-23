@@ -10,10 +10,18 @@ import 'package:get/get.dart';
 
 class DriverHomeView extends GetView<DriverHomeController> {
   final List cardList = [
-    Item1(),
-    Item2(),
-    Item3(),
-    Item4(),
+    Container(
+      child: Image.network(
+        'https://etripml.s3.amazonaws.com/media/admin/ads/Screenshot_from_2020-11-23_21-01-5220201123153212.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201123%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201123T153231Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a7bafb7c79d4c917637a5e22600c3cb68c4ebb5999cd1883f6dc709559def384',
+        fit: BoxFit.fill,
+      ),
+    ),
+    Container(
+      child: Image.network(
+        'https://etripml.s3.amazonaws.com/media/admin/ads/holiday-sale-banner-50-off-600w-144675993520201123153036.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201123%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201123T154840Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=db50eea9f17da1324f3167d65dceea692f41afa3ad338044afeadb6d289f86eb',
+        fit: BoxFit.fill,
+      ),
+    ),
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -61,8 +69,8 @@ class DriverHomeView extends GetView<DriverHomeController> {
             children: [
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 200.0,
-                  autoPlay: false,
+                  height: Get.height * 0.25,
+                  autoPlay: true,
                   autoPlayInterval: Duration(seconds: 3),
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
                   autoPlayCurve: Curves.fastOutSlowIn,
@@ -78,7 +86,6 @@ class DriverHomeView extends GetView<DriverHomeController> {
                       height: Get.height * 0.30,
                       width: Get.width,
                       child: Card(
-                        color: Colors.blueAccent,
                         child: card,
                       ),
                     );
@@ -234,134 +241,6 @@ class DriverHomeView extends GetView<DriverHomeController> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Item1 extends StatelessWidget {
-  const Item1({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.3,
-              1
-            ],
-            colors: [
-              Color(0xffff4000),
-              Color(0xffffcc66),
-            ]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-    );
-  }
-}
-
-class Item2 extends StatelessWidget {
-  const Item2({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.3, 1],
-            colors: [Color(0xff5f2c82), Color(0xff49a09d)]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-    );
-  }
-}
-
-class Item3 extends StatelessWidget {
-  const Item3({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.3,
-              1
-            ],
-            colors: [
-              Color(0xffff4000),
-              Color(0xffffcc66),
-            ]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            'assets/flutter_dev.png',
-            height: 180.0,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class Item4 extends StatelessWidget {
-  const Item4({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
       ),
     );
   }
