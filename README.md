@@ -36,6 +36,11 @@
 
 ### Place Search : GoogleMaps
  - API Key `AIzaSyDVlIcJGpqZrY6UCC7s3YTIy22V9jTl7Cg`
+
+### Verifications [SMS+EMAIL]: FirebaseAuth
+- FIREBASE_APIKEY `AIzaSyD8X4JIeB3pJUe7jwaaqoNMklp64KJmMVA`
+- FIREBASE_AUTHDOMAIN `etrip-a31c2.firebaseapp.com`
+
 ### Frontend : Development Build
 
 [![Build CI](https://github.com/TomerconDevelopers/etrip/workflows/Flutter%20CI/badge.svg)](https://github.com/TomerconDevelopers/etrip/actions)
