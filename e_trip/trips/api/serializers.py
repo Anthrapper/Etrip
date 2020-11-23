@@ -193,3 +193,28 @@ class SelectedBidDataForDriverSerializer(serializers.ModelSerializer):
         return obj.user.name
     def get_phone(self,obj):
         return obj.user.phone
+
+class DriverCompletedTripSerializer(serializers.ModelSerializer):
+    from_place_coordinates = serializers.SerializerMethodField()
+    to_place_coordinates = serializers.SerializerMethodField()
+    trip_status = serializers.SerializerMethodField()
+    vehicle =  serializers.SerializerMethodField()
+    date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    amount = serializers.SerializerMethodField()
+    class Meta:
+        model = Trip
+        fields = '__all__'
+    def get_amount(self,obj):
+        return obj.selected_bid.amount
+    def get_from_place_coordinates(slef,obj):
+        print(obj.from_place_coordinates)
+        return [obj.from_place_coordinates.x,obj.from_place_coordinates.y]
+    def get_to_place_coordinates(slef,obj):
+        return [obj.to_place_coordinates.x, obj.to_place_coordinates.y]
+    def get_trip_status(self,obj):
+        print(Trip.TYPE_CHOICES)
+        return Trip.TYPE_CHOICES[obj.trip_status][1]
+    def get_vehicle(self,obj):
+        if obj.vehicle:
+            return [obj.vehicle.name, obj.vehicle.id]
+        return obj.vehicle
