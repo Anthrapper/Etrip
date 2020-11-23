@@ -326,3 +326,10 @@ FIREBASE_DATABASEURL = env('FIREBASE_DATABASEURL',default='etrip-a31c2.firebasei
 FIREBASE_STORAGEBUCKET = env('FIREBASE_STORAGEBUCKET',default='etrip-a31c2.appspot.com')
 FIREBASE_FCM = env('FIREBASE_FCM',default='AAAArC5C74A:APA91bG2fn_WloWSXJziVeo3l6NwdYUu7vFdhOiOYc1PY0VKwrqoxPPMKtr9EuvjpEXeYGOxTqkXbc0tbm-OqzMSfEETOr3OtifCpFHRfJlDLRnRjoTPCBfCZrM0LoaTKnxcaN9Nm6-m')
 GOOGLE_APPLICATION_CREDENTIALS = env('GOOGLE_APPLICATION_CREDENTIALS', default='admin.json')
+
+#Twilio...
+# ------------------------------------------------------------------------------
+ACCOUNT_SECURITY_API_KEY = env("ACCOUNT_SECURITY_API_KEY", default="")
+TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID", default="AC8a4bdd48fae2ba3ce744e3f0fab9c800")
+TWILIO_AUTH_TOKEN = env("TWILIO_AUTH_TOKEN", default="4fd7ea4f6758a3c4f14da8c486bbcf94")
+TWILIO_PHONE = env("TWILIO_PHONE", default="+14243533986")

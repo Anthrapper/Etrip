@@ -26,3 +26,4 @@ firebase-admin
 pyrebase
 boto3
 pyfcm
+twilio
