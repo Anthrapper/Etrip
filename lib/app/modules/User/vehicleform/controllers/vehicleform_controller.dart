@@ -33,8 +33,8 @@ class VehicleformController extends GetxController {
       url: ApiData.newTrip,
     ).then((value) {
       if (value[0] == 201) {
-        CustomNotifiers()
-            .snackBar('Success', 'Trip has been successfully', Icons.check);
+        CustomNotifiers().snackBar(
+            'Success', 'Trip has been created successfully', Icons.check);
       }
     });
   }

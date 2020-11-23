@@ -39,6 +39,8 @@ class LoginController extends GetxController {
             await box
                 .write('is_document_cleared', false)
                 .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
+          } else {
+            Get.offAllNamed(AppPages.DRIVER_HOME);
           }
           if (tokenData['user'] == 'user') {
             await Get.offAllNamed(AppPages.INITIAL);
@@ -46,7 +48,7 @@ class LoginController extends GetxController {
         } else {
           await box.write('user_type', 'user');
 
-          await Get.offAllNamed(AppPages.DRIVER_HOME);
+          await Get.offAllNamed(AppPages.INITIAL);
         }
       }
     });

@@ -1,5 +1,6 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/imagepicker.dart';
+import 'package:etrip/app/modules/User/bids/controllers/bids_controller.dart';
 import 'package:etrip/app/modules/User/vehicleform/views/search_place_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,6 +117,196 @@ class CustomNotifiers {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  areYouSure() {
+    return Get.dialog(
+      Center(
+        child: Container(
+          height: Get.height * 0.4,
+          width: Get.width * 0.8,
+          padding: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(143, 148, 251, .2),
+                blurRadius: 20.0,
+                offset: Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Scaffold(
+            body: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Text(
+                        'Are you sure you want to select this bid?',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                  child: Text(
+                    'Once selected it cannot be changed!',
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: Get.width * 0.35,
+                        height: Get.height * 0.05,
+                        child: FlatButton(
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                          ),
+                          color: CustomColors.buttonColor1,
+                          child: Text(
+                            'Yes',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          onPressed: () {
+                            Get.find<BidsController>().selectBid();
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 15),
+                          width: Get.width * 0.35,
+                          height: Get.height * 0.05,
+                          child: FlatButton(
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0)),
+                            color: Color(0xffB82424),
+                            child: Text(
+                              'No',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  tripCompletedDialog(Function confirm) {
+    return Get.dialog(
+      Center(
+        child: Container(
+          padding: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(143, 148, 251, .2),
+                blurRadius: 20.0,
+                offset: Offset(0, 10),
+              ),
+            ],
+          ),
+          height: Get.height * 0.33,
+          width: Get.width * 0.8,
+          child: Scaffold(
+            body: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Text(
+                        'Are you sure that the trip is completed?',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.05,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 8, 15, 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: Get.width * 0.35,
+                        height: Get.height * 0.05,
+                        child: FlatButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
+                          color: CustomColors.buttonColor1,
+                          child: Text(
+                            'Yes',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          onPressed: () {
+                            confirm();
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 15),
+                          width: Get.width * 0.35,
+                          height: Get.height * 0.05,
+                          child: FlatButton(
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0)),
+                            color: Color(0xffB82424),
+                            child: Text(
+                              'No',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -59,28 +59,55 @@ class MyDrawer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'mytrip'.tr,
-                    style: TextStyle(
-                      fontSize: 20,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppPages.MY_TRIP);
+                    },
+                    child: Text(
+                      'mytrip'.tr,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    'triphistory'.tr,
-                    style: TextStyle(
-                      fontSize: 20,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppPages.TRIP_HISTORY);
+                    },
+                    child: Text(
+                      'triphistory'.tr,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    'settings'.tr,
-                    style: TextStyle(
-                      fontSize: 20,
+                  GestureDetector(
+                    onTap: () async {
+                      if (Get.locale.toString() == 'en') {
+                        await getbox.write('language', 'ml').whenComplete(
+                              () => Get.updateLocale(
+                                Locale('ml'),
+                              ),
+                            );
+                      } else {
+                        await getbox.write('language', 'en').whenComplete(
+                              () => Get.updateLocale(
+                                Locale('en'),
+                              ),
+                            );
+                      }
+                    },
+                    child: Text(
+                      'changelang'.tr,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ],

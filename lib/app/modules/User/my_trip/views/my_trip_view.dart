@@ -42,6 +42,7 @@ class MyTripView extends GetView<MyTripController> {
                   itemBuilder: (context, index) {
                     return MyTripCard(
                       // amount: '5500',
+                      id: controller.myTrips[index]['id'].toString(),
                       from: controller.myTrips[index]['from_place'],
                       to: controller.myTrips[index]['to_place'],
                       date: controller.myTrips[index]['date'],

@@ -25,17 +25,29 @@ class TripHistoryView extends GetView<TripHistoryController> {
       body: Padding(
         padding: EdgeInsets.fromLTRB(Get.width * 0.04, Get.height * 0.02,
             Get.width * 0.04, Get.height * 0.02),
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              return TripHistoryCard(
-                amount: '5500',
-                date: 'Nov 20, 1994',
-                from: 'Cochi',
-                to: 'Kanjikkuzhi',
-              );
-            }),
+        child: Obx(
+          () {
+            return controller.isLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.tripHistory == null
+                        ? 0
+                        : controller.tripHistory.length,
+                    itemBuilder: (context, index) {
+                      return TripHistoryCard(
+                        id: controller.tripHistory[index]['id'].toString(),
+                        amount: controller.tripHistory[index]['amount'],
+                        date: controller.tripHistory[index]['date'],
+                        from: controller.tripHistory[index]['from_place'],
+                        to: controller.tripHistory[index]['to_place'],
+                      );
+                    },
+                  );
+          },
+        ),
       ),
     );
   }

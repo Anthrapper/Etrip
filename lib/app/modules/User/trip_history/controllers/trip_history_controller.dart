@@ -1,10 +1,26 @@
+import 'package:etrip/app/data/Api/api_calls.dart';
+import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:get/get.dart';
 
 class TripHistoryController extends GetxController {
-  final count = 0.obs;
+  var tripHistory = [].obs;
+  var isLoading = true.obs;
+  Future getTripHistory() async {
+    await ApiCalls()
+        .getRequest(
+      url: ApiData.tripHistory,
+      header: await ApiData().getHeader(),
+    )
+        .then((value) {
+      print(value);
+      tripHistory.assignAll(value);
+      isLoading.value = false;
+    });
+  }
 
   @override
   void onInit() {
+    getTripHistory();
     super.onInit();
   }
 
@@ -15,6 +31,4 @@ class TripHistoryController extends GetxController {
 
   @override
   void onClose() {}
-
-  void increment() => count.value++;
 }

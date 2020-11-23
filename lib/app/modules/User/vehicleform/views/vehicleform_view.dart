@@ -107,8 +107,11 @@ class VehicleformView extends GetView<VehicleformController> {
                   icon: Icon(Icons.gps_fixed),
                   color: CustomColors.buttonColor,
                   iconSize: Get.width * 0.075,
-                  onPressed: () {
-                    LocationHelper().getUserLocation();
+                  onPressed: () async {
+                    await LocationHelper().getUserLocation(
+                      controller.fromCo,
+                      fromDes: controller.fromDes,
+                    );
                   },
                 ),
               ),

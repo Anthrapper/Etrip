@@ -2,6 +2,8 @@ export 'customButton.dart';
 export 'customform.dart';
 export 'notifiers.dart';
 export 'customButton1.dart';
+export 'customButton2.dart';
+
 export 'customContainer.dart';
 export 'logo.dart';
 export 'customImageField.dart';

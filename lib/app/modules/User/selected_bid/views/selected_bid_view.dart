@@ -22,7 +22,9 @@ class SelectedBidView extends GetView<SelectedBidController> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            top: Get.height * 0.01, left: Get.width * 0.03, right: Get.width * 0.03),
+            top: Get.height * 0.01,
+            left: Get.width * 0.03,
+            right: Get.width * 0.03),
         child: Column(
           children: [
             Container(
@@ -45,7 +47,8 @@ class SelectedBidView extends GetView<SelectedBidController> {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Get.width * 0.04),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisSize: MainAxisSize.max,
@@ -61,7 +64,8 @@ class SelectedBidView extends GetView<SelectedBidController> {
                           RichText(
                             text: TextSpan(
                                 text: 'Bid Amount: ',
-                                style: TextStyle(fontSize: 18, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black),
                                 children: <TextSpan>[
                                   TextSpan(
                                     text: '₹ 4000',

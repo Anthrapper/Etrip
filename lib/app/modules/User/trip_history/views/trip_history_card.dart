@@ -1,14 +1,16 @@
 import 'package:etrip/app/data/Widgets/customButton2.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TripHistoryCard extends StatelessWidget {
   final String from;
+  final String id;
   final String to;
   final String amount;
   final String date;
-  TripHistoryCard({this.from, this.to, this.amount, this.date});
+  TripHistoryCard({this.from, this.to, this.amount, this.date, this.id});
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -48,7 +50,9 @@ class TripHistoryCard extends StatelessWidget {
             right: 20,
             child: CustomButton2(
               text: 'bids'.tr,
-              onpressed: () {},
+              onpressed: () {
+                Get.toNamed(AppPages.BIDS, arguments: this.id);
+              },
             ),
           ),
           Positioned(

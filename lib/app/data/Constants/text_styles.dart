@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class CustomTextStyles {
   final mlHome = TextStyle(
     color: (CustomColors.headings),
-    fontSize: Get.height * 0.03,
+    fontSize: Get.height * 0.028,
   );
   final enHome = TextStyle(
     color: (CustomColors.headings),

@@ -1,13 +1,12 @@
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:flutter/services.dart';
 
 class LocationHelper {
-  getUserLocation() async {
-    //call this async method from whereever you need
-
+  getUserLocation(RxString fromCo, {RxString fromDes}) async {
     LocationData myLocation;
     String error;
     Location location = new Location();
@@ -27,16 +26,21 @@ class LocationHelper {
     // var currentLocation = myLocation;
     final coordinates =
         new Coordinates(myLocation.latitude, myLocation.longitude);
-            print(myLocation.latitude.toString() + ' ' + myLocation.longitude.toString());
+
     var addresses =
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses.first;
-    print(
-        ' ${first.locality}, ${first.adminArea},${first.subLocality}, ${first.subAdminArea},${first.addressLine}, ${first.featureName},${first.thoroughfare}, ${first.subThoroughfare}');
-    CustomNotifiers().snackBar(
-        'Location',
-        '${first.locality}, ${first.adminArea},${first.subLocality}, ${first.subAdminArea},${first.addressLine}, ${first.featureName},${first.thoroughfare}, ${first.subThoroughfare}',
-        Icons.location_pin);
+    if (fromDes != null) {
+      fromDes.value = '${first.locality}';
+      print(fromDes);
+      CustomNotifiers().snackBar(
+          'Location',
+          '${first.locality}, ${first.adminArea},${first.subLocality}, ${first.subAdminArea},${first.addressLine}, ${first.featureName},${first.thoroughfare}, ${first.subThoroughfare}',
+          Icons.location_pin);
+    }
+    fromCo.value = 'Point(${coordinates.longitude} ${coordinates.latitude})';
+    print(fromCo);
+
     return first;
   }
 }

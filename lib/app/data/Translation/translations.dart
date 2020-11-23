@@ -43,8 +43,8 @@ class Messages extends Translations {
           'otpprompt': 'Please enter 6-digit code sent to your number as SMS',
           'uploadfrm': 'Upload from',
           'camera': 'Camera',
-          'gallery': 'Gallery'
-
+          'gallery': 'Gallery',
+          'changelang': 'Change Language',
         },
         'ml': {
           'login': 'ലോഗിൻ',
@@ -68,7 +68,7 @@ class Messages extends Translations {
           'name': 'പേര്',
           'email': 'ഇമെയിൽ',
           'emailornumber': 'ഇമെയിൽ അല്ലെങ്കിൽ നമ്പർ എഴുതുക',
-          'startnewtrip' : 'പുതിയ യാത്ര ആരംഭിക്കാം',
+          'startnewtrip': 'പുതിയ യാത്ര ആരംഭിക്കാം',
           'seetrip': 'യാത്രകളെ പറ്റിയുള്ള വിവരം',
           'seetriphistory': 'കഴിഞ്ഞ യാത്രകൾ',
           'password': 'പാസ്സ്‌വേർഡ്',
@@ -77,17 +77,17 @@ class Messages extends Translations {
           'fieldrequired': 'ഈ ഭാഗം പൂരിപ്പിക്കുക',
           'passdontmatch': 'പാസ്സ്‌വേർഡുകൾ യോജിക്കുന്നില്ല',
           'number': 'ഫോൺ നമ്പർ',
-          'chooselanguage':  'ഭാഷ തിരഞ്ഞെടുക്കു',
+          'chooselanguage': 'ഭാഷ തിരഞ്ഞെടുക്കു',
           'noaccount': 'അക്കൗണ്ട് ഇല്ലേ?',
           'dosignup': 'സൈനപ്പ് ചെയ്യൂ',
           'whatdo': 'താങ്കൾക്ക് എന്താണ് ചെയ്യേണ്ടത്?',
-          'date':  'തീയതി',
-          'vehicleform': 'വാഹന അപേക്ഷ',
+          'date': 'തീയതി',
+          'vehicleform': 'പുതിയ യാത്ര',
           'otpprompt': 'നിങ്ങൾക്ക് അയച്ച ആറക്ക സംഖ്യ ഇവിടെ രേഖപ്പെടുത്തുക',
-          'uploadfrm':'തിരഞ്ഞെടുക്കുക',
+          'uploadfrm': 'തിരഞ്ഞെടുക്കുക',
           'camera': 'ക്യാമറ',
-          'gallery': 'ഗ്യാലറി'
-
+          'gallery': 'ഗ്യാലറി',
+          'changelang': 'ഭാഷ മാറ്റുക',
         },
       };
 }

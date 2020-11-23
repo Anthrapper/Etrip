@@ -7,13 +7,6 @@ class NewWorksController extends GetxController {
   var newWork = [].obs;
   var isLoading = true.obs;
 
-  Future updateLoc() async {
-    await http.put(
-        ApiData.updateLocation, headers: await ApiData().getHeader(),
-        body:{'current_place_coordinates': ''}
-        );
-  }
-
   Future getNewWorks() async {
     await ApiCalls()
         .getRequest(
