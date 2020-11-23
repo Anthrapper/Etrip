@@ -30,9 +30,12 @@
  - [PUSH] FCM API KEY `AAAArC5C74A:APA91bG2fn_WloWSXJziVeo3l6NwdYUu7vFdhOiOYc1PY0VKwrqoxPPMKtr9EuvjpEXeYGOxTqkXbc0tbm-OqzMSfEETOr3OtifCpFHRfJlDLRnRjoTPCBfCZrM0LoaTKnxcaN9Nm6-m`
  
  - [SMS NOTIFICATIONS] TWILIO 
-   - Secret ``
-   - API Key ``
-   
+   - SID `AC8a4bdd48fae2ba3ce744e3f0fab9c800`
+   - Token `4fd7ea4f6758a3c4f14da8c486bbcf94`
+   - Phone `+14243533986`
+
+### Place Search : GoogleMaps
+ - API Key `AIzaSyDVlIcJGpqZrY6UCC7s3YTIy22V9jTl7Cg`
 ### Frontend : Development Build
 
 [![Build CI](https://github.com/TomerconDevelopers/etrip/workflows/Flutter%20CI/badge.svg)](https://github.com/TomerconDevelopers/etrip/actions)
