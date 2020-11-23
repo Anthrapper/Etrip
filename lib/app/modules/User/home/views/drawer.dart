@@ -41,13 +41,18 @@ class MyDrawer extends StatelessWidget {
                       height: Get.height * 0.01,
                     ),
                     Obx(
-                      () => Text(
-                        Get.find<HomeController>().profileData[0]['name'],
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
+                      () {
+                        return Get.find<HomeController>().profileLoad.value
+                            ? SizedBox()
+                            : Text(
+                                Get.find<HomeController>().profileData[0]
+                                    ['name'],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              );
+                      },
                     ),
                   ],
                 ),

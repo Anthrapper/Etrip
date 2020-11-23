@@ -7,7 +7,7 @@ class HomeController extends GetxController {
   var vehicleData = [].obs;
   var isLoading = true.obs;
   var profileData = [].obs;
-
+  var profileLoad = true.obs;
   indexChange(int index) {
     currentIndex.value = index;
   }
@@ -21,6 +21,7 @@ class HomeController extends GetxController {
         .then((value) {
       print(value);
       profileData.assignAll(value);
+      profileLoad.value = false;
     });
   }
 

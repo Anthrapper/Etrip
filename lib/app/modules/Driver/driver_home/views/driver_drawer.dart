@@ -29,27 +29,32 @@ class DriverDrawer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Obx(
-                      () => CircleAvatar(
-                        radius: Get.height * 0.055,
-                        backgroundColor: Colors.grey,
-                        backgroundImage: NetworkImage(
-                            Get.find<DriverHomeController>().profileData[0]
-                                ['photo']),
-                      ),
-                    ),
+                    Obx(() {
+                      return Get.find<DriverHomeController>().isLoading.value
+                          ? SizedBox()
+                          : CircleAvatar(
+                              radius: Get.height * 0.055,
+                              backgroundColor: Colors.grey,
+                              backgroundImage: NetworkImage(
+                                  Get.find<DriverHomeController>()
+                                      .profileData[0]['photo']),
+                            );
+                    }),
                     SizedBox(
                       height: Get.height * 0.01,
                     ),
-                    Obx(
-                      () => Text(
-                        Get.find<DriverHomeController>().profileData[0]['name'],
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
+                    Obx(() {
+                      return Get.find<DriverHomeController>().isLoading.value
+                          ? SizedBox()
+                          : Text(
+                              Get.find<DriverHomeController>().profileData[0]
+                                  ['name'],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            );
+                    }),
                   ],
                 ),
               )),
@@ -60,19 +65,15 @@ class DriverDrawer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'mytrip'.tr,
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'triphistory'.tr,
-                    style: TextStyle(
-                      fontSize: 20,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppPages.DRIVER_MY_TRIP);
+                    },
+                    child: Text(
+                      'mytrip'.tr,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                   SizedBox(

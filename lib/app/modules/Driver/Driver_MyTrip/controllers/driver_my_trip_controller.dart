@@ -1,18 +1,37 @@
+import 'package:etrip/app/data/Api/api_calls.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:get/get.dart';
 
 class DriverMyTripController extends GetxController {
-  //TODO: Implement DriverMyTripController
-  
-  final count = 0.obs;
+  var myTrips = [].obs;
+  var isLoading = true.obs;
+
+  Future getMyTrips() async {
+    await ApiCalls()
+        .getRequest(
+      url: ApiData.driverBidList,
+      header: await ApiData().getHeader(),
+    )
+        .then((value) {
+      print(value);
+      myTrips.assignAll(value);
+      isLoading.value = false;
+    });
+  }
 
   @override
-  void onInit() {}
+  void onInit() {
+    getMyTrips();
+    super.onInit();
+  }
 
   @override
-  void onReady() {}
+  void onReady() {
+    super.onReady();
+  }
 
   @override
-  void onClose() {}
-
-  void increment() => count.value++;
+  void onClose() {
+    super.onClose();
+  }
 }

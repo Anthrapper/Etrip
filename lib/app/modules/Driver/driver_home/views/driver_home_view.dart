@@ -128,7 +128,7 @@ class DriverHomeView extends GetView<DriverHomeController> {
                             ]),
                         child: FlatButton(
                           onPressed: () async {
-                            await Get.toNamed(AppPages.MY_TRIP);
+                            await Get.toNamed(AppPages.DRIVER_MY_TRIP);
                           },
                           child: ListTile(
                             title: Text(

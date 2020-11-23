@@ -10,6 +10,7 @@ class DriverHomeController extends GetxController {
   var currentIndex = 0.obs;
   var profileData = [].obs;
   var fromCo = ''.obs;
+  var isLoading = true.obs;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   indexChange(int index) {
@@ -38,6 +39,7 @@ class DriverHomeController extends GetxController {
         .then((value) {
       print(value);
       profileData.assignAll(value);
+      isLoading.value = false;
     });
   }
 

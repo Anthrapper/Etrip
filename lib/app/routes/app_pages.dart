@@ -53,6 +53,7 @@ class AppPages {
   static const SELECTED_BID = Routes.SELECTED_BID;
   static const DRIVER_HOME = Routes.DRIVER_HOME;
   static const NEW_WORKS = Routes.NEW_WORKS;
+  static const DRIVER_MY_TRIP = Routes.DRIVER_MY_TRIP;
 
   static final routes = [
     GetPage(
