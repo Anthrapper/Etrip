@@ -18,7 +18,7 @@ from django.contrib.gis.measure import D
 from django.conf import settings
 
 from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer,BidLogSerializer
-from .serializers import DriverBidCreateSerializer, DriverBidListSerializer
+from .serializers import DriverBidCreateSerializer, DriverBidListSerializer ,NotificationListSerializer
 from e_trip.trips.models import Trip,Bid,Notification
 from e_trip.users.models import Driver
 from e_trip.users.models import User as BaseUser
@@ -38,7 +38,7 @@ class CreateTripUser(CreateAPIView):
         print(drivers)
         device_ids = drivers.values_list('user__device_id',flat=True)
         message_title = 'New Work Available : Trip To ' + trip.to_place
-        message_body = 'A new trip requested from ' + trip.from_place + ' to ' + trip.from_place + ' on ' + trip.date.strftime("%Y-%m-%d %H:%M:%S")
+        message_body = 'A new trip requested from ' + trip.from_place + ' to ' + trip.to_place + ' on ' + trip.date.strftime("%Y-%m-%d %H:%M:%S")
         try:
             push_service.notify_multiple_devices(registration_ids = list(device_ids), message_title=message_title, message_body=message_body)
         except:
@@ -58,6 +58,14 @@ class CreateTripUser(CreateAPIView):
             headers=headers
         )
 
+
+class NotificationList(generics.ListAPIView):
+    serializer_class = NotificationListSerializer
+    queryset = Notification.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Notification.objects.filter(users=user)
 
 class UserTripList(generics.ListAPIView):
     serializer_class = UserTripListSerializer

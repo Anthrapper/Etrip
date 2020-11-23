@@ -8,7 +8,7 @@ import boto3
 from botocore.exceptions import ClientError
 from botocore.client import Config
 
-from e_trip.trips.models import Trip, Bid
+from e_trip.trips.models import Trip, Bid, Notification
 from e_trip.users.models import Driver
 from e_trip.vehicles.models import DriverVehicle
 
@@ -156,3 +156,8 @@ class TripBidSelectSerializer(serializers.ModelSerializer):
             #data['user'] = self.context.get('request').user
             pass
         return data
+
+class NotificationListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'
