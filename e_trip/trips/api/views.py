@@ -15,11 +15,17 @@ from rest_framework.generics import CreateAPIView ,UpdateAPIView
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.contrib.gis.measure import D
+from django.conf import settings
 
 from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer,BidLogSerializer
 from .serializers import DriverBidCreateSerializer, DriverBidListSerializer
-from e_trip.trips.models import Trip,Bid
+from e_trip.trips.models import Trip,Bid,Notification
 from e_trip.users.models import Driver
+from e_trip.users.models import User as BaseUser
+
+from pyfcm import FCMNotification
+
+push_service = FCMNotification(api_key=settings.FIREBASE_FCM)
 
 class CreateTripUser(CreateAPIView):
     serializer_class = UserTripCreateSerializer
@@ -27,6 +33,23 @@ class CreateTripUser(CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+        trip=serializer.instance
+        drivers = Driver.objects.filter(current_place_coordinates = (trip.from_place_coordinates, D(km=25)))
+        print(drivers)
+        device_ids = drivers.values_list('user__device_id',flat=True)
+        message_title = 'New Work Available : Trip To ' + trip.to_place
+        message_body = 'A new trip requested from ' + trip.from_place + ' to ' + trip.from_place + ' on ' + trip.date.strftime("%Y-%m-%d %H:%M:%S")
+        try:
+            push_service.notify_multiple_devices(registration_ids = list(device_ids), message_title=message_title, message_body=message_body)
+        except:
+            print('Sending ERROR')
+        try:
+            notify = Notification(message=message_body,title=message_title,type=0)
+            notify.save()
+            notify.users.set(BaseUser.objects.filter(device_id__in=list(device_ids)))
+            notify.save()
+        except:
+            print('Notification object Create ERROR')
         headers = self.get_success_headers(serializer.data)
         create_message = {"message": "Trip Created"}
         return Response(

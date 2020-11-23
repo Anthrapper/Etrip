@@ -44,10 +44,16 @@ class Bid(models.Model):
         return " " + self.trip.from_place + " to " + self.trip.to_place
 
 class Notification(models.Model):
-    message = models.CharField(blank=True,max_length=200)
-    title = models.CharField(blank=True,max_length=200)
-    device_id = models.CharField(blank=True,max_length=500)
+    message = models.CharField(blank=True,max_length=500)
+    title = models.CharField(blank=True,max_length=500)
     date = models.DateTimeField(default=timezone.now)
-
+    users = models.ManyToManyField('users.User',blank=True)
+    TYPE_VALUE_MAP = {
+        "TripCreated":0,
+        "BidCreated": 1,
+        "BidApproved": 2
+        }
+    TYPE_CHOICES = [(value, name) for name, value in TYPE_VALUE_MAP.items()]
+    type = models.IntegerField(choices=TYPE_CHOICES, blank=True, default=0)
     def __str__(self):
         return self.title
