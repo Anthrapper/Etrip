@@ -22,6 +22,8 @@ class ApiData {
   static const updateLocation = baseUrl + version + 'driver/location/update';
   static const tripHistory = baseUrl + version + 'user/trips/completed';
   static const bidList = baseUrl + version + 'trip/bids/';
+  static const driverBidList = baseUrl + version + 'driver/bids/list';
+  static const createBid = baseUrl + version + 'driver/bids/create';
   Future contentHeader() async {
     var loginToken = await AuthHelper().getToken();
     var headers = {

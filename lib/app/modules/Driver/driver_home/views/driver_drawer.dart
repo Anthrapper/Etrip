@@ -31,7 +31,7 @@ class DriverDrawer extends StatelessWidget {
                   children: [
                     Obx(
                       () => CircleAvatar(
-                        radius: Get.height * 0.05,
+                        radius: Get.height * 0.055,
                         backgroundColor: Colors.grey,
                         backgroundImage: NetworkImage(
                             Get.find<DriverHomeController>().profileData[0]
@@ -78,10 +78,41 @@ class DriverDrawer extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    'settings'.tr,
-                    style: TextStyle(
-                      fontSize: 20,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppPages.TRIP_HISTORY);
+                    },
+                    child: Text(
+                      'triphistory'.tr,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      if (Get.locale.toString() == 'en') {
+                        await getbox.write('language', 'ml').whenComplete(
+                              () => Get.updateLocale(
+                                Locale('ml'),
+                              ),
+                            );
+                      } else {
+                        await getbox.write('language', 'en').whenComplete(
+                              () => Get.updateLocale(
+                                Locale('en'),
+                              ),
+                            );
+                      }
+                    },
+                    child: Text(
+                      'changelang'.tr,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ],

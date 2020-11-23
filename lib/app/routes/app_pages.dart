@@ -1,3 +1,7 @@
+import 'package:etrip/app/modules/Driver/Driver_MyTrip/bindings/driver_my_trip_binding.dart';
+import 'package:etrip/app/modules/Driver/Driver_MyTrip/views/driver_my_trip_view.dart';
+import 'package:etrip/app/modules/Driver/Driver_TripHistory/bindings/driver_trip_history_binding.dart';
+import 'package:etrip/app/modules/Driver/Driver_TripHistory/views/driver_trip_history_view.dart';
 import 'package:etrip/app/modules/Driver/driver_home/bindings/driver_home_binding.dart';
 import 'package:etrip/app/modules/Driver/driver_home/views/driver_home_view.dart';
 import 'package:etrip/app/modules/Driver/new_works/views/new_works_view.dart';
@@ -128,6 +132,16 @@ class AppPages {
       name: Routes.NEW_WORKS,
       page: () => NewWorksView(),
       binding: NewWorksBinding(),
+    ),
+    GetPage(
+      name: Routes.DRIVER_MY_TRIP,
+      page: () => DriverMyTripView(),
+      binding: DriverMyTripBinding(),
+    ),
+    GetPage(
+      name: Routes.DRIVER_TRIP_HISTORY,
+      page: () => DriverTripHistoryView(),
+      binding: DriverTripHistoryBinding(),
     ),
   ];
 }

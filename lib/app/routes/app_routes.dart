@@ -18,4 +18,6 @@ abstract class Routes {
   static const SELECTED_BID = '/selected-bid';
   static const DRIVER_HOME = '/driver-home';
   static const NEW_WORKS = '/new-works';
+  static const DRIVER_MY_TRIP = '/driver-my-trip';
+  static const DRIVER_TRIP_HISTORY = '/driver-trip-history';
 }

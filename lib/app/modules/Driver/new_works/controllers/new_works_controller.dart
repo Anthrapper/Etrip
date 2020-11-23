@@ -1,11 +1,33 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class NewWorksController extends GetxController {
   var newWork = [].obs;
   var isLoading = true.obs;
+  TextEditingController amount;
+  Future setBid(String id) async {
+    print(amount.text);
+    await ApiCalls().postRequest(body: {
+      "amount": amount.text,
+      "trip": id,
+    }, url: ApiData.createBid, headers: await ApiData().getHeader()).then(
+        (value) {
+      Get.back();
+      amount.clear();
+
+      if (value[0] == 201) {
+        CustomNotifiers().snackBar(
+          'Success',
+          'A new bid has been created successfully',
+          Icons.check,
+        );
+      }
+    });
+  }
 
   Future getNewWorks() async {
     await ApiCalls()
@@ -22,6 +44,7 @@ class NewWorksController extends GetxController {
 
   @override
   void onInit() {
+    amount = TextEditingController();
     getNewWorks();
     super.onInit();
   }
@@ -33,6 +56,7 @@ class NewWorksController extends GetxController {
 
   @override
   void onClose() {
+    amount?.dispose();
     super.onClose();
   }
 }

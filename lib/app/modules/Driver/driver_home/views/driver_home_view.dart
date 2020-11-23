@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/data/Functions/location_helper.dart';
 import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';

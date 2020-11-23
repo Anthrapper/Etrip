@@ -2,6 +2,7 @@ import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/location_helper.dart';
 import 'package:etrip/app/routes/app_pages.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,6 +10,7 @@ class DriverHomeController extends GetxController {
   var currentIndex = 0.obs;
   var profileData = [].obs;
   var fromCo = ''.obs;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   indexChange(int index) {
     currentIndex.value = index;
@@ -42,6 +44,7 @@ class DriverHomeController extends GetxController {
   @override
   void onInit() {
     getProfile();
+    _firebaseMessaging.configure();
     super.onInit();
   }
 
