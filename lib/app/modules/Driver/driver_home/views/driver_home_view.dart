@@ -9,29 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DriverHomeView extends GetView<DriverHomeController> {
-  final List cardList = [
-    Container(
-      child: Image.network(
-        'https://etripml.s3.amazonaws.com/media/admin/ads/Screenshot_from_2020-11-23_21-01-5220201123153212.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201123%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201123T153231Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a7bafb7c79d4c917637a5e22600c3cb68c4ebb5999cd1883f6dc709559def384',
-        fit: BoxFit.fill,
-      ),
-    ),
-    Container(
-      child: Image.network(
-        'https://etripml.s3.amazonaws.com/media/admin/ads/holiday-sale-banner-50-off-600w-144675993520201123153036.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASATQSK4MMRBTTO7M%2F20201123%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201123T154840Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=db50eea9f17da1324f3167d65dceea692f41afa3ad338044afeadb6d289f86eb',
-        fit: BoxFit.fill,
-      ),
-    ),
-  ];
-
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,52 +44,43 @@ class DriverHomeView extends GetView<DriverHomeController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: Get.height * 0.25,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  pauseAutoPlayOnTouch: true,
-                  aspectRatio: 2.0,
-                  onPageChanged: (index, reason) {
-                    controller.indexChange(index);
-                  },
-                ),
-                items: cardList.map((card) {
-                  return Builder(builder: (BuildContext context) {
-                    return Container(
-                      height: Get.height * 0.30,
-                      width: Get.width,
-                      child: Card(
-                        child: card,
-                      ),
-                    );
-                  });
-                }).toList(),
-              ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: map<Widget>(cardList, (index, url) {
-                    return Obx(
-                      () => Container(
-                        width: 7.0,
-                        height: 7.0,
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: controller.currentIndex == index
-                              ? Colors.blueAccent
-                              : Colors.grey,
-                        ),
-                      ),
-                    );
-                  }),
+                padding: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+                child: Container(
+                  height: Get.height * 0.2,
+                  child: Obx(
+                    () {
+                      return controller.imgLoading.value
+                          ? imgPlaceholder()
+                          : CarouselSlider.builder(
+                              itemCount: controller.adImg == null
+                                  ? 0
+                                  : controller.adImg.length,
+                              options: CarouselOptions(
+                                autoPlay: true,
+                                aspectRatio: 2.0,
+                                enlargeCenterPage: true,
+                              ),
+                              itemBuilder: (context, index) {
+                                // print(controller.adImg.length);
+                                // print(controller.adImg[index]['ad_banner']);
+                                return Container(
+                                  child: Center(
+                                    child: Image.network(
+                                      controller.adImg[index]['ad_banner'],
+                                      fit: BoxFit.cover,
+                                      width: Get.width,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: Get.height * 0.07,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
@@ -242,6 +210,13 @@ class DriverHomeView extends GetView<DriverHomeController> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget imgPlaceholder() {
+    return Container(
+      height: 100,
+      child: Image.asset('assets/images/etrip.jpg'),
     );
   }
 }

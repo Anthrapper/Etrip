@@ -12,6 +12,7 @@ class DriverHomeController extends GetxController {
   var fromCo = ''.obs;
   var isLoading = true.obs;
   var adImg = [].obs;
+  var imgLoading = true.obs;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   indexChange(int index) {
@@ -25,7 +26,7 @@ class DriverHomeController extends GetxController {
       (value) {
         print(value);
         adImg.assignAll(value);
-        isLoading.value = false;
+        imgLoading.value = false;
       },
     );
   }
