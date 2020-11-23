@@ -8,7 +8,7 @@ from django.urls import path
 from e_trip.users.api.views import CreateUserAPIView,token_obtain_pair,CreateDriverUser,DriverUpdate, DriverLocationUpdate
 from e_trip.vehicles.api.views import VehicleList, DriverVehicleList
 from e_trip.vehicles.api.views import CreateDriverVehicle
-from e_trip.trips.api.views import CreateTripUser,UserTripList, UserTripListCompleted ,NotificationList
+from e_trip.trips.api.views import CreateTripUser,UserTripList, UserTripListCompleted ,NotificationList,UserTripSelectedBidList
 from e_trip.trips.api.views import CreateBidDriver, DriverBidList, DriverTripList , BidLogsByTrip, TripUpdate
 from e_trip.management.api.views import AdvertisementList
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('user/trips/list', UserTripList.as_view()),
     path('user/trips/select/bid/<int:id>', TripUpdate.as_view()),
     path('trip/bids/<int:id>',BidLogsByTrip.as_view()),
+    path('user/trips/bid/selected/<int:id>',UserTripSelectedBidList.as_view()),
     path('user/trips/completed', UserTripListCompleted.as_view()),
     path('management/ads', AdvertisementList.as_view()),
     path('notifications' , NotificationList.as_view()),

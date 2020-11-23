@@ -137,7 +137,7 @@ class BidLogSerializer(serializers.ModelSerializer):
     def get_vehicle(self,obj):
         driver = obj.driver
         trip = get_object_or_404(Trip, id=obj.trip.id)
-        vehicle = DriverVehicle.objects.filter(vehicle = trip.vehicle).first()
+        vehicle = DriverVehicle.objects.filter(driver=obj.driver).filter(vehicle = trip.vehicle).first()
         url = create_presigned_url(settings.AWS_STORAGE_BUCKET_NAME, 'media/' + vehicle.photo.name)
         res = requests.get(url)
         return res.url
@@ -153,3 +153,29 @@ class NotificationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = '__all__'
+
+
+class SelectedBidDataForUserSerializer(serializers.ModelSerializer):
+    amount = serializers.SerializerMethodField()
+    vehicle = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField()
+    photo = serializers.SerializerMethodField()
+    phone = serializers.SerializerMethodField()
+    class Meta:
+        model = Trip
+        fields = '__all__'
+    def get_amount(self,obj):
+        return obj.selected_bid.amount
+    def get_vehicle(self,obj):
+        vehicle = DriverVehicle.objects.filter(driver=obj.selected_bid.driver).filter(vehicle=obj.vehicle).first()
+        url = create_presigned_url(settings.AWS_STORAGE_BUCKET_NAME, 'media/' + vehicle.photo.name)
+        res = requests.get(url)
+        return res.url
+    def get_name(self,obj):
+        return obj.selected_bid.driver.user.name
+    def get_phone(self,obj):
+        return obj.selected_bid.driver.user.phone
+    def get_photo(self,obj):
+        url = create_presigned_url(settings.AWS_STORAGE_BUCKET_NAME, 'media/' + obj.selected_bid.driver.photo.name)
+        res = requests.get(url)
+        return res.url

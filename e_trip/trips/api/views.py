@@ -19,6 +19,7 @@ from django.conf import settings
 
 from .serializers import UserTripCreateSerializer, UserTripListSerializer,TripBidSelectSerializer,BidLogSerializer
 from .serializers import DriverBidCreateSerializer, DriverBidListSerializer ,NotificationListSerializer , TripBidSelectSerializer
+from .serializers import SelectedBidDataForUserSerializer
 from e_trip.trips.models import Trip,Bid,Notification
 from e_trip.users.models import Driver
 from e_trip.users.models import User as BaseUser
@@ -189,3 +190,14 @@ class TripUpdate(UpdateAPIView):
         except:
             print('Notification object Create ERROR')
         return Response(serializer.data)
+
+
+#####
+class UserTripSelectedBidList(generics.ListAPIView):
+    serializer_class = SelectedBidDataForUserSerializer
+    queryset =Trip.objects.all()
+
+    def get_queryset(self):
+        id = self.kwargs.get('id')
+        trip = get_object_or_404(Trip, id=id)
+        return Trip.objects.filter(trip_status__in=[4,3,1]).filter(id=id)
