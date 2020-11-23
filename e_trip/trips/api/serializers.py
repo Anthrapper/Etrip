@@ -48,6 +48,7 @@ class UserTripListSerializer(serializers.ModelSerializer):
             return [obj.vehicle.name, obj.vehicle.id]
         return obj.vehicle
 
+
 class DriverBidCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bid
@@ -66,7 +67,7 @@ class DriverBidListSerializer(serializers.ModelSerializer):
     to_place = serializers.SerializerMethodField()
     travel_date = serializers.SerializerMethodField()
     vehicle = serializers.SerializerMethodField()
-
+    trip_status = serializers.SerializerMethodField()
     class Meta:
         model = Bid
         fields = '__all__'
@@ -79,7 +80,8 @@ class DriverBidListSerializer(serializers.ModelSerializer):
         return date
     def get_vehicle(self, obj):
         return obj.trip.vehicle.name
-
+    def get_trip_status(self,obj):
+        return Bid.TYPE_CHOICES[obj.status][1]
 class DriverBidCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bid
