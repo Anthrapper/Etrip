@@ -25,6 +25,10 @@ from e_trip.users.models import User as BaseUser
 
 from pyfcm import FCMNotification
 
+from twilio.rest import Client
+
+
+twilio_client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 push_service = FCMNotification(api_key=settings.FIREBASE_FCM)
 
 class CreateTripUser(CreateAPIView):
@@ -82,6 +86,21 @@ class CreateBidDriver(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        bid = serializer.instance
+        device_id = bid.trip.user.device_id
+        message_title = 'A new offer from : ' + bid.driver.user.username + ' for Your Trip To ' + bid.trip.to_place
+        message_body = bid.driver.user.username + ' offered an attractive bid on your trip : '+ bid.trip.from_place + ' to ' + bid.trip.to_place + ' on ' + bid.trip.date.strftime("%Y-%m-%d %H:%M:%S")
+        try:
+            push_service.notify_single_device(registration_id=device_id, message_title=message_title, message_body=message_body)
+        except:
+            print('Sending ERROR')
+        try:
+            notify = Notification(message=message_body,title=message_title,type=1)
+            notify.save()
+            notify.users.set(BaseUser.objects.filter(id=bid.trip.user.id))
+            notify.save()
+        except:
+            print('Notification object Create ERROR')
         create_message = {"message": "Bid Created"}
         return Response(
             {**serializer.data, **create_message},
@@ -134,11 +153,39 @@ class TripUpdate(UpdateAPIView):
 
     def get_object(self):
         id = self.kwargs.get('id')
+        print(id)
         obj = get_object_or_404(Trip,id=id)
         return obj
-    def create(self, request, *args, **kwargs):
-        print(request.data)
-        serializer = self.get_serializer(data=request.data)
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
+        trip=serializer.instance
+        trip= get_object_or_404(Trip, id=trip.id)
+        message = twilio_client.messages.create(
+                              from_= settings.TWILIO_PHONE,
+                              body='Congrats Your Bid Got Selected For the Trip  - \n from {} to {} \n on : {} \n for more details about the traveller login to the app'.format(
+                              trip.to_place,
+                              trip.from_place,
+                              trip.date.strftime("%Y-%m-%d %H:%M")
+                              ),
+                              to=str('+91')+trip.selected_bid.driver.user.phone
+                          )
+        device_id = trip.selected_bid.driver.user.device_id
+        print(trip)
+        message_title = 'Congrats ! Your Bid Got Approved : Trip To ' + trip.to_place
+        message_body = 'The Trip is from ' + trip.from_place + ' to ' + trip.to_place + ' on ' + trip.date.strftime("%Y-%m-%d %H:%M")
+        try:
+            push_service.notify_single_device(registration_id=device_id, message_title=message_title, message_body=message_body)
+        except:
+            print('Sending ERROR')
+        try:
+            notify = Notification(message=message_body,title=message_title,type=0)
+            notify.save()
+            notify.users.set(BaseUser.objects.filter(device_id__in=list(device_ids)))
+            notify.save()
+        except:
+            print('Notification object Create ERROR')
         return Response(serializer.data)
