@@ -62,9 +62,23 @@ class DriverBidCreateSerializer(serializers.ModelSerializer):
         return driver_bid
 
 class DriverBidListSerializer(serializers.ModelSerializer):
+    from_place = serializers.SerializerMethodField()
+    to_place = serializers.SerializerMethodField()
+    travel_date = serializers.SerializerMethodField()
+    vehicle = serializers.SerializerMethodField()
+
     class Meta:
         model = Bid
         fields = '__all__'
+    def get_from_place(self, obj):
+        return obj.trip.from_place
+    def get_to_place(self,obj):
+        return obj.trip.to_place
+    def get_travel_date(self, obj):
+        date = obj.trip.date.strftime("%Y-%m-%d %H:%M:%S")
+        return date
+    def get_vehicle(self, obj):
+        return obj.trip.vehicle.name
 
 class DriverBidCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -125,7 +139,7 @@ class BidLogSerializer(serializers.ModelSerializer):
         url = create_presigned_url(settings.AWS_STORAGE_BUCKET_NAME, 'media/' + vehicle.photo.name)
         res = requests.get(url)
         return res.url
-        
+
 class TripBidSelectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bid
