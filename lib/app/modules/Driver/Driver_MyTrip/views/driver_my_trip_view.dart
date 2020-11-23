@@ -22,40 +22,32 @@ class DriverMyTripView extends GetView<DriverMyTripController> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(
-          Get.width * 0.04,
-          Get.height * 0.02,
-          Get.width * 0.04,
-          Get.height * 0.02,
-        ),
-        child: Obx(() {
-          return controller.isLoading.value
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.myTrips == null
-                      ? 0
-                      : controller.myTrips.length,
-                  itemBuilder: (context, index) {
-                    String formattedDate = DateFormat('dd-MM-yyyy hh:mm')
-                        .format(
-                            DateTime.parse(controller.myTrips[index]['date']));
+      body: Obx(() {
+        return controller.isLoading.value
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.myTrips == null
+                    ? 0
+                    : controller.myTrips.length,
+                itemBuilder: (context, index) {
+                  String formattedDate = DateFormat('dd-MM-yyyy hh:mm')
+                      .format(
+                          DateTime.parse(controller.myTrips[index]['date']));
 
-                    return DriverMyTripCard(
-                      status: controller.myTrips[index]['trip_status'],
-                      amount: controller.myTrips[index]['amount'].toString(),
-                      id: controller.myTrips[index]['trip'].toString(),
-                      from: controller.myTrips[index]['from_place'],
-                      to: controller.myTrips[index]['to_place'],
-                      date: formattedDate,
-                    );
-                  },
-                );
-        }),
-      ),
+                  return DriverMyTripCard(
+                    status: controller.myTrips[index]['trip_status'],
+                    amount: controller.myTrips[index]['amount'].toString(),
+                    id: controller.myTrips[index]['trip'].toString(),
+                    from: controller.myTrips[index]['from_place'],
+                    to: controller.myTrips[index]['to_place'],
+                    date: formattedDate,
+                  );
+                },
+              );
+      }),
     );
   }
 }

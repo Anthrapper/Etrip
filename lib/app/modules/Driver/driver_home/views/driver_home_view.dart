@@ -4,6 +4,7 @@ import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';
 import 'package:etrip/app/modules/Driver/driver_home/views/driver_drawer.dart';
+import 'package:etrip/app/modules/Driver/new_works/controllers/new_works_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,7 @@ class DriverHomeView extends GetView<DriverHomeController> {
             onPressed: () {
               Get.toNamed(AppPages.NOTIFICATION);
             },
-          )
+          ),
         ],
       ),
       body: SafeArea(

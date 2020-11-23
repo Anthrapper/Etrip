@@ -1,3 +1,5 @@
+import 'package:etrip/app/modules/notification/views/notification_view.dart';
+import 'package:etrip/app/modules/notification/bindings/notification_binding.dart';
 import 'package:etrip/app/modules/Driver/Driver_MyTrip/bindings/driver_my_trip_binding.dart';
 import 'package:etrip/app/modules/Driver/Driver_MyTrip/views/driver_my_trip_view.dart';
 import 'package:etrip/app/modules/Driver/Driver_TripHistory/bindings/driver_trip_history_binding.dart';
@@ -8,7 +10,6 @@ import 'package:etrip/app/modules/Driver/new_works/views/new_works_view.dart';
 import 'package:etrip/app/modules/Driver/new_works/bindings/new_works_binding.dart';
 import 'package:etrip/app/modules/User/home/bindings/home_binding.dart';
 import 'package:etrip/app/modules/User/home/views/home_view.dart';
-import 'package:etrip/app/modules/User/home/views/notifications.dart';
 import 'package:etrip/app/modules/User/selected_bid/views/selected_bid_view.dart';
 import 'package:etrip/app/modules/User/selected_bid/bindings/selected_bid_binding.dart';
 import 'package:etrip/app/modules/User/bids/views/bids_view.dart';
@@ -106,10 +107,6 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
-      name: Routes.NOTIFICATION,
-      page: () => NotificationsPage(),
-    ),
-    GetPage(
       name: Routes.VEHICLE_DETAILS,
       page: () => VehicleDetailsView(),
       binding: VehicleDetailsBinding(),
@@ -143,6 +140,11 @@ class AppPages {
       name: Routes.DRIVER_TRIP_HISTORY,
       page: () => DriverTripHistoryView(),
       binding: DriverTripHistoryBinding(),
+    ),
+    GetPage(
+      name: Routes.NOTIFICATION, 
+      page:()=> NotificationView(), 
+      binding: NotificationBinding(),
     ),
   ];
 }

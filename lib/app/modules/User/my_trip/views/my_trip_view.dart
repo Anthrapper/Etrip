@@ -22,35 +22,27 @@ class MyTripView extends GetView<MyTripController> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(
-          Get.width * 0.04,
-          Get.height * 0.02,
-          Get.width * 0.04,
-          Get.height * 0.02,
-        ),
-        child: Obx(() {
-          return controller.isLoading.value
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.myTrips == null
-                      ? 0
-                      : controller.myTrips.length,
-                  itemBuilder: (context, index) {
-                    return MyTripCard(
-                      // amount: '5500',
-                      id: controller.myTrips[index]['id'].toString(),
-                      from: controller.myTrips[index]['from_place'],
-                      to: controller.myTrips[index]['to_place'],
-                      date: controller.myTrips[index]['date'],
-                    );
-                  },
-                );
-        }),
-      ),
+      body: Obx(() {
+        return controller.isLoading.value
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.myTrips == null
+                    ? 0
+                    : controller.myTrips.length,
+                itemBuilder: (context, index) {
+                  return MyTripCard(
+                    // amount: '5500',
+                    id: controller.myTrips[index]['id'].toString(),
+                    from: controller.myTrips[index]['from_place'],
+                    to: controller.myTrips[index]['to_place'],
+                    date: controller.myTrips[index]['date'],
+                  );
+                },
+              );
+      }),
     );
   }
 }

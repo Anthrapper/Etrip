@@ -25,6 +25,7 @@ class ApiData {
   static const driverBidList = baseUrl + version + 'driver/bids/list';
   static const createBid = baseUrl + version + 'driver/bids/create';
   static const ads = baseUrl + version + 'management/ads';
+  static const notification = baseUrl + version + 'notifications';
   Future contentHeader() async {
     var loginToken = await AuthHelper().getToken();
     var headers = {

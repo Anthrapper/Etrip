@@ -12,7 +12,6 @@ abstract class Routes {
   static const MY_TRIP = '/my-trip';
   static const NEW_WORKS_DRIVER = '/new-works-driver';
   static const SPLASH = '/splash';
-  static const NOTIFICATION = '/notifications';
   static const VEHICLE_DETAILS = '/vehicle-details';
   static const BIDS = '/bids';
   static const SELECTED_BID = '/selected-bid';
@@ -20,4 +19,5 @@ abstract class Routes {
   static const NEW_WORKS = '/new-works';
   static const DRIVER_MY_TRIP = '/driver-my-trip';
   static const DRIVER_TRIP_HISTORY = '/driver-trip-history';
+  static const NOTIFICATION = '/notification';
 }

@@ -10,9 +10,12 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: CustomColors.buttonColor,
       height: Get.height * 0.055,
       width: Get.width * 0.44,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: CustomColors.buttonColor,
+      ),
       child: FlatButton(
         onPressed: onpressed,
         child: Text(
