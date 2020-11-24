@@ -2,13 +2,13 @@ import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:get/get.dart';
 
-class SelectedBidController extends GetxController {
+class DriverSelBidController extends GetxController {
   var bidData = [].obs;
   var isLoading = true.obs;
   var nullChecker = true.obs;
 
   Future getSelectedBid() async {
-    print(ApiData.selBidUser + Get.arguments);
+    print(ApiData.selBidDriver + Get.arguments);
     await ApiCalls()
         .getRequest(
       url: ApiData.selBidUser + Get.arguments,

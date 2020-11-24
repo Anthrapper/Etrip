@@ -27,7 +27,7 @@ class NotificationCard extends StatelessWidget {
             ]),
         child: Container(
           // padding: EdgeInsets.all(10),
-          height: Get.height * 0.16,
+          height: Get.height * 0.17,
           child: Stack(
             children: [
               Positioned(

@@ -26,6 +26,14 @@ class ApiData {
   static const createBid = baseUrl + version + 'driver/bids/create';
   static const ads = baseUrl + version + 'management/ads';
   static const notification = baseUrl + version + 'notifications';
+  static const selBidDriver = baseUrl + version + 'driver/trips/bid/selected/';
+  static const selBidUser = baseUrl + version + 'user/trips/bid/selected/';
+  static const tripCompletedUser = baseUrl + version + 'user/trips/completed';
+  static const tripCompletedDriver =
+      baseUrl + version + 'driver/trips/completed';
+  static const updateCompleted =
+      baseUrl + version + 'user/trips/completed/bid/';
+  static const selectBid = baseUrl + version + 'user/trips/select/bid/';
   Future contentHeader() async {
     var loginToken = await AuthHelper().getToken();
     var headers = {

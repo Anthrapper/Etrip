@@ -7,26 +7,28 @@ class DriverTripHistoryController extends GetxController {
   var isLoading = true.obs;
 
   Future getTripHistory() async {
+    print(ApiData.tripCompletedDriver);
     await ApiCalls()
-        .getRequest(url: null, header: await ApiData().getHeader())
+        .getRequest(
+            url: ApiData.tripCompletedDriver,
+            header: await ApiData().getHeader())
         .then((value) {
       print(value);
-      if (value != null) {
-        tripHistory.assignAll(value);
-        isLoading.value = false;
-      }
+
+      tripHistory.assignAll(value);
+      isLoading.value = false;
     });
   }
 
   @override
   void onInit() {
+    getTripHistory();
+
     super.onInit();
   }
 
   @override
   void onReady() {
-    getTripHistory();
-
     super.onReady();
   }
 

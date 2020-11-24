@@ -81,7 +81,7 @@ class DriverDrawer extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(AppPages.TRIP_HISTORY);
+                      Get.toNamed(AppPages.DRIVER_TRIP_HISTORY);
                     },
                     child: Text(
                       'triphistory'.tr,

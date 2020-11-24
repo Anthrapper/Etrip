@@ -59,34 +59,35 @@ class DriverMyTripCard extends StatelessWidget {
               child: CustomButton2(
                 text: 'bids'.tr,
                 onpressed: () {
-                  print('tap');
-                  print(this.id);
-                  Get.toNamed(AppPages.BIDS, arguments: this.id);
+                  Get.toNamed(
+                    AppPages.DRIVER_BIDS,
+                    arguments: this.id,
+                  );
                 },
               ),
             ),
-            Positioned(
-              top: Get.height * 0.23,
-              right: 20,
-              child: CustomButton2(
-                text: 'selbid'.tr,
-                onpressed: () {
-                  Get.toNamed(AppPages.SELECTED_BID);
-                },
-              ),
-            ),
-            this.status == 'Approved'
-                ? Positioned(
-                    top: Get.height * 0.28,
-                    right: 20,
-                    child: CustomButton1(
-                      text: 'tripcomp'.tr,
-                      onpressed: () {
-                        CustomNotifiers().tripCompletedDialog(() {});
-                      },
-                    ),
-                  )
-                : SizedBox(),
+            // Positioned(
+            //   top: Get.height * 0.23,
+            //   right: 20,
+            //   child: CustomButton2(
+            //     text: 'selbid'.tr,
+            //     onpressed: () {
+            //       Get.toNamed(AppPages.SELECTED_BID);
+            //     },
+            //   ),
+            // ),
+            // this.status == 'Approved'
+            //     ? Positioned(
+            //         top: Get.height * 0.28,
+            //         right: 20,
+            //         child: CustomButton1(
+            //           text: 'tripcomp'.tr,
+            //           onpressed: () {
+            //             CustomNotifiers().tripCompletedDialog(() {});
+            //           },
+            //         ),
+            //       )
+            //     : SizedBox(),
             Positioned(
               // bottom: Get.height * 0.5,
               child: Center(

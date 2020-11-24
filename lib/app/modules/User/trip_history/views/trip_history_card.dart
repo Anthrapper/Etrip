@@ -60,7 +60,9 @@ class TripHistoryCard extends StatelessWidget {
             right: 20,
             child: CustomButton2(
               text: 'selbid'.tr,
-              onpressed: () {},
+              onpressed: () {
+                Get.toNamed(AppPages.SELECTED_BID, arguments: this.id);
+              },
             ),
           ),
           Positioned(

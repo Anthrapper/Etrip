@@ -9,21 +9,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'drawer.dart';
 
 class HomeView extends GetView<HomeController> {
-  final List cardList = [
-    Item1(),
-    Item2(),
-    Item3(),
-    Item4(),
-  ];
-
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,53 +44,41 @@ class HomeView extends GetView<HomeController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  autoPlay: false,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  pauseAutoPlayOnTouch: true,
-                  aspectRatio: 2.0,
-                  onPageChanged: (index, reason) {
-                    controller.indexChange(index);
-                  },
-                ),
-                items: cardList.map((card) {
-                  return Builder(builder: (BuildContext context) {
-                    return Container(
-                      height: Get.height * 0.30,
-                      width: Get.width,
-                      child: Card(
-                        color: Colors.blueAccent,
-                        child: card,
-                      ),
-                    );
-                  });
-                }).toList(),
-              ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: map<Widget>(cardList, (index, url) {
-                    return Obx(
-                      () => Container(
-                        width: 7.0,
-                        height: 7.0,
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: controller.currentIndex == index
-                              ? Colors.blueAccent
-                              : Colors.grey,
-                        ),
-                      ),
-                    );
-                  }),
+                padding: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+                child: Container(
+                  height: Get.height * 0.2,
+                  child: Obx(
+                    () {
+                      return controller.imgLoading.value
+                          ? imgPlaceholder()
+                          : CarouselSlider.builder(
+                              itemCount: controller.adImg == null
+                                  ? 0
+                                  : controller.adImg.length,
+                              options: CarouselOptions(
+                                autoPlay: true,
+                                aspectRatio: 2.0,
+                                enlargeCenterPage: true,
+                              ),
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  child: Center(
+                                    child: Image.network(
+                                      controller.adImg[index]['ad_banner'],
+                                      fit: BoxFit.cover,
+                                      width: Get.width,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: Get.height * 0.07,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
@@ -271,134 +244,11 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-}
 
-class Item1 extends StatelessWidget {
-  const Item1({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget imgPlaceholder() {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.3,
-              1
-            ],
-            colors: [
-              Color(0xffff4000),
-              Color(0xffffcc66),
-            ]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-    );
-  }
-}
-
-class Item2 extends StatelessWidget {
-  const Item2({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.3, 1],
-            colors: [Color(0xff5f2c82), Color(0xff49a09d)]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-    );
-  }
-}
-
-class Item3 extends StatelessWidget {
-  const Item3({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.3,
-              1
-            ],
-            colors: [
-              Color(0xffff4000),
-              Color(0xffffcc66),
-            ]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            'assets/flutter_dev.png',
-            height: 180.0,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class Item4 extends StatelessWidget {
-  const Item4({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text(
-            "Data",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 17.0,
-                fontWeight: FontWeight.w600),
-          ),
-        ],
-      ),
+      height: 100,
+      child: Image.asset('assets/images/etrip.jpg'),
     );
   }
 }

@@ -1,3 +1,7 @@
+import 'package:etrip/app/modules/Driver/driver_bids/bindings/driver_bids_binding.dart';
+import 'package:etrip/app/modules/Driver/driver_bids/views/driver_bids_view.dart';
+import 'package:etrip/app/modules/Driver/driver_sel_bid/bindings/driver_sel_bid_binding.dart';
+import 'package:etrip/app/modules/Driver/driver_sel_bid/views/driver_sel_bid_view.dart';
 import 'package:etrip/app/modules/notification/views/notification_view.dart';
 import 'package:etrip/app/modules/notification/bindings/notification_binding.dart';
 import 'package:etrip/app/modules/Driver/Driver_MyTrip/bindings/driver_my_trip_binding.dart';
@@ -55,7 +59,9 @@ class AppPages {
   static const DRIVER_HOME = Routes.DRIVER_HOME;
   static const NEW_WORKS = Routes.NEW_WORKS;
   static const DRIVER_MY_TRIP = Routes.DRIVER_MY_TRIP;
-
+  static const DRIVER_BIDS = Routes.DRIVER_BIDS;
+  static const DRIVER_SEL_BIDS = Routes.DRIVER_SEL_BID;
+  static const DRIVER_TRIP_HISTORY = Routes.DRIVER_TRIP_HISTORY;
   static final routes = [
     GetPage(
       name: Routes.HOME,
@@ -142,9 +148,19 @@ class AppPages {
       binding: DriverTripHistoryBinding(),
     ),
     GetPage(
-      name: Routes.NOTIFICATION, 
-      page:()=> NotificationView(), 
+      name: Routes.NOTIFICATION,
+      page: () => NotificationView(),
       binding: NotificationBinding(),
+    ),
+    GetPage(
+      name: Routes.DRIVER_BIDS,
+      page: () => DriverBidsView(),
+      binding: DriverBidsBinding(),
+    ),
+    GetPage(
+      name: Routes.DRIVER_SEL_BID,
+      page: () => DriverSelBidView(),
+      binding: DriverSelBidBinding(),
     ),
   ];
 }

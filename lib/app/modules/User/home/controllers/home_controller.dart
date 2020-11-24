@@ -3,14 +3,12 @@ import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var currentIndex = 0.obs;
   var vehicleData = [].obs;
   var isLoading = true.obs;
   var profileData = [].obs;
   var profileLoad = true.obs;
-  indexChange(int index) {
-    currentIndex.value = index;
-  }
+  var adImg = [].obs;
+  var imgLoading = true.obs;
 
   Future getProfileData() async {
     await ApiCalls()
@@ -23,6 +21,18 @@ class HomeController extends GetxController {
       profileData.assignAll(value);
       profileLoad.value = false;
     });
+  }
+
+  Future getAds() async {
+    await ApiCalls()
+        .getRequest(url: ApiData.ads, header: await ApiData().getHeader())
+        .then(
+      (value) {
+        print(value);
+        adImg.assignAll(value);
+        imgLoading.value = false;
+      },
+    );
   }
 
   Future getVehicleList() async {
@@ -46,6 +56,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
+    await getAds();
     await getProfileData();
     await getVehicleList();
     super.onInit();

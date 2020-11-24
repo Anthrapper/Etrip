@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/modules/User/my_trip/controllers/my_trip_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,9 @@ class MyTripCard extends StatelessWidget {
   final String date;
   final String amount;
   final String id;
-  MyTripCard({this.from, this.to, this.date, this.amount, this.id});
+  final String selectedBid;
+  MyTripCard(
+      {this.from, this.to, this.date, this.amount, this.id, this.selectedBid});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -69,7 +72,10 @@ class MyTripCard extends StatelessWidget {
               child: CustomButton2(
                 text: 'selbid'.tr,
                 onpressed: () {
-                  Get.toNamed(AppPages.SELECTED_BID);
+                  Get.toNamed(
+                    AppPages.SELECTED_BID,
+                    arguments: this.id,
+                  );
                 },
               ),
             ),
@@ -79,7 +85,9 @@ class MyTripCard extends StatelessWidget {
               child: CustomButton1(
                 text: 'tripcomp'.tr,
                 onpressed: () {
-                  CustomNotifiers().tripCompletedDialog(() {});
+                  CustomNotifiers().tripCompletedDialog(() {
+                    Get.find<MyTripController>().tripCompleted(this.id);
+                  });
                 },
               ),
             ),

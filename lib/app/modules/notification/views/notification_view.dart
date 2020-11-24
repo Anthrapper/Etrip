@@ -1,6 +1,6 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
 import 'package:etrip/app/modules/notification/controllers/notification_controller.dart';
 
 import 'notification_cards.dart';
@@ -26,24 +26,23 @@ class NotificationView extends GetView<NotificationController> {
         child: Obx(() {
           return controller.isLoading.value
               ? Center(
-            child: CircularProgressIndicator(),
-          )
+                  child: CircularProgressIndicator(),
+                )
               : ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.notificationList == null
-                ? 0
-                : controller.notificationList.length,
-            itemBuilder: (context, index) {
-              return NotificationCard(
-                msg: controller.notificationList[index]['message'],
-                title: controller.notificationList[index]['title'],
-                date: controller.notificationList[index]['date'],
-              );
-            },
-          );
+                  shrinkWrap: true,
+                  itemCount: controller.notificationList == null
+                      ? 0
+                      : controller.notificationList.length,
+                  itemBuilder: (context, index) {
+                    return NotificationCard(
+                      msg: controller.notificationList[index]['message'],
+                      title: controller.notificationList[index]['title'],
+                      date: controller.notificationList[index]['date'],
+                    );
+                  },
+                );
         }),
       ),
     );
   }
 }
-  

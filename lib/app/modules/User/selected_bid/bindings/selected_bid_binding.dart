@@ -4,8 +4,8 @@ import 'package:etrip/app/modules/User/selected_bid/controllers/selected_bid_con
 class SelectedBidBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SelectedBidController>(
-      () => SelectedBidController(),
+    Get.put(
+      SelectedBidController(),
     );
   }
 }

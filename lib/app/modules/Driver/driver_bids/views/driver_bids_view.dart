@@ -1,11 +1,10 @@
-import 'package:etrip/app/data/Constants/colors.dart';
-import 'package:etrip/app/modules/User/bids/views/bidcard.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/modules/Driver/driver_bids/controllers/driver_bids_controller.dart';
+import 'package:etrip/app/modules/Driver/driver_bids/views/driver_bids_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:etrip/app/modules/User/bids/controllers/bids_controller.dart';
 
-class BidsView extends GetView<BidsController> {
+class DriverBidsView extends GetView<DriverBidsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +32,7 @@ class BidsView extends GetView<BidsController> {
                       ? 0
                       : controller.bidList.length,
                   itemBuilder: (context, index) {
-                    if (Get.previousRoute == '/trip-history') {
-                      controller.buttonRemove.value = true;
-                    }
-                    return BidCards(
-                      buttonRemove: controller.buttonRemove.value,
+                    return DriverBidCards(
                       amount: controller.bidList[index]['amount'],
                       img: controller.bidList[index]['vehicle'],
                       name: controller.bidList[index]['driver'],

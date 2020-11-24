@@ -1,12 +1,11 @@
-import 'package:etrip/app/data/Constants/colors.dart';
-import 'package:etrip/app/data/Widgets/customButton1.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
+import 'package:etrip/app/modules/Driver/driver_sel_bid/controllers/driver_sel_bid_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:etrip/app/modules/User/selected_bid/controllers/selected_bid_controller.dart';
-import 'package:etrip/app/data/Constants/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
-class SelectedBidView extends GetView<SelectedBidController> {
+class DriverSelBidView extends GetView<DriverSelBidController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +39,8 @@ class SelectedBidView extends GetView<SelectedBidController> {
                           children: [
                             Container(
                               padding: EdgeInsets.only(
-                                top: Get.height * 0.02,
-                                bottom: Get.height * 0.02,
-                              ),
+                                  top: Get.height * 0.02,
+                                  bottom: Get.height * 0.02),
                               height: Get.height * 0.17,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
@@ -53,12 +51,9 @@ class SelectedBidView extends GetView<SelectedBidController> {
                                   Expanded(
                                     flex: 1,
                                     child: CircleAvatar(
-                                      radius: Get.height * 0.07,
-                                      backgroundImage: NetworkImage(
-                                        controller.bidData[0]['photo'],
-                                        scale: 1,
-                                      ),
-                                    ),
+                                        radius: Get.height * 0.05,
+                                        backgroundImage: NetworkImage(
+                                            controller.bidData[0]['photo'])),
                                   ),
                                   Expanded(
                                     flex: 2,
@@ -120,7 +115,6 @@ class SelectedBidView extends GetView<SelectedBidController> {
                             ),
                             Container(
                               height: Get.height * 0.3,
-                              width: Get.width * 0.7,
                               decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(10),

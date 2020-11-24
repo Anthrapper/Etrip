@@ -38,7 +38,8 @@ class DriverTripHistoryView extends GetView<DriverTripHistoryController> {
                     itemBuilder: (context, index) {
                       return DriverTripHistoryCard(
                         id: controller.tripHistory[index]['id'].toString(),
-                        amount: controller.tripHistory[index]['amount'],
+                        amount:
+                            controller.tripHistory[index]['amount'].toString(),
                         date: controller.tripHistory[index]['date'],
                         from: controller.tripHistory[index]['from_place'],
                         to: controller.tripHistory[index]['to_place'],

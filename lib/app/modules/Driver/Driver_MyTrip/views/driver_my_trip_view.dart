@@ -29,13 +29,11 @@ class DriverMyTripView extends GetView<DriverMyTripController> {
               )
             : ListView.builder(
                 shrinkWrap: true,
-                itemCount: controller.myTrips == null
-                    ? 0
-                    : controller.myTrips.length,
+                itemCount:
+                    controller.myTrips == null ? 0 : controller.myTrips.length,
                 itemBuilder: (context, index) {
-                  String formattedDate = DateFormat('dd-MM-yyyy hh:mm')
-                      .format(
-                          DateTime.parse(controller.myTrips[index]['date']));
+                  String formattedDate = DateFormat('dd-MM-yyyy hh:mm').format(
+                      DateTime.parse(controller.myTrips[index]['date']));
 
                   return DriverMyTripCard(
                     status: controller.myTrips[index]['trip_status'],

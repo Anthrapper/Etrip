@@ -50,7 +50,7 @@ class DriverTripHistoryCard extends StatelessWidget {
             child: CustomButton2(
               text: 'bids'.tr,
               onpressed: () {
-                Get.toNamed(AppPages.BIDS, arguments: this.id);
+                Get.toNamed(AppPages.DRIVER_BIDS, arguments: this.id);
               },
             ),
           ),
@@ -59,7 +59,9 @@ class DriverTripHistoryCard extends StatelessWidget {
             right: 20,
             child: CustomButton2(
               text: 'selbid'.tr,
-              onpressed: () {},
+              onpressed: () {
+                Get.toNamed(AppPages.DRIVER_SEL_BIDS, arguments: this.id);
+              },
             ),
           ),
           Positioned(

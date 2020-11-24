@@ -76,7 +76,7 @@ class NewWorksView extends GetView<NewWorksController> {
                                 text: 'bids'.tr,
                                 onpressed: () {
                                   Get.toNamed(
-                                    AppPages.BIDS,
+                                    AppPages.DRIVER_BIDS,
                                     arguments: controller.newWork[index]['id']
                                         .toString(),
                                   );

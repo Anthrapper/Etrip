@@ -3,7 +3,7 @@ import 'package:etrip/app/data/Constants/api_data.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class BidsController extends GetxController {
+class DriverBidsController extends GetxController {
   var bidList = [].obs;
   var isLoading = true.obs;
   var tripId = ''.obs;
@@ -14,7 +14,7 @@ class BidsController extends GetxController {
         .put(
       ApiData.selectBid + tripId.value,
       body: {
-        "trip_status": 1.toString(),
+        "trip_status": 0.toString(),
         "selected_bid": bidId,
       },
       headers: await ApiData().contentHeader(),

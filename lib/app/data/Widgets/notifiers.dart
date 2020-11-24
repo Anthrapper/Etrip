@@ -1,7 +1,6 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/imagepicker.dart';
 import 'package:etrip/app/modules/Driver/new_works/controllers/new_works_controller.dart';
-import 'package:etrip/app/modules/User/bids/controllers/bids_controller.dart';
 import 'package:etrip/app/modules/User/vehicleform/views/search_place_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -124,11 +123,11 @@ class CustomNotifiers {
     );
   }
 
-  areYouSure() {
+  areYouSure(Function selbid) {
     return Get.dialog(
       Center(
         child: Container(
-          height: Get.height * 0.4,
+          height: Get.height * 0.41,
           width: Get.width * 0.8,
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
@@ -153,21 +152,23 @@ class CustomNotifiers {
                       child: Text(
                         'Are you sure you want to select this bid?',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                          fontSize: Get.height * 0.03,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                  padding: EdgeInsets.all(Get.height * 0.01),
                   child: Text(
                     'Once selected it cannot be changed!',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: Get.height * 0.025),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15),
+                  padding: EdgeInsets.all(Get.height * 0.01),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -186,7 +187,8 @@ class CustomNotifiers {
                             ),
                           ),
                           onPressed: () {
-                            Get.find<BidsController>().selectBid();
+                            selbid();
+                            // Get.find<BidsController>().selectBid();
                           },
                         ),
                       ),
@@ -225,7 +227,7 @@ class CustomNotifiers {
   setBidAmount(Function confirm) {
     return Get.bottomSheet(
       Container(
-        height: Get.height * 0.42,
+        // height: Get.height * 0.42,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
@@ -233,51 +235,52 @@ class CustomNotifiers {
           ),
           color: Colors.white,
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
-              child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50),
+                child: Center(
+                  child: Text(
+                    'Enter your bid amount',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60.0),
+                child: TextFormField(
+                  decoration: new InputDecoration(hintText: "Amount"),
+                  autofocus: true,
+                  controller: Get.find<NewWorksController>().amount,
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
                 child: Text(
-                  'Enter your bid amount',
+                  '* Once submitted you cannot change this amount.',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold),
+                    fontSize: 14,
+                    color: Colors.red,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60.0),
-              child: TextFormField(
-                decoration: new InputDecoration(hintText: "Amount"),
-                autofocus: true,
-                controller: Get.find<NewWorksController>().amount,
-                keyboardType: TextInputType.number,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                '* Once submitted you cannot change this amount.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.red,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
+                  child: CustomButton(
+                    text: 'submit'.tr,
+                    onpressed: () {
+                      confirm();
+                      Get.back();
+                    },
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(
-                child: CustomButton(
-                  text: 'submit'.tr,
-                  onpressed: (){
-                    confirm();
-                    Get.back();
-                  },
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       isDismissible: true,

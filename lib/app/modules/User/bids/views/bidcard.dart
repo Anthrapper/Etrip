@@ -1,6 +1,8 @@
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
+import 'package:etrip/app/modules/User/bids/controllers/bids_controller.dart';
+
 import 'package:get/get.dart';
 
 class BidCards extends StatelessWidget {
@@ -8,7 +10,8 @@ class BidCards extends StatelessWidget {
   final String img;
   final String amount;
   final String bidId;
-  BidCards({this.name, this.img, this.amount, this.bidId});
+  final bool buttonRemove;
+  BidCards({this.name, this.img, this.amount, this.bidId, this.buttonRemove});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,59 +32,70 @@ class BidCards extends StatelessWidget {
                 offset: Offset(2, 4),
               ),
             ]),
-        child: Row(
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                // minWidth: 100,
-                // minHeight: 260,
-                maxWidth: Get.width * 0.45,
-                // maxHeight: 264,
-              ),
-              child: Image.network(this.img, fit: BoxFit.fitHeight),
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      this.name,
-                      style: TextStyle(
-                        fontSize: Get.width * 0.056,
-                        color: CustomColors.textColorOne,
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: 'Bid Amount: ',
-                        style: TextStyle(
-                            fontSize: Get.width * 0.035, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '₹ ${this.amount}',
-                            style: TextStyle(
-                              fontSize: Get.width * 0.04,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CustomButton1(
-                      text: 'Select Bid',
-                      onpressed: () {
-                        CustomNotifiers().areYouSure();
-                      },
-                    ),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Row(
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  // minWidth: 100,
+                  // minHeight: 260,
+                  maxWidth: Get.width * 0.45,
+                  // maxHeight: 264,
+                ),
+                child: Image.network(
+                  this.img,
+                  fit: BoxFit.fill,
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        this.name,
+                        style: TextStyle(
+                          fontSize: Get.width * 0.056,
+                          color: CustomColors.textColorOne,
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: 'Bid Amount: ',
+                          style: TextStyle(
+                              fontSize: Get.width * 0.035, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: '₹ ${this.amount}',
+                              style: TextStyle(
+                                fontSize: Get.width * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      this.buttonRemove
+                          ? SizedBox()
+                          : CustomButton1(
+                              text: 'Select Bid',
+                              onpressed: () {
+                                CustomNotifiers().areYouSure(() {
+                                  Get.find<BidsController>()
+                                      .selectBid(this.bidId);
+                                });
+                              },
+                            ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

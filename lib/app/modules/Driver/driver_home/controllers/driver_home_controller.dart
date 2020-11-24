@@ -7,17 +7,12 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class DriverHomeController extends GetxController {
-  var currentIndex = 0.obs;
   var profileData = [].obs;
   var fromCo = ''.obs;
   var isLoading = true.obs;
   var adImg = [].obs;
   var imgLoading = true.obs;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-
-  indexChange(int index) {
-    currentIndex.value = index;
-  }
 
   Future getAds() async {
     await ApiCalls()

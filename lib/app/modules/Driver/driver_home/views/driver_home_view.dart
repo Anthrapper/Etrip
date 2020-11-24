@@ -4,7 +4,6 @@ import 'package:etrip/app/data/Widgets/customButton.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';
 import 'package:etrip/app/modules/Driver/driver_home/views/driver_drawer.dart';
-import 'package:etrip/app/modules/Driver/new_works/controllers/new_works_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -63,8 +62,6 @@ class DriverHomeView extends GetView<DriverHomeController> {
                                 enlargeCenterPage: true,
                               ),
                               itemBuilder: (context, index) {
-                                // print(controller.adImg.length);
-                                // print(controller.adImg[index]['ad_banner']);
                                 return Container(
                                   child: Center(
                                     child: Image.network(
@@ -155,7 +152,7 @@ class DriverHomeView extends GetView<DriverHomeController> {
                             ]),
                         child: FlatButton(
                           onPressed: () {
-                            Get.toNamed(AppPages.TRIP_HISTORY);
+                            Get.toNamed(AppPages.DRIVER_TRIP_HISTORY);
                           },
                           child: ListTile(
                             title: Text(

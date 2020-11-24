@@ -20,4 +20,6 @@ abstract class Routes {
   static const DRIVER_MY_TRIP = '/driver-my-trip';
   static const DRIVER_TRIP_HISTORY = '/driver-trip-history';
   static const NOTIFICATION = '/notification';
+  static const DRIVER_BIDS = '/driver-bids';
+  static const DRIVER_SEL_BID = '/driver-sel-bid';
 }
