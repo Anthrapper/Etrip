@@ -11,7 +11,7 @@ class DriverSelBidController extends GetxController {
     print(ApiData.selBidDriver + Get.arguments);
     await ApiCalls()
         .getRequest(
-      url: ApiData.selBidUser + Get.arguments,
+      url: ApiData.selBidDriver + Get.arguments,
       header: await ApiData().getHeader(),
     )
         .then(
