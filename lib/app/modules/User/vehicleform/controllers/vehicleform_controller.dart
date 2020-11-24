@@ -8,11 +8,11 @@ class VehicleformController extends GetxController {
   var toCo = ''.obs;
   var fromCo = ''.obs;
   var fromDes = 'from'.tr.obs;
-  var toDes = 'to'.obs;
+  var toDes = 'to'.tr.obs;
   var vehicleType = ''.obs;
   var vehicleId = ''.obs;
   var readDate = 'date'.tr.obs;
-  var time = 'Time'.obs;
+  var time = 'time'.tr.obs;
   var passTime = ''.obs;
 
   Future createNewTrip() async {

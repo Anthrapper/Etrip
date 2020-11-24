@@ -19,6 +19,7 @@ class Messages extends Translations {
           'bids': 'Bids',
           'amount': 'Amount',
           'selbid': 'Selected Bid',
+          'selectbid':  'Select Bid',
           'tripcomp': 'Trip Completed?',
           'from': 'From',
           'to': 'To',
@@ -45,6 +46,9 @@ class Messages extends Translations {
           'camera': 'Camera',
           'gallery': 'Gallery',
           'changelang': 'Change Language',
+          'time': 'Time',
+          'bidamount': 'Bid Amount: ',
+          'call': 'Call'
         },
         'ml': {
           'login': 'ലോഗിൻ',
@@ -59,9 +63,10 @@ class Messages extends Translations {
           'settings': 'ക്രമീകരണങ്ങൾ',
           'logout': 'ലോഗൗട്ട്',
           'notification': 'അറിയിപ്പുകൾ',
-          'bids': 'ലേല സംഖ്യ',
+          'bids': 'ലേലങ്ങൾ',
           'amount': 'തുക',
           'selbid': 'ഉറപ്പിച്ച സംഖ്യ',
+          'selectbid': 'ഉറപ്പിക്കുക',
           'tripcomp': 'പൂർണമായോ?',
           'from': 'ആരംഭം',
           'to': 'അവസാനം',
@@ -88,6 +93,9 @@ class Messages extends Translations {
           'camera': 'ക്യാമറ',
           'gallery': 'ഗ്യാലറി',
           'changelang': 'ഭാഷ മാറ്റുക',
+          'time': 'സമയം',
+          'bidamount': 'ലേല സംഖ്യ: ',
+          'call': 'വിളിക്കുക',
         },
       };
 }

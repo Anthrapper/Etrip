@@ -52,8 +52,8 @@ class DriverSelBidView extends GetView<DriverSelBidController> {
                                     flex: 1,
                                     child: CircleAvatar(
                                         radius: Get.height * 0.05,
-                                        backgroundImage: NetworkImage(
-                                            controller.bidData[0]['photo'])),
+                                        child: Icon(Icons.person),
+                                    ),
                                   ),
                                   Expanded(
                                     flex: 2,
@@ -112,17 +112,6 @@ class DriverSelBidView extends GetView<DriverSelBidController> {
                             ),
                             SizedBox(
                               height: 20,
-                            ),
-                            Container(
-                              height: Get.height * 0.3,
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Image.network(
-                                controller.bidData[0]['vehicle'],
-                                fit: BoxFit.fill,
-                              ),
                             ),
                           ],
                         ),

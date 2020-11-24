@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class DriverMyTripController extends GetxController {
   var myTrips = [].obs;
   var isLoading = true.obs;
+  var selectFlag = false.obs;
 
   Future getMyTrips() async {
     await ApiCalls()

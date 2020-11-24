@@ -14,7 +14,7 @@ class BidsView extends GetView<BidsController> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'Bids',
+          'bids'.tr,
           style: TextStyle(
             color: (CustomColors.headings),
           ),

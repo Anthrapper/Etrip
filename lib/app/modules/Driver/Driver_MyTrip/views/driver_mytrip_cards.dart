@@ -10,8 +10,9 @@ class DriverMyTripCard extends StatelessWidget {
   final String amount;
   final String id;
   final String status;
+  final bool selectFlag;
   DriverMyTripCard(
-      {this.from, this.to, this.date, this.amount, this.id, this.status});
+      {this.from, this.to, this.date, this.amount, this.id, this.status, this.selectFlag});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -66,28 +67,18 @@ class DriverMyTripCard extends StatelessWidget {
                 },
               ),
             ),
-            // Positioned(
-            //   top: Get.height * 0.23,
-            //   right: 20,
-            //   child: CustomButton2(
-            //     text: 'selbid'.tr,
-            //     onpressed: () {
-            //       Get.toNamed(AppPages.SELECTED_BID);
-            //     },
-            //   ),
-            // ),
-            // this.status == 'Approved'
-            //     ? Positioned(
-            //         top: Get.height * 0.28,
-            //         right: 20,
-            //         child: CustomButton1(
-            //           text: 'tripcomp'.tr,
-            //           onpressed: () {
-            //             CustomNotifiers().tripCompletedDialog(() {});
-            //           },
-            //         ),
-            //       )
-            //     : SizedBox(),
+            this.selectFlag ? Positioned(
+              top: Get.height * 0.23,
+              right: 20,
+              child: CustomButton2(
+                text: 'UserDetails',
+                onpressed: () {
+                  Get.toNamed(AppPages.DRIVER_SEL_BIDS, arguments: this.id);
+                },
+              ),
+            ) :
+                SizedBox(
+                ),
             Positioned(
               // bottom: Get.height * 0.5,
               child: Center(
@@ -99,13 +90,22 @@ class DriverMyTripCard extends StatelessWidget {
             Positioned(
               left: 20,
               top: Get.height * 0.24,
-              child: Text('amount'.tr + ': ${this.amount}'),
+              child: Text('Your bid' + ': ${this.amount}'),
             ),
             Positioned(
               left: 20,
               top: Get.height * 0.2,
               child: Text(this.date),
             ),
+            this.selectFlag ? Positioned(
+              right: 10,
+              bottom: 5,
+              child: CircleAvatar(
+                radius: 12,
+                backgroundColor: Colors.green,
+                child: Icon(Icons.check),
+              ),
+            ) : SizedBox(),
           ],
         ),
       ),

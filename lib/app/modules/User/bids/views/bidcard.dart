@@ -65,7 +65,7 @@ class BidCards extends StatelessWidget {
                       ),
                       RichText(
                         text: TextSpan(
-                          text: 'Bid Amount: ',
+                          text: 'bidamount'.tr,
                           style: TextStyle(
                               fontSize: Get.width * 0.035, color: Colors.black),
                           children: <TextSpan>[
@@ -82,7 +82,7 @@ class BidCards extends StatelessWidget {
                       this.buttonRemove
                           ? SizedBox()
                           : CustomButton1(
-                              text: 'Select Bid',
+                              text: 'selectbid'.tr,
                               onpressed: () {
                                 CustomNotifiers().areYouSure(() {
                                   Get.find<BidsController>()

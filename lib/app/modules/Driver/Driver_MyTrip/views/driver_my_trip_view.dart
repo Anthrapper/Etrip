@@ -28,13 +28,14 @@ class DriverMyTripView extends GetView<DriverMyTripController> {
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
+                reverse: true,
                 shrinkWrap: true,
                 itemCount:
                     controller.myTrips == null ? 0 : controller.myTrips.length,
                 itemBuilder: (context, index) {
                   String formattedDate = DateFormat('dd-MM-yyyy hh:mm').format(
                       DateTime.parse(controller.myTrips[index]['date']));
-
+                  controller.myTrips[index]['user_details'] == 1 ? controller.selectFlag.value = true : controller.selectFlag.value = false;
                   return DriverMyTripCard(
                     status: controller.myTrips[index]['trip_status'],
                     amount: controller.myTrips[index]['amount'].toString(),
@@ -42,6 +43,7 @@ class DriverMyTripView extends GetView<DriverMyTripController> {
                     from: controller.myTrips[index]['from_place'],
                     to: controller.myTrips[index]['to_place'],
                     date: formattedDate,
+                    selectFlag: controller.selectFlag.value,
                   );
                 },
               );

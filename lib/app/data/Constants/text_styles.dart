@@ -30,7 +30,7 @@ class CustomTextStyles {
   final buttonTextStyle = TextStyle(
       color: (CustomColors.textColorThree), fontSize: Get.height * 0.024);
   final buttonTextStyle1 = TextStyle(
-      color: (CustomColors.textColorThree), fontSize: Get.height * 0.019);
+      color: (CustomColors.textColorThree), fontSize: Get.height * 0.0185);
   final textFieldStyle =
       TextStyle(color: (CustomColors.hintText), fontSize: Get.height * 0.016);
   final smallText = TextStyle(

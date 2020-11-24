@@ -15,7 +15,7 @@ class SelectedBidView extends GetView<SelectedBidController> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'Selected Bid',
+          'selbid'.tr,
           style: TextStyle(
             color: (CustomColors.headings),
           ),
@@ -81,7 +81,7 @@ class SelectedBidView extends GetView<SelectedBidController> {
                                           ),
                                           RichText(
                                             text: TextSpan(
-                                              text: 'Bid Amount: ',
+                                              text: 'bidamount'.tr,
                                               style: TextStyle(
                                                   fontSize: 18,
                                                   color: Colors.black),
@@ -101,7 +101,7 @@ class SelectedBidView extends GetView<SelectedBidController> {
                                             padding:
                                                 const EdgeInsets.only(top: 10),
                                             child: CustomButton1(
-                                              text: 'Call',
+                                              text: 'call'.tr,
                                               onpressed: () {
                                                 UrlLauncher.launch(
                                                     'tel: ${controller.bidData[0]['phone']}');
