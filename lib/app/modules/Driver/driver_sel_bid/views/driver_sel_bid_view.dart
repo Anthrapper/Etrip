@@ -51,8 +51,8 @@ class DriverSelBidView extends GetView<DriverSelBidController> {
                                   Expanded(
                                     flex: 1,
                                     child: CircleAvatar(
-                                        radius: Get.height * 0.05,
-                                        child: Icon(Icons.person),
+                                      radius: Get.height * 0.05,
+                                      child: Icon(Icons.person),
                                     ),
                                   ),
                                   Expanded(

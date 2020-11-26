@@ -19,11 +19,7 @@ class HomeView extends GetView<HomeController> {
         iconTheme: new IconThemeData(color: Colors.black),
         title: Text(
           'eTRIP',
-          style: TextStyle(
-            color: Color(0xff121214),
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
+          style: CustomTextStyles().appBar,
         ),
         centerTitle: true,
         actions: <Widget>[
@@ -77,11 +73,10 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height * 0.07,
-              ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: EdgeInsets.symmetric(
+                  vertical: Get.height * 0.05,
+                ),
                 child: Column(
                   children: [
                     Padding(

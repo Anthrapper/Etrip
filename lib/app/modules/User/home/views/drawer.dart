@@ -130,7 +130,9 @@ class MyDrawer extends StatelessWidget {
                   onPressed: () async {
                     await AuthHelper().removeToken().whenComplete(() async {
                       await getbox.erase();
+
                       await Get.offAllNamed(AppPages.LOGIN);
+                      Get.reset(clearFactory: true, clearRouteBindings: true);
                     });
                   },
                   child: Padding(

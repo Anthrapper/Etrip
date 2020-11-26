@@ -3,6 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CustomTextStyles {
+  final appBar = TextStyle(
+    color: Color(0xff121214),
+    fontWeight: FontWeight.bold,
+    fontSize: Get.height * 0.022,
+  );
   final mlHome = TextStyle(
     color: (CustomColors.headings),
     fontSize: Get.height * 0.028,

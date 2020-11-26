@@ -3,6 +3,7 @@ import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -19,12 +20,25 @@ class LoginController extends GetxController {
   var showText = true.obs;
   var en = false.obs;
   var ml = false.obs;
+  var devId = ''.obs;
   var iconController = Icons.visibility_off.obs;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
   failedLogin(var reason) {
     if (Get.isDialogOpen) {
       Get.back();
     }
     CustomNotifiers().snackBar('Login Failed', reason.toString(), Icons.error);
+  }
+
+  Future getDeviceId() async {
+    _firebaseMessaging.getToken().then(
+      (String token) async {
+        assert(token != null);
+        devId.value = token;
+        print(devId);
+      },
+    );
   }
 
   successfulLogin(var tokenData) async {
@@ -55,13 +69,12 @@ class LoginController extends GetxController {
   }
 
   Future login() async {
-    String devToken = await storage.read(key: 'deviceId');
-    print(devToken);
+    print(devId);
     await ApiCalls().postRequest(
       body: {
         "username": userName.text,
         "password": password.text,
-        "device_id": devToken.toString(),
+        "device_id": devId.value,
       },
       headers: ApiData.jsonHeader,
       url: ApiData.login,
@@ -128,14 +141,14 @@ class LoginController extends GetxController {
   void onInit() async {
     userName = TextEditingController();
     password = TextEditingController();
-    await langIntialize();
-    String value = await storage.read(key: 'deviceId');
-    print(value);
+
     super.onInit();
   }
 
   @override
   void onReady() {
+    langIntialize();
+    getDeviceId();
     super.onReady();
   }
 
