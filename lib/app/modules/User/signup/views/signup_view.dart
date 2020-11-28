@@ -39,15 +39,18 @@ class SignupView extends GetView<SignupController> {
   }
 
   Widget button() {
-    return Center(
-      child: CustomButton(
-        text: 'signup'.tr,
-        onpressed: () {
-          if (controller.regKey.currentState.validate()) {
-            CustomNotifiers().progressIndicator();
-            controller.doSignUp();
-          }
-        },
+    return Padding(
+      padding: EdgeInsets.only(bottom: Get.height * 0.1),
+      child: Center(
+        child: CustomButton(
+          text: 'signup'.tr,
+          onpressed: () {
+            if (controller.regKey.currentState.validate()) {
+              CustomNotifiers().progressIndicator();
+              controller.doSignUp();
+            }
+          },
+        ),
       ),
     );
   }

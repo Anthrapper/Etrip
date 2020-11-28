@@ -62,7 +62,7 @@ class CustomTextField extends StatelessWidget {
                   child: Icon(this.icon),
                 )
               : SizedBox(),
-          prefixIcon: Padding(
+          prefixIcon: const Padding(
             padding: EdgeInsets.only(),
           ),
           border: InputBorder.none,

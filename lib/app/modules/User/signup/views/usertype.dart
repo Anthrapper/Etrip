@@ -10,15 +10,13 @@ class UserType extends StatelessWidget {
     return Scaffold(
       backgroundColor: CustomColors.background,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LogoWidget(),
-              heading(),
-              button(),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            LogoWidget(),
+            heading(),
+            button(),
+          ],
         ),
       ),
     );
@@ -38,7 +36,7 @@ class UserType extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.15),
       child: Padding(
-        padding: const EdgeInsets.only(left: 40, right: 40),
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.11),
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

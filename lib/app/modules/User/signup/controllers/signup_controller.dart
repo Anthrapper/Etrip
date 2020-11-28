@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/otp_sender.dart';
@@ -44,7 +46,14 @@ class SignupController extends GetxController {
   }
 
   isEmail() async {
-    await Get.offAllNamed(AppPages.LOGIN);
+    CustomNotifiers().snackBar(
+        'Success',
+        'Your account has been created successfully, Please check your inbox for activating your account. This may take upto 5 minutes',
+        Icons.check_box);
+
+    Future.delayed(Duration(milliseconds: 3000), () {
+      Get.offAllNamed(AppPages.LOGIN);
+    });
   }
 
   Future doSignUp() async {

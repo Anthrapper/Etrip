@@ -1,11 +1,14 @@
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpSender {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   void onVerifyCode(String phone, Function verificationUpdate) async {
+    print(phone);
     final PhoneCodeSent codeSent =
         (String verificationId, [int forceResendingToken]) async {
       verificationUpdate(verificationId);
@@ -23,10 +26,15 @@ class OtpSender {
           .signInWithCredential(phoneAuthCredential)
           .then((UserCredential value) {
         if (value.user != null) {
-          // Handle loogged in state
           print(value.user.phoneNumber);
-          Get.back();
+          if (Get.isBottomSheetOpen) {
+            Get.back();
+          }
           Get.offNamed(AppPages.LOGIN);
+          CustomNotifiers().snackBar(
+              'Success',
+              'Your phone number has been successfully verified',
+              Icons.check_box);
         } else {
           Get.snackbar("Error validating OTP", 'try again');
         }
@@ -37,9 +45,6 @@ class OtpSender {
     final PhoneVerificationFailed verificationFailed =
         (FirebaseAuthException authException) {
       Get.snackbar('Error', authException.message);
-      // setState(() {
-      //   isCodeSent = false;
-      // });
     };
 
     await _firebaseAuth.verifyPhoneNumber(
@@ -62,13 +67,20 @@ class OtpSender {
         .signInWithCredential(_authCredential)
         .then((UserCredential value) async {
       if (value.user != null) {
-        // Handle loogged in state
-        print(value.user.phoneNumber);
-        Get.back();
-
-        await Get.offAndToNamed(AppPages.LOGIN);
+        if (Get.isBottomSheetOpen) {
+          Get.back();
+        }
+        Get.offNamed(AppPages.LOGIN);
+        CustomNotifiers().snackBar(
+            'Success',
+            'Your phone number has been successfully verified',
+            Icons.check_box);
       } else {
-        Get.snackbar("Error validating OTP, try again", 'Colors.red');
+        CustomNotifiers().snackBar(
+          'Error',
+          'Error verifying your mobile number, try again later',
+          Icons.error,
+        );
       }
     }).catchError((error) {
       Get.snackbar("Something went wrong", error.toString());

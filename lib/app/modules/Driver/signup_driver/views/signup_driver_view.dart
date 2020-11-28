@@ -22,7 +22,9 @@ class SignupDriverView extends GetView<SignupDriverController> {
               form(),
               Padding(
                 padding: EdgeInsets.only(
-                    top: Get.height * 0.03, bottom: Get.height * 0.05),
+                  top: Get.height * 0.03,
+                  bottom: Get.height * 0.05,
+                ),
                 child: button(),
               ),
             ],
@@ -45,18 +47,23 @@ class SignupDriverView extends GetView<SignupDriverController> {
   Widget button() {
     return Center(
       child: CustomButton(
-          text: 'submit'.tr,
-          onpressed: () {
+        text: 'submit'.tr,
+        onpressed: () {
+          if (controller.formKey1.currentState.validate()) {
             CustomNotifiers().progressIndicator();
             controller.doSignUp();
-          }),
+          }
+        },
+      ),
     );
   }
 
   Widget form() {
     return Padding(
-      padding:
-          EdgeInsets.only(top: Get.height * 0.1, bottom: Get.height * 0.03),
+      padding: EdgeInsets.only(
+        top: Get.height * 0.1,
+        bottom: Get.height * 0.03,
+      ),
       child: Form(
         key: controller.formKey1,
         child: Column(

@@ -90,8 +90,11 @@ class LoginView extends GetView<LoginController> {
 
   Widget language() {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: Get.width * 0.1, vertical: Get.height * 0.05),
+      padding: EdgeInsets.only(
+        right: Get.width * 0.1,
+        left: Get.width * 0.1,
+        top: Get.height * 0.05,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -102,8 +105,8 @@ class LoginView extends GetView<LoginController> {
           Obx(
             () => Padding(
               padding: EdgeInsets.only(left: Get.width * 0.03),
-              child: InkWell(
-                onTap: controller.enSelected,
+              child: TextButton(
+                onPressed: controller.enSelected,
                 child: Text(
                   'English',
                   style: controller.en.value
@@ -117,8 +120,8 @@ class LoginView extends GetView<LoginController> {
             () => Expanded(
               child: Padding(
                 padding: EdgeInsets.only(left: Get.width * 0.03),
-                child: InkWell(
-                  onTap: controller.mlSelected,
+                child: TextButton(
+                  onPressed: controller.mlSelected,
                   child: Text(
                     'Malayalam',
                     style: controller.ml.value
@@ -136,7 +139,7 @@ class LoginView extends GetView<LoginController> {
 
   Widget toSignUp() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(40, 0, 10, 0),
+      padding: EdgeInsets.fromLTRB(Get.width * 0.11, 0, 10, 0),
       child: Row(
         children: [
           Text(
@@ -145,10 +148,8 @@ class LoginView extends GetView<LoginController> {
           ),
           Padding(
             padding: EdgeInsets.only(left: Get.width * 0.03),
-            child: InkWell(
-              onTap: () {
-                Get.offAllNamed(AppPages.SIGNUP_SELECTION);
-              },
+            child: TextButton(
+              onPressed: () => Get.offAllNamed(AppPages.SIGNUP_SELECTION),
               child: Text(
                 'dosignup'.tr,
                 style: CustomTextStyles().smallButtonText,

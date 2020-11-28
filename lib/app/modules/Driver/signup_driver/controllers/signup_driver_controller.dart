@@ -1,9 +1,7 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
-import 'package:etrip/app/data/Constants/api_data.dart';
+import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/otp_sender.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
-import 'package:etrip/app/routes/app_pages.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,19 +35,11 @@ class SignupDriverController extends GetxController {
       number.text,
       vidUpdate,
     );
+
     await CustomNotifiers().submitOtp(
       otpSave: saveOtp,
       otpSend: submitOtp,
     );
-  }
-
-  isEmail() async {
-    print('mail');
-    await Get.offAllNamed(AppPages.LOGIN);
-    // CustomSnackbars().snackBar(
-    //     'Success',
-    //     'Your account has been created successfully. Activate your account by validating your email',
-    //     Icons.check);
   }
 
   Future doSignUp() async {
@@ -64,14 +54,15 @@ class SignupDriverController extends GetxController {
       url: ApiData.driverSignUp,
     ).then((postData) async {
       print(postData);
+      if (Get.isDialogOpen) {
+        Get.back();
+      }
+
       if (postData[0] == 201) {
-        // isEmail();
         isPhone();
       } else {
         print(postData[0]);
-        if (Get.isDialogOpen) {
-          Get.back();
-        }
+
         CustomNotifiers().snackBar(
           'Registration failed',
           'Email or Phone Number already exists',
