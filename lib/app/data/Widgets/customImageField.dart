@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 class CustomImageField extends StatelessWidget {
   final String text;
   final Function onTap;
-  CustomImageField({@required this.text, this.onTap});
+  final bool hasData;
+  CustomImageField(
+      {@required this.text, @required this.onTap, @required this.hasData});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +32,12 @@ class CustomImageField extends StatelessWidget {
                 color: (CustomColors.hintText),
               ),
             ),
-            trailing: Icon(Icons.upload_file),
+            trailing: this.hasData
+                ? Icon(
+                    Icons.check_box_rounded,
+                    color: Colors.green,
+                  )
+                : Icon(Icons.upload_file),
           ),
         ),
       ),

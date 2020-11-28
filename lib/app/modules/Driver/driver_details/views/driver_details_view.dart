@@ -56,7 +56,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
     return Padding(
       padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.01, 0, 0),
       child: Text(
-        'Sign Up',
+        'Driver Details',
         style: CustomTextStyles().headingStyle,
       ),
     );
@@ -85,26 +85,35 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
   Widget form() {
     return Padding(
       padding:
-          EdgeInsets.only(top: Get.height * 0.1, bottom: Get.height * 0.03),
+          EdgeInsets.only(top: Get.height * 0.02, bottom: Get.height * 0.03),
       child: Column(
         children: [
-          CustomImageField(
-            text: 'Upload your photo',
-            onTap: () {
-              CustomNotifiers().uploadSelection(controller.photo);
-            },
+          Obx(
+            () => CustomImageField(
+              hasData: controller.photo.value != '' ? true : false,
+              text: 'Upload your photo',
+              onTap: () {
+                CustomNotifiers().uploadSelection(controller.photo);
+              },
+            ),
           ),
-          CustomImageField(
-            text: 'Upload your license - front',
-            onTap: () {
-              CustomNotifiers().uploadSelection(controller.licenseFront);
-            },
+          Obx(
+            () => CustomImageField(
+              hasData: controller.licenseFront.value != '' ? true : false,
+              text: 'Upload your license - front',
+              onTap: () {
+                CustomNotifiers().uploadSelection(controller.licenseFront);
+              },
+            ),
           ),
-          CustomImageField(
-            text: 'Upload your license - back',
-            onTap: () {
-              CustomNotifiers().uploadSelection(controller.licenseBack);
-            },
+          Obx(
+            () => CustomImageField(
+              text: 'Upload your license - back',
+              hasData: controller.licenseBack.value != '' ? true : false,
+              onTap: () {
+                CustomNotifiers().uploadSelection(controller.licenseBack);
+              },
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -116,30 +125,43 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
               child: Obx(
                 () {
                   return controller.showWidget.value == false
-                      ? SizedBox()
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
                       : MultiSelectFormField(
                           autovalidate: false,
                           fillColor: CustomColors.textField,
                           chipBackGroundColor: (CustomColors.buttonColor1),
                           chipLabelStyle:
-                              TextStyle(fontWeight: FontWeight.bold),
+                              const TextStyle(fontWeight: FontWeight.bold),
                           dialogTextStyle:
-                              TextStyle(fontWeight: FontWeight.bold),
-                          checkBoxActiveColor: Colors.red,
-                          checkBoxCheckColor: Colors.green,
+                              const TextStyle(fontWeight: FontWeight.bold),
+                          checkBoxActiveColor: Colors.green,
+                          checkBoxCheckColor: Colors.white,
                           dialogShapeBorder: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0))),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                          ),
                           title: Text(
                             "Vehicles",
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(
+                              color: CustomColors.hintText,
+                              fontSize: 16,
+                            ),
                           ),
                           dataSource: controller.vehicleData,
                           textField: 'name',
                           valueField: 'id',
                           okButtonLabel: 'OK',
                           cancelButtonLabel: 'CANCEL',
-                          hintWidget: Text('Please select your vehicles'),
+                          hintWidget: Text(
+                            'Please select your vehicles',
+                            style: TextStyle(
+                              color: CustomColors.hintText,
+                              fontSize: 13,
+                            ),
+                          ),
                           initialValue: controller.myActivities,
                           onSaved: (value) {
                             if (value == null) return;

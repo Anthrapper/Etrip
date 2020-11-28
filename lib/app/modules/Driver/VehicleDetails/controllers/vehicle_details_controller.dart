@@ -63,7 +63,7 @@ class VehicleDetailsController extends GetxController {
           if (Get.isDialogOpen) {
             Get.back();
           }
-          Get.offAllNamed(AppPages.LOGIN);
+          Get.offAllNamed(AppPages.DRIVER_HOME);
         }
       }
     } on Exception catch (e) {

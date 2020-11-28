@@ -34,6 +34,7 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
                             child: CircularProgressIndicator(),
                           )
                         : ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: controller.vehicleData == null
@@ -41,20 +42,22 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
                                 : controller.vehicleData.length,
                             itemBuilder: (BuildContext context, int index) {
                               if (controller.vehicleData != null) {
-                                // for (var i = 1;
-                                //     i <= controller.vehicleData.length;
-                                //     i++) {
-                                //   _controllers.add(new TextEditingController());
-                                // }
                                 return Column(
                                   children: [
-                                    CustomImageField(
-                                      text:
-                                          '${controller.vehicleData[index]['name']}',
-                                      onTap: () {
-                                        CustomNotifiers().uploadSelection(
-                                            controller.items[index]);
-                                      },
+                                    Obx(
+                                      () => CustomImageField(
+                                        hasData:
+                                            controller.items[index].value !=
+                                                    null
+                                                ? true
+                                                : false,
+                                        text:
+                                            '${controller.vehicleData[index]['name']}',
+                                        onTap: () {
+                                          CustomNotifiers().uploadSelection(
+                                              controller.items[index]);
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10),
@@ -94,9 +97,14 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
 
   Widget heading() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.01, 0, 0),
+      padding: EdgeInsets.fromLTRB(
+        Get.width * 0.1,
+        Get.height * 0.01,
+        0,
+        0,
+      ),
       child: Text(
-        'Sign Up',
+        'Vehicle Details',
         style: CustomTextStyles().headingStyle,
       ),
     );
