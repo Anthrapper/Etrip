@@ -1,8 +1,8 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/location_helper.dart';
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/routes/app_pages.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,7 +12,6 @@ class DriverHomeController extends GetxController {
   var isLoading = true.obs;
   var adImg = [].obs;
   var imgLoading = true.obs;
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   Future getAds() async {
     await ApiCalls()
@@ -61,8 +60,7 @@ class DriverHomeController extends GetxController {
 
   @override
   void onReady() {
-    _firebaseMessaging.configure();
-
+    Get.find<EtripServices>().fcm.configure();
     super.onReady();
   }
 

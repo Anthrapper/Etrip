@@ -1,18 +1,14 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
 import 'package:etrip/app/routes/app_pages.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   final loginKey = GlobalKey<FormState>();
-  final storage = FlutterSecureStorage();
-  final box = GetStorage();
   final AuthHelper _authHelper = AuthHelper();
   TextEditingController userName;
   TextEditingController password;
@@ -22,7 +18,6 @@ class LoginController extends GetxController {
   var ml = false.obs;
   var devId = ''.obs;
   var iconController = Icons.visibility_off.obs;
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   failedLogin(var reason) {
     if (Get.isDialogOpen) {
@@ -32,7 +27,7 @@ class LoginController extends GetxController {
   }
 
   Future getDeviceId() async {
-    _firebaseMessaging.getToken().then(
+    Get.find<EtripServices>().fcm.getToken().then(
       (String token) async {
         assert(token != null);
         devId.value = token;
@@ -48,9 +43,10 @@ class LoginController extends GetxController {
       if (Get.isDialogOpen) {
         Get.back();
         if (tokenData['user'] == 'driver') {
-          await box.write('user_type', 'driver');
+          await Get.find<EtripServices>().box.write('user_type', 'driver');
           if (tokenData['is_document_cleared'] == false) {
-            await box
+            await Get.find<EtripServices>()
+                .box
                 .write('is_document_cleared', false)
                 .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
           } else {
@@ -60,7 +56,7 @@ class LoginController extends GetxController {
             await Get.offAllNamed(AppPages.INITIAL);
           }
         } else {
-          await box.write('user_type', 'user');
+          await Get.find<EtripServices>().box.write('user_type', 'user');
 
           await Get.offAllNamed(AppPages.INITIAL);
         }
@@ -96,7 +92,7 @@ class LoginController extends GetxController {
   Future enSelected() async {
     en.value = true;
     ml.value = false;
-    await box.write('language', 'en').whenComplete(
+    await Get.find<EtripServices>().box.write('language', 'en').whenComplete(
           () => Get.updateLocale(
             Locale('en'),
           ),
@@ -107,7 +103,7 @@ class LoginController extends GetxController {
     en.value = false;
     ml.value = true;
 
-    await box.write('language', 'ml').whenComplete(
+    await Get.find<EtripServices>().box.write('language', 'ml').whenComplete(
           () => Get.updateLocale(
             Locale('ml'),
           ),
@@ -125,10 +121,10 @@ class LoginController extends GetxController {
   }
 
   langIntialize() async {
-    if (await box.read('language') == null) {
+    if (await Get.find<EtripServices>().box.read('language') == null) {
       en.value = true;
       ml.value = false;
-    } else if (await box.read('language') == 'en') {
+    } else if (await Get.find<EtripServices>().box.read('language') == 'en') {
       en.value = true;
       ml.value = false;
     } else {
@@ -156,7 +152,6 @@ class LoginController extends GetxController {
   void onClose() {
     userName?.dispose();
     password?.dispose();
-
     super.onClose();
   }
 }

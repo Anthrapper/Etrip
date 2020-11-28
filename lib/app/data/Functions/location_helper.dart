@@ -23,7 +23,6 @@ class LocationHelper {
       }
       myLocation = null;
     }
-    // var currentLocation = myLocation;
     final coordinates =
         new Coordinates(myLocation.latitude, myLocation.longitude);
 

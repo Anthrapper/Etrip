@@ -1,17 +1,16 @@
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class VehicleDetailsController extends GetxController {
   var vehicleData = [].obs;
   var items = <RxString>[].obs;
   var textController = <TextEditingController>[].obs;
-  final box = GetStorage();
 
   final vehicleDetailsKey = GlobalKey<FormState>();
 
@@ -59,7 +58,7 @@ class VehicleDetailsController extends GetxController {
       if (res.statusCode == 201) {
         if (vehicleData.length - 1 == i) {
           print('finished');
-          await box.remove('is_document_cleared');
+          await Get.find<EtripServices>().box.remove('is_document_cleared');
           if (Get.isDialogOpen) {
             Get.back();
           }

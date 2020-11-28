@@ -1,16 +1,14 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/modules/User/home/controllers/home_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class MyDrawer extends StatelessWidget {
-  final getbox = GetStorage();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -95,13 +93,19 @@ class MyDrawer extends StatelessWidget {
                   GestureDetector(
                     onTap: () async {
                       if (Get.locale.toString() == 'en') {
-                        await getbox.write('language', 'ml').whenComplete(
+                        await Get.find<EtripServices>()
+                            .box
+                            .write('language', 'ml')
+                            .whenComplete(
                               () => Get.updateLocale(
                                 Locale('ml'),
                               ),
                             );
                       } else {
-                        await getbox.write('language', 'en').whenComplete(
+                        await Get.find<EtripServices>()
+                            .box
+                            .write('language', 'en')
+                            .whenComplete(
                               () => Get.updateLocale(
                                 Locale('en'),
                               ),
@@ -129,8 +133,7 @@ class MyDrawer extends StatelessWidget {
                 FlatButton(
                   onPressed: () async {
                     await AuthHelper().removeToken().whenComplete(() async {
-                      await getbox.erase();
-
+                      await Get.find<EtripServices>().box.erase();
                       await Get.offAllNamed(AppPages.LOGIN);
                       Get.reset(clearFactory: true, clearRouteBindings: true);
                     });

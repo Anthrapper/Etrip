@@ -2,18 +2,14 @@ import 'dart:async';
 import 'dart:io';
 import 'package:etrip/app/data/Api/api_calls.dart';
 import 'package:etrip/app/data/Constants/api_data.dart';
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthHelper {
-  final storage = FlutterSecureStorage();
-  final box = GetStorage();
-
   Future getToken() async {
     List tokens = await readToken();
 
@@ -34,8 +30,9 @@ class AuthHelper {
           );
 
           if (response[0] == 200) {
-            await storage.write(
-                key: 'accesstoken', value: response[1]['access']);
+            await Get.find<EtripServices>()
+                .secStorage
+                .write(key: 'accesstoken', value: response[1]['access']);
             return response[1]['access'];
           } else {
             await CustomNotifiers().snackBar(
@@ -55,8 +52,10 @@ class AuthHelper {
   }
 
   checkLoginStatus() async {
-    String loginToken = await storage.read(key: 'accesstoken');
-    String refreshToken = await storage.read(key: 'refreshtoken');
+    String loginToken =
+        await Get.find<EtripServices>().secStorage.read(key: 'accesstoken');
+    String refreshToken =
+        await Get.find<EtripServices>().secStorage.read(key: 'refreshtoken');
     if (loginToken != null) {
       print('ACCESS TOKEN EXISTS');
       if (JwtDecoder.isExpired(loginToken) == false) {
@@ -66,14 +65,19 @@ class AuthHelper {
             milliseconds: 2300,
           ),
           () async {
-            if (await box.read('user_type') == 'driver') {
-              if (await box.read('is_document_cleared') == false) {
+            if (await Get.find<EtripServices>().box.read('user_type') ==
+                'driver') {
+              if (await Get.find<EtripServices>()
+                      .box
+                      .read('is_document_cleared') ==
+                  false) {
                 Get.offAllNamed(AppPages.DRIVER_DETAILS);
               } else {
                 Get.offAllNamed(AppPages.DRIVER_HOME);
               }
             }
-            if (await box.read('user_type') == 'user') {
+            if (await Get.find<EtripServices>().box.read('user_type') ==
+                'user') {
               Get.offAllNamed(AppPages.INITIAL);
             }
             // else {
@@ -94,17 +98,23 @@ class AuthHelper {
                 print(response[0]);
                 if (response[0] == 200) {
                   print('new access token recieved');
-                  await storage
+                  await Get.find<EtripServices>()
+                      .secStorage
                       .write(key: 'accesstoken', value: response[1]['access'])
                       .whenComplete(() async {
-                    if (await box.read('user_type') == 'driver') {
-                      if (await box.read('is_document_cleared') == false) {
+                    if (await Get.find<EtripServices>().box.read('user_type') ==
+                        'driver') {
+                      if (await Get.find<EtripServices>()
+                              .box
+                              .read('is_document_cleared') ==
+                          false) {
                         Get.offAllNamed(AppPages.DRIVER_DETAILS);
                       } else {
                         Get.offAllNamed(AppPages.DRIVER_HOME);
                       }
                     }
-                    if (await box.read('user_type') == 'user') {
+                    if (await Get.find<EtripServices>().box.read('user_type') ==
+                        'user') {
                       Get.offAllNamed(AppPages.INITIAL);
                     }
                   });
@@ -136,25 +146,29 @@ class AuthHelper {
   }
 
   Future storeToken(String access, String refresh) async {
-    await storage.write(key: 'accesstoken', value: access);
-    await storage.write(key: 'refreshtoken', value: refresh);
+    await Get.find<EtripServices>()
+        .secStorage
+        .write(key: 'accesstoken', value: access);
+    await Get.find<EtripServices>()
+        .secStorage
+        .write(key: 'refreshtoken', value: refresh);
   }
 
   Future removeToken() async {
-    await storage.delete(key: 'accesstoken');
-    await storage.delete(key: 'refreshtoken');
+    await Get.find<EtripServices>().secStorage.delete(key: 'accesstoken');
+    await Get.find<EtripServices>().secStorage.delete(key: 'refreshtoken');
     print('successfully cleared the tokens');
   }
 
   Future<List> readToken() async {
     return [
-      await storage.read(key: 'accesstoken'),
-      await storage.read(key: 'refreshtoken')
+      await Get.find<EtripServices>().secStorage.read(key: 'accesstoken'),
+      await Get.find<EtripServices>().secStorage.read(key: 'refreshtoken')
     ];
   }
 
   Future<String> readAccessToken() async {
-    print(await storage.read(key: 'accesstoken'));
-    return await storage.read(key: 'accesstoken');
+    print(await Get.find<EtripServices>().secStorage.read(key: 'accesstoken'));
+    return await Get.find<EtripServices>().secStorage.read(key: 'accesstoken');
   }
 }
