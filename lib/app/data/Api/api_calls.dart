@@ -1,3 +1,4 @@
+import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -17,15 +18,14 @@ class ApiCalls {
         body: jsonEncode(body),
         headers: headers,
       );
-      print(url);
       print(response.statusCode);
 
       print(response.body);
-      print(response.statusCode);
       return [response.statusCode, json.decode(response.body)];
     } on SocketException catch (e) {
       print(e);
       print('No internet');
+      CustomNotifiers().noInternet();
     }
   }
 
@@ -48,7 +48,7 @@ class ApiCalls {
       }
     } on SocketException catch (e) {
       print(e);
-      print('No internet');
+      CustomNotifiers().noInternet();
     }
   }
 }

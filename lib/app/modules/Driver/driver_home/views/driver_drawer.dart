@@ -1,6 +1,6 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
-import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
+import 'package:etrip/app/data/Functions/storage_helper.dart';
 import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/modules/Driver/driver_home/controllers/driver_home_controller.dart';
 import 'package:etrip/app/routes/app_pages.dart';
@@ -133,7 +133,7 @@ class DriverDrawer extends StatelessWidget {
                 ),
                 FlatButton(
                   onPressed: () async {
-                    await AuthHelper().removeToken().whenComplete(() async {
+                    await StorageHelper().removeToken().whenComplete(() async {
                       await Get.find<EtripServices>().box.erase();
                       await Get.offAllNamed(AppPages.LOGIN);
                     });

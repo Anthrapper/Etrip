@@ -15,7 +15,7 @@ Future<void> main() async {
 }
 
 Future initServices() async {
-  Get.put(EtripServices());
+  await Get.putAsync(() => EtripServices().init());
   print('All services started...');
 }
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppPages.SPLASH,
       enableLog: true,
       getPages: AppPages.routes,
-      defaultTransition: Transition.fadeIn,
+      defaultTransition: Transition.zoom,
       translations: Messages(),
       theme: ThemeData(
         fontFamily: GoogleFonts.hind().fontFamily,

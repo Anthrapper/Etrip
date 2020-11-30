@@ -1,4 +1,4 @@
-import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
+import 'package:etrip/app/data/Functions/auth_helper.dart';
 
 class ApiData {
   static const baseUrl = 'https://api.etrip.ml/';

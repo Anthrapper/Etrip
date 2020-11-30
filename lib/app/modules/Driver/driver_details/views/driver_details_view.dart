@@ -1,6 +1,6 @@
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
-import 'package:etrip/app/data/Functions/Auth/auth_helper.dart';
+import 'package:etrip/app/data/Functions/storage_helper.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/data/Widgets/logo.dart';
 import 'package:etrip/app/data/Widgets/notifiers.dart';
@@ -25,7 +25,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 alignment: Alignment.topRight,
                 child: FlatButton(
                   onPressed: () async {
-                    await AuthHelper().removeToken().whenComplete(
+                    await StorageHelper().removeToken().whenComplete(
                           () async => await Get.offAllNamed(AppPages.LOGIN),
                         );
                   },
