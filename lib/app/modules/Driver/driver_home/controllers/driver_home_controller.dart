@@ -18,9 +18,12 @@ class DriverHomeController extends GetxController {
         .getRequest(url: ApiData.ads, header: await ApiData().getHeader())
         .then(
       (value) {
-        print(value);
-        adImg.assignAll(value);
-        imgLoading.value = false;
+        if (value != null) {
+          adImg.assignAll(value);
+          imgLoading.value = false;
+        } else {
+          getAds();
+        }
       },
     );
   }
@@ -45,9 +48,12 @@ class DriverHomeController extends GetxController {
     await ApiCalls()
         .getRequest(url: ApiData.profile, header: await ApiData().getHeader())
         .then((value) {
-      print(value);
-      profileData.assignAll(value);
-      isLoading.value = false;
+      if (value != null) {
+        profileData.assignAll(value);
+        isLoading.value = false;
+      } else {
+        getProfile();
+      }
     });
   }
 

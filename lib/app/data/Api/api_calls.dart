@@ -1,3 +1,4 @@
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,8 +43,10 @@ class ApiCalls {
       print(response.statusCode);
 
       if (response.statusCode == 200) {
+        Get.find<EtripServices>().logger.v(json.decode(response.body));
         return json.decode(response.body);
       } else {
+        Get.find<EtripServices>().logger.d('RETRYING');
         return null;
       }
     } on SocketException catch (e) {

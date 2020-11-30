@@ -44,12 +44,15 @@ class DriverDrawer extends StatelessWidget {
                     Obx(() {
                       return Get.find<DriverHomeController>().isLoading.value
                           ? SizedBox()
-                          : Text(
-                              Get.find<DriverHomeController>().profileData[0]
-                                  ['name'],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                          : Padding(
+                              padding: EdgeInsets.only(left: Get.width * 0.014),
+                              child: Text(
+                                Get.find<DriverHomeController>().profileData[0]
+                                    ['name'],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
                               ),
                             );
                     }),

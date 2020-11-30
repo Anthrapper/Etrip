@@ -29,10 +29,9 @@ class VehicleDetailsController extends GetxController {
           items.add(RxString());
           textController.add(TextEditingController());
         }
-
         isLoading.value = false;
       } else {
-        throw Exception('Failed to load cars');
+        getVehicleList();
       }
     } on Exception catch (e) {
       print(e);

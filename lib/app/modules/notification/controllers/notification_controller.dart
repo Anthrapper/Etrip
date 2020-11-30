@@ -15,6 +15,8 @@ class NotificationController extends GetxController {
       if (value != null) {
         notificationList.assignAll(value);
         isLoading.value = false;
+      } else {
+        getNotification();
       }
     });
   }

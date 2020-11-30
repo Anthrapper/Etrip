@@ -14,9 +14,12 @@ class DriverMyTripController extends GetxController {
       header: await ApiData().getHeader(),
     )
         .then((value) {
-      print(value);
-      myTrips.assignAll(value);
-      isLoading.value = false;
+      if (value != null) {
+        myTrips.assignAll(value);
+        isLoading.value = false;
+      } else {
+        getMyTrips();
+      }
     });
   }
 

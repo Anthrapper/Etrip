@@ -13,10 +13,12 @@ class DriverTripHistoryController extends GetxController {
             url: ApiData.tripCompletedDriver,
             header: await ApiData().getHeader())
         .then((value) {
-      print(value);
-
-      tripHistory.assignAll(value);
-      isLoading.value = false;
+      if (value != null) {
+        tripHistory.assignAll(value);
+        isLoading.value = false;
+      } else {
+        getTripHistory();
+      }
     });
   }
 

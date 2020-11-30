@@ -42,12 +42,16 @@ class MyDrawer extends StatelessWidget {
                       () {
                         return Get.find<HomeController>().profileLoad.value
                             ? SizedBox()
-                            : Text(
-                                Get.find<HomeController>().profileData[0]
-                                    ['name'],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
+                            : Padding(
+                                padding:
+                                    EdgeInsets.only(left: Get.width * 0.014),
+                                child: Text(
+                                  Get.find<HomeController>().profileData[0]
+                                      ['name'],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
                                 ),
                               );
                       },

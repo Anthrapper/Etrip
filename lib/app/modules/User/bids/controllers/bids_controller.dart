@@ -37,10 +37,11 @@ class BidsController extends GetxController {
             header: await ApiData().getHeader())
         .then((value) {
       print(ApiData.bidList + Get.arguments);
-      print(value);
       if (value != null) {
         bidList.assignAll(value);
         isLoading.value = false;
+      } else {
+        getBidList();
       }
     });
   }

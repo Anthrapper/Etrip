@@ -23,7 +23,7 @@ class DriverDetailsController extends GetxController {
         vehicleData.assignAll(vehicleList);
         showWidget.value = true;
       } else {
-        throw Exception('Failed to load cars');
+        getVehicleList();
       }
     } on Exception catch (e) {
       print(e);

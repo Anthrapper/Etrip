@@ -18,11 +18,12 @@ class LoginController extends GetxController {
   var devId = ''.obs;
   var iconController = Icons.visibility_off.obs;
 
-  failedLogin(var reason) {
+  failedLogin() {
     if (Get.isDialogOpen) {
       Get.back();
     }
-    CustomNotifiers().snackBar('Login Failed', reason.toString(), Icons.error);
+    CustomNotifiers().snackBar('Login Failed',
+        'No active account found with the given credentials', Icons.error);
   }
 
   Future getDeviceId() async {
@@ -79,10 +80,9 @@ class LoginController extends GetxController {
         if (postData[0] == 200) {
           successfulLogin(postData[1]);
         } else if (postData[0] == 401) {
-          failedLogin(postData[1]['detail']);
+          failedLogin();
         } else {
           print(postData[0]);
-          failedLogin(postData[1]);
         }
       },
     );

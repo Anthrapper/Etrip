@@ -36,9 +36,12 @@ class NewWorksController extends GetxController {
       header: await ApiData().getHeader(),
     )
         .then((value) {
-      print(value);
-      newWork.assignAll(value);
-      isLoading.value = false;
+      if (value != null) {
+        newWork.assignAll(value);
+        isLoading.value = false;
+      } else {
+        getNewWorks();
+      }
     });
   }
 

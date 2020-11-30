@@ -28,6 +28,7 @@ class VehicleformView extends GetView<VehicleformController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            LogoWidget(),
             heading(),
             form(),
             button(),
@@ -39,7 +40,7 @@ class VehicleformView extends GetView<VehicleformController> {
 
   Widget heading() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(Get.width * 0.1, Get.height * 0.08, 0, 0),
+      padding: EdgeInsets.fromLTRB(Get.width * 0.12, Get.height * 0.02, 0, 0),
       child: Text(
         controller.vehicleType.value,
         style: CustomTextStyles().headingStyle,
@@ -52,11 +53,16 @@ class VehicleformView extends GetView<VehicleformController> {
       child: CustomButton(
         text: 'submit'.tr,
         onpressed: () {
-          if (controller.toDes.value != '' &&
-              controller.fromDes.value != '' &&
-              controller.readDate.value != '' &&
-              controller.time.value != '') {
+          if (controller.toCo.value != '' &&
+              controller.fromCo.value != '' &&
+              controller.readDate.value != 'date'.tr &&
+              controller.time.value != 'time'.tr) {
+            print(controller.readDate.value);
+            print(controller.time.value);
             controller.createNewTrip();
+          } else {
+            CustomNotifiers()
+                .snackBar('Failed', 'Please fill all the fields', Icons.error);
           }
         },
       ),
@@ -65,7 +71,7 @@ class VehicleformView extends GetView<VehicleformController> {
 
   Widget form() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
+      padding: EdgeInsets.symmetric(vertical: Get.height * 0.06),
       child: Column(
         children: [
           Row(

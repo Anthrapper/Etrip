@@ -35,14 +35,18 @@ class DriverBidsController extends GetxController {
         .getRequest(
             url: ApiData.bidList + Get.arguments,
             header: await ApiData().getHeader())
-        .then((value) {
-      print(ApiData.bidList + Get.arguments);
-      print(value);
-      if (value != null) {
-        bidList.assignAll(value);
-        isLoading.value = false;
-      }
-    });
+        .then(
+      (value) {
+        print(ApiData.bidList + Get.arguments);
+
+        if (value != null) {
+          bidList.assignAll(value);
+          isLoading.value = false;
+        } else {
+          getBidList();
+        }
+      },
+    );
   }
 
   @override

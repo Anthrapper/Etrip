@@ -32,11 +32,12 @@ class MyTripController extends GetxController {
     )
         .then(
       (value) {
-        print(value);
-        if (!value.isEmpty) {
+        if (value != null) {
           myTrips.assignAll(value);
+          isLoading.value = false;
+        } else {
+          getMyTrips();
         }
-        isLoading.value = false;
       },
     );
   }

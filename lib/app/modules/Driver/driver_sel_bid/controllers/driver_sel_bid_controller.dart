@@ -16,7 +16,6 @@ class DriverSelBidController extends GetxController {
     )
         .then(
       (value) {
-        print(value);
         if (!value.isEmpty) {
           bidData.assignAll(value);
           print('assigned');

@@ -17,9 +17,12 @@ class HomeController extends GetxController {
       header: await ApiData().getHeader(),
     )
         .then((value) {
-      print(value);
-      profileData.assignAll(value);
-      profileLoad.value = false;
+      if (value != null) {
+        profileData.assignAll(value);
+        profileLoad.value = false;
+      } else {
+        getProfileData();
+      }
     });
   }
 
@@ -28,9 +31,12 @@ class HomeController extends GetxController {
         .getRequest(url: ApiData.ads, header: await ApiData().getHeader())
         .then(
       (value) {
-        print(value);
-        adImg.assignAll(value);
-        imgLoading.value = false;
+        if (value != null) {
+          adImg.assignAll(value);
+          imgLoading.value = false;
+        } else {
+          getAds();
+        }
       },
     );
   }
@@ -45,9 +51,7 @@ class HomeController extends GetxController {
         vehicleData.assignAll(vehicleList);
         isLoading.value = false;
       } else {
-        isLoading.value = false;
-
-        throw Exception('Failed to load cars');
+        getVehicleList();
       }
     } on Exception catch (e) {
       print(e);
@@ -57,8 +61,8 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     await getAds();
-    await getProfileData();
     await getVehicleList();
+    await getProfileData();
     super.onInit();
   }
 

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppPages.SPLASH,
       enableLog: true,
       getPages: AppPages.routes,
-      defaultTransition: Transition.zoom,
+      defaultTransition: Transition.fadeIn,
       translations: Messages(),
       theme: ThemeData(
         fontFamily: GoogleFonts.hind().fontFamily,
