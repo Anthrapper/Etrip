@@ -30,6 +30,7 @@ class NotificationView extends GetView<NotificationController> {
                 )
               : ListView.builder(
                   shrinkWrap: true,
+                  reverse: true,
                   itemCount: controller.notificationList == null
                       ? 0
                       : controller.notificationList.length,

@@ -30,6 +30,7 @@ class MyTripView extends GetView<MyTripController> {
                 )
               : ListView.builder(
                   shrinkWrap: true,
+                  reverse: true,
                   itemCount: controller.myTrips == null
                       ? 0
                       : controller.myTrips.length,
