@@ -6,6 +6,7 @@ import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/Driver/new_works/controllers/new_works_controller.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class NewWorksView extends GetView<NewWorksController> {
   @override
@@ -27,7 +28,7 @@ class NewWorksView extends GetView<NewWorksController> {
         () {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : ListView.builder(
                   shrinkWrap: true,

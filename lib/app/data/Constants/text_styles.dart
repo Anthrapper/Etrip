@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class CustomTextStyles {
   final appBar = TextStyle(
-    color: Color(0xff121214),
+    color: Color(0xfff4f4f4),
     fontWeight: FontWeight.bold,
     fontSize: Get.height * 0.022,
   );

@@ -9,6 +9,7 @@ import 'package:etrip/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DriverDetailsView extends GetView<DriverDetailsController> {
   @override
@@ -126,7 +127,7 @@ class DriverDetailsView extends GetView<DriverDetailsController> {
                 () {
                   return controller.showWidget.value == false
                       ? Center(
-                          child: CircularProgressIndicator(),
+                          child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                         )
                       : MultiSelectFormField(
                           autovalidate: false,

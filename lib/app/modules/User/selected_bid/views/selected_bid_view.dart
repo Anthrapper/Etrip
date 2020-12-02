@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:etrip/app/modules/User/selected_bid/controllers/selected_bid_controller.dart';
 import 'package:etrip/app/data/Constants/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SelectedBidView extends GetView<SelectedBidController> {
   @override
@@ -26,7 +27,7 @@ class SelectedBidView extends GetView<SelectedBidController> {
         () {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : Padding(
                   padding: EdgeInsets.only(

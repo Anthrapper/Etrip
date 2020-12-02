@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
 import 'customwidgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CustomNotifiers {
   Future progressIndicator() {
     return Get.dialog(
       Center(
-        child: CircularProgressIndicator(),
+        child: SpinKitCubeGrid(color: CustomColors.buttonColor),
       ),
       barrierDismissible: false,
     );

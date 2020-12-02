@@ -3,6 +3,7 @@ import 'package:etrip/app/modules/Driver/Driver_TripHistory/controllers/driver_t
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/Driver/Driver_TripHistory/views/driver_trip_history_cards.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DriverTripHistoryView extends GetView<DriverTripHistoryController> {
   @override
@@ -28,7 +29,7 @@ class DriverTripHistoryView extends GetView<DriverTripHistoryController> {
           () {
             return controller.isLoading.value
                 ? Center(
-                    child: CircularProgressIndicator(),
+                    child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                   )
                 : ListView.builder(
                     shrinkWrap: true,

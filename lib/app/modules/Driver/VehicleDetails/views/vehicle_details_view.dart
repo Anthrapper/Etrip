@@ -4,6 +4,7 @@ import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/modules/Driver/VehicleDetails/controllers/vehicle_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class VehicleDetailsView extends GetView<VehicleDetailsController> {
   @override
@@ -31,7 +32,7 @@ class VehicleDetailsView extends GetView<VehicleDetailsController> {
                   () {
                     return controller.isLoading.value
                         ? Center(
-                            child: CircularProgressIndicator(),
+                            child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                           )
                         : ListView.builder(
                             physics: NeverScrollableScrollPhysics(),

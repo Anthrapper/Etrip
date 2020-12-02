@@ -3,6 +3,7 @@ import 'package:etrip/app/modules/Driver/driver_bids/controllers/driver_bids_con
 import 'package:etrip/app/modules/Driver/driver_bids/views/driver_bids_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DriverBidsView extends GetView<DriverBidsController> {
   @override
@@ -24,7 +25,7 @@ class DriverBidsView extends GetView<DriverBidsController> {
         () {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : ListView.builder(
                   shrinkWrap: true,

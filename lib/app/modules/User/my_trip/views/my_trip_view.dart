@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MyTripView extends GetView<MyTripController> {
   @override
@@ -26,7 +27,7 @@ class MyTripView extends GetView<MyTripController> {
         () {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : ListView.builder(
                   shrinkWrap: true,

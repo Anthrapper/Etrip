@@ -2,8 +2,8 @@ import 'package:etrip/app/data/Constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/notification/controllers/notification_controller.dart';
-
 import 'notification_cards.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class NotificationView extends GetView<NotificationController> {
   @override
@@ -26,7 +26,7 @@ class NotificationView extends GetView<NotificationController> {
         child: Obx(() {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : ListView.builder(
                   shrinkWrap: true,

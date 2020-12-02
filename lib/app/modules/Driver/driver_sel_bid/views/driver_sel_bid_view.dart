@@ -4,6 +4,7 @@ import 'package:etrip/app/modules/Driver/driver_sel_bid/controllers/driver_sel_b
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DriverSelBidView extends GetView<DriverSelBidController> {
   @override
@@ -25,7 +26,7 @@ class DriverSelBidView extends GetView<DriverSelBidController> {
         () {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : Padding(
                   padding: EdgeInsets.only(

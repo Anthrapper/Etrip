@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'drawer.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'dart:ui' as ui;
 
 class HomeView extends GetView<HomeController> {
   @override
@@ -15,18 +17,28 @@ class HomeView extends GetView<HomeController> {
       drawer: MyDrawer(),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: new IconThemeData(color: Colors.black),
+        iconTheme: new IconThemeData(color: Color(0xfff4f4f4),),
         title: Text(
           'eTRIP',
           style: CustomTextStyles().appBar,
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[
+                    Color(0xff052450),
+                    Color(0xff479590),
+                  ])
+          ),
         ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.notifications,
-              color: Colors.black,
+              color: Color(0xfff4f4f4),
             ),
             onPressed: () {
               Get.toNamed(AppPages.NOTIFICATION);
@@ -35,207 +47,210 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: Get.height * 0.02),
-                child: Container(
-                  height: Get.height * 0.2,
-                  child: Obx(
-                    () {
-                      return controller.imgLoading.value
-                          ? imgPlaceholder()
-                          : CarouselSlider.builder(
-                              itemCount: controller.adImg == null
-                                  ? 0
-                                  : controller.adImg.length,
-                              options: CarouselOptions(
-                                autoPlay: true,
-                                aspectRatio: 2.0,
-                                enlargeCenterPage: true,
+        child: CustomPaint(
+          painter: LogoPainter(),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+                  child: Container(
+                    height: Get.height * 0.2,
+                    child: Obx(
+                          () {
+                        return controller.imgLoading.value
+                            ? imgPlaceholder()
+                            : CarouselSlider.builder(
+                          itemCount: controller.adImg == null
+                              ? 0
+                              : controller.adImg.length,
+                          options: CarouselOptions(
+                            autoPlay: true,
+                            aspectRatio: 2.0,
+                            enlargeCenterPage: true,
+                          ),
+                          itemBuilder: (context, index) {
+                            return Container(
+                              child: Center(
+                                child: Image.network(
+                                  controller.adImg[index]['ad_banner'],
+                                  fit: BoxFit.cover,
+                                  width: Get.width,
+                                ),
                               ),
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  child: Center(
-                                    child: Image.network(
-                                      controller.adImg[index]['ad_banner'],
-                                      fit: BoxFit.cover,
-                                      width: Get.width,
-                                    ),
-                                  ),
-                                );
-                              },
                             );
-                    },
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: Get.height * 0.05,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        padding: EdgeInsets.only(bottom: 9),
-                        width: Get.width * 0.85,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 4,
-                                offset: Offset(1, 3),
-                              )
-                            ]),
-                        child: FlatButton(
-                          onPressed: () async {
-                            await Get.toNamed(AppPages.MY_TRIP);
-                          },
-                          child: ListTile(
-                            title: Text(
-                              'mytrip'.tr,
-                              style: CustomTextStyles().mlHome,
-                            ),
-                            subtitle: Text('seetrip'.tr),
-                            trailing: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 5,
-                                    color: Colors.grey,
-                                    spreadRadius: 1,
-                                    offset: Offset(2, 4),
-                                  )
-                                ],
-                              ),
-                              child: CircleAvatar(
-                                radius: 25,
-                                backgroundColor: CustomColors.buttonColor,
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        padding: EdgeInsets.only(bottom: 9),
-                        width: Get.width * 0.85,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 4,
-                                offset: Offset(1, 3),
-                              )
-                            ]),
-                        child: FlatButton(
-                          onPressed: () {
-                            Get.toNamed(AppPages.TRIP_HISTORY);
-                          },
-                          child: ListTile(
-                            title: Text(
-                              'triphistory'.tr,
-                              style: CustomTextStyles().mlHome,
-                            ),
-                            subtitle: Text('seetriphistory'.tr),
-                            trailing: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 5,
-                                    color: Colors.grey,
-                                    spreadRadius: 1,
-                                    offset: Offset(2, 4),
-                                  )
-                                ],
-                              ),
-                              child: CircleAvatar(
-                                radius: 25,
-                                backgroundColor: CustomColors.buttonColor,
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.09),
-                child: Container(
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: Get.height * 0.05,
+                  ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'startnewtrip'.tr,
-                        style: TextStyle(
-                          fontSize: 18,
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          width: Get.width * 0.85,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey[600],
+                                  blurRadius: 4,
+                                  offset: Offset(0, 1),
+                                )
+                              ]),
+                          child: FlatButton(
+                            onPressed: () async {
+                              await Get.toNamed(AppPages.MY_TRIP);
+                            },
+                            child: ListTile(
+                              title: Text(
+                                'mytrip'.tr,
+                                style: CustomTextStyles().mlHome,
+                              ),
+                              subtitle: Text('seetrip'.tr),
+                              trailing: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 5,
+                                      color: Colors.grey,
+                                      spreadRadius: 1,
+                                      offset: Offset(2, 4),
+                                    )
+                                  ],
+                                ),
+                                child: CircleAvatar(
+                                  radius: 25,
+                                  backgroundColor: CustomColors.buttonColor,
+                                  child: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      Obx(
-                        () {
-                          return controller.isLoading.value
-                              ? Container(
-                                  padding:
-                                      EdgeInsets.only(top: Get.height * 0.07),
-                                  alignment: Alignment.center,
-                                  child: CircularProgressIndicator(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          width: Get.width * 0.85,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 3,
+                                  offset: Offset(1, 3),
                                 )
-                              : GridView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: controller.vehicleData == null
-                                      ? 0
-                                      : controller.vehicleData.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
+                              ]),
+                          child: FlatButton(
+                            onPressed: () {
+                              Get.toNamed(AppPages.TRIP_HISTORY);
+                            },
+                            child: ListTile(
+                              title: Text(
+                                'triphistory'.tr,
+                                style: CustomTextStyles().mlHome,
+                              ),
+                              subtitle: Text('seetriphistory'.tr),
+                              trailing: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 5,
+                                      color: Colors.grey,
+                                      spreadRadius: 1,
+                                      offset: Offset(2, 4),
+                                    )
+                                  ],
+                                ),
+                                child: CircleAvatar(
+                                  radius: 25,
+                                  backgroundColor: CustomColors.buttonColor,
+                                  child: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
                                   ),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return VehicleCard(
-                                      id: controller.vehicleData[index]['id']
-                                          .toString(),
-                                      iconUrl: controller.vehicleData[index]
-                                          ['icon'],
-                                      name: controller.vehicleData[index]
-                                          ['name'],
-                                    );
-                                  },
-                                );
-                        },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.09),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'startnewtrip'.tr,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        Obx(
+                              () {
+                            return controller.isLoading.value
+                                ? Container(
+                              padding:
+                              EdgeInsets.only(top: Get.height * 0.07),
+                              alignment: Alignment.center,
+                              child: SpinKitCubeGrid(color: CustomColors.buttonColor),
+                            )
+                                : GridView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: controller.vehicleData == null
+                                  ? 0
+                                  : controller.vehicleData.length,
+                              gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                              ),
+                              itemBuilder:
+                                  (BuildContext context, int index) {
+                                return VehicleCard(
+                                  id: controller.vehicleData[index]['id']
+                                      .toString(),
+                                  iconUrl: controller.vehicleData[index]
+                                  ['icon'],
+                                  name: controller.vehicleData[index]
+                                  ['name'],
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        )
       ),
     );
   }
@@ -245,5 +260,36 @@ class HomeView extends GetView<HomeController> {
       height: 100,
       child: Image.asset('assets/images/etrip.jpg'),
     );
+  }
+}
+
+class LogoPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..shader = ui.Gradient.linear(
+        Offset(0,0),
+        Offset(Get.width,0),
+        [
+          Color(0xff052450),
+          Color(0xff479590),
+        ],
+      );
+    // Paint paint = Paint();
+    // paint.color = Colors.blue;
+    var path = Path();
+    path.lineTo(0,Get.height  * 0.5);
+    path.lineTo(Get.width,Get.height * 0.3);
+    path.lineTo(Get.width,0);
+    //Added this line
+    // path.relativeQuadraticBezierTo(15, 3, 30, -5);
+    // path.lineTo(80, 0);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }

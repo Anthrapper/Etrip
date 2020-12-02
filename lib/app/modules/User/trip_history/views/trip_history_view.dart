@@ -4,6 +4,7 @@ import 'package:etrip/app/modules/User/trip_history/controllers/trip_history_con
 import 'package:etrip/app/modules/User/trip_history/views/trip_history_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class TripHistoryView extends GetView<TripHistoryController> {
   @override
@@ -29,7 +30,7 @@ class TripHistoryView extends GetView<TripHistoryController> {
           () {
             return controller.isLoading.value
                 ? Center(
-                    child: CircularProgressIndicator(),
+                    child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                   )
                 : ListView.builder(
                     shrinkWrap: true,

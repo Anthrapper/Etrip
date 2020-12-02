@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/User/bids/controllers/bids_controller.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class BidsView extends GetView<BidsController> {
   @override
@@ -25,7 +26,7 @@ class BidsView extends GetView<BidsController> {
         () {
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : ListView.builder(
                   shrinkWrap: true,

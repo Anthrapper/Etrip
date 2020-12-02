@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/Driver/Driver_MyTrip/views/driver_mytrip_cards.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DriverMyTripView extends GetView<DriverMyTripController> {
   @override
@@ -25,7 +26,7 @@ class DriverMyTripView extends GetView<DriverMyTripController> {
       body: Obx(() {
         return controller.isLoading.value
             ? Center(
-                child: CircularProgressIndicator(),
+                child: SpinKitCubeGrid(color: CustomColors.buttonColor),
               )
             : ListView.builder(
                 reverse: true,

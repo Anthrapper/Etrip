@@ -25,6 +25,7 @@ dependencies:
   multiselect_formfield: 0.1.4
   carousel_slider: ^2.3.1
   image_picker: ^0.6.7+14
+  flutter_spinkit: ^4.1.2+1
   get: 3.21.2
   flutter:
     sdk: flutter
