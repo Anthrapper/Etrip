@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  final loginKey = GlobalKey<FormState>();
   TextEditingController userName;
   TextEditingController password;
   var deviceId = ''.obs;
@@ -31,7 +30,6 @@ class LoginController extends GetxController {
       (String token) async {
         assert(token != null);
         devId.value = token;
-        print(devId);
       },
     );
   }
@@ -39,29 +37,31 @@ class LoginController extends GetxController {
   successfulLogin(var tokenData) async {
     await StorageHelper()
         .storeToken(tokenData['access'], tokenData['refresh'])
-        .whenComplete(() async {
-      if (Get.isDialogOpen) {
-        Get.back();
-        if (tokenData['user'] == 'driver') {
-          await Get.find<EtripServices>().box.write('user_type', 'driver');
-          if (tokenData['is_document_cleared'] == false) {
-            await Get.find<EtripServices>()
-                .box
-                .write('is_document_cleared', false)
-                .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
+        .whenComplete(
+      () async {
+        if (Get.isDialogOpen) {
+          Get.back();
+          if (tokenData['user'] == 'driver') {
+            await Get.find<EtripServices>().box.write('user_type', 'driver');
+            if (tokenData['is_document_cleared'] == false) {
+              await Get.find<EtripServices>()
+                  .box
+                  .write('is_document_cleared', false)
+                  .whenComplete(() => Get.offAllNamed(AppPages.DRIVER_DETAILS));
+            } else {
+              Get.offAllNamed(AppPages.DRIVER_HOME);
+            }
+            if (tokenData['user'] == 'user') {
+              await Get.offAllNamed(AppPages.INITIAL);
+            }
           } else {
-            Get.offAllNamed(AppPages.DRIVER_HOME);
+            await Get.find<EtripServices>().box.write('user_type', 'user').then(
+                  (value) async => await Get.offAllNamed(AppPages.INITIAL),
+                );
           }
-          if (tokenData['user'] == 'user') {
-            await Get.offAllNamed(AppPages.INITIAL);
-          }
-        } else {
-          await Get.find<EtripServices>().box.write('user_type', 'user');
-
-          await Get.offAllNamed(AppPages.INITIAL);
         }
-      }
-    });
+      },
+    );
   }
 
   Future login() async {
@@ -136,7 +136,6 @@ class LoginController extends GetxController {
   void onInit() async {
     userName = TextEditingController();
     password = TextEditingController();
-
     super.onInit();
   }
 

@@ -10,13 +10,15 @@ class UserType extends StatelessWidget {
     return Scaffold(
       backgroundColor: CustomColors.background,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            LogoWidget(),
-            heading(),
-            button(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              LogoWidget(),
+              heading(),
+              button(),
+            ],
+          ),
         ),
       ),
     );

@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 class SignupController extends GetxController {
   var otp = ''.obs;
   var iconController = Icons.visibility.obs;
-
   var vId = ''.obs;
   TextEditingController username;
   TextEditingController name;
@@ -93,13 +92,13 @@ class SignupController extends GetxController {
   }
 
   @override
-  void onInit() {
-    super.onInit();
-
+  void onInit() async {
     username = TextEditingController();
     name = TextEditingController();
     confPass = TextEditingController();
     password = TextEditingController();
+
+    super.onInit();
   }
 
   @override

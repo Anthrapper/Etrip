@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:etrip/app/data/Services/EtripServices.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';
 import 'package:etrip/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,15 +29,20 @@ class OtpSender {
           .signInWithCredential(phoneAuthCredential)
           .then((UserCredential value) {
         if (value.user != null) {
-          print(value.user.phoneNumber);
+          Get.find<EtripServices>()
+              .logger
+              .i('Automatically retrieved otp and verified successfully');
           if (Get.isBottomSheetOpen) {
             Get.back();
           }
           Get.offNamed(AppPages.LOGIN);
-          CustomNotifiers().snackBar(
+          Timer(Duration(milliseconds: 200), () async {
+            CustomNotifiers().snackBar(
               'Success',
-              'Your phone number has been successfully verified',
-              Icons.check_box);
+              'Succefully Registered the account and the phone number has been verified',
+              Icons.check_box,
+            );
+          });
         } else {
           Get.snackbar("Error validating OTP", 'try again');
         }
@@ -70,11 +78,20 @@ class OtpSender {
         if (Get.isBottomSheetOpen) {
           Get.back();
         }
+        Get.find<EtripServices>()
+            .logger
+            .i('manually collected otp and verified successfully');
         Get.offNamed(AppPages.LOGIN);
-        CustomNotifiers().snackBar(
+        Timer(
+            Duration(
+              milliseconds: 200,
+            ), () async {
+          CustomNotifiers().snackBar(
             'Success',
-            'Your phone number has been successfully verified',
-            Icons.check_box);
+            'Succefully Registered the account and the phone number has been verified',
+            Icons.check_box,
+          );
+        });
       } else {
         CustomNotifiers().snackBar(
           'Error',

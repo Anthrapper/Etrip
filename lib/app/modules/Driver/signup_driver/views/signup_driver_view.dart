@@ -49,6 +49,8 @@ class SignupDriverView extends GetView<SignupDriverController> {
       child: CustomButton(
         text: 'submit'.tr,
         onpressed: () {
+          FocusScope.of(Get.context).unfocus();
+
           if (controller.formKey1.currentState.validate()) {
             CustomNotifiers().progressIndicator();
             controller.doSignUp();

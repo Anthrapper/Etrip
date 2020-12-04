@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:etrip/app/modules/login/controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  final loginKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +47,9 @@ class LoginView extends GetView<LoginController> {
       child: CustomButton(
         text: 'login'.tr,
         onpressed: () {
-          if (controller.loginKey.currentState.validate()) {
+          FocusScope.of(Get.context).unfocus();
+
+          if (loginKey.currentState.validate()) {
             CustomNotifiers().progressIndicator();
             controller.login();
           }
@@ -58,7 +62,7 @@ class LoginView extends GetView<LoginController> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: Get.height * 0.1),
       child: Form(
-        key: controller.loginKey,
+        key: loginKey,
         child: Column(
           children: [
             CustomTextField(
@@ -149,7 +153,9 @@ class LoginView extends GetView<LoginController> {
           Padding(
             padding: EdgeInsets.only(left: Get.width * 0.03),
             child: TextButton(
-              onPressed: () => Get.offAllNamed(AppPages.SIGNUP_SELECTION),
+              onPressed: () => Get.toNamed(
+                AppPages.SIGNUP_SELECTION,
+              ),
               child: Text(
                 'dosignup'.tr,
                 style: CustomTextStyles().smallButtonText,

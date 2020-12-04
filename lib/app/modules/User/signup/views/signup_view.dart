@@ -45,6 +45,8 @@ class SignupView extends GetView<SignupController> {
         child: CustomButton(
           text: 'signup'.tr,
           onpressed: () {
+            FocusScope.of(Get.context).unfocus();
+
             if (controller.regKey.currentState.validate()) {
               CustomNotifiers().progressIndicator();
               controller.doSignUp();

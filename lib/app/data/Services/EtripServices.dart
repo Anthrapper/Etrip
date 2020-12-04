@@ -13,6 +13,7 @@ class EtripServices extends GetxService {
   final secStorage = FlutterSecureStorage();
   final FirebaseMessaging fcm = FirebaseMessaging();
   final picker = ImagePicker();
+
   var logger = Logger(
     filter: null,
     printer: PrettyPrinter(
