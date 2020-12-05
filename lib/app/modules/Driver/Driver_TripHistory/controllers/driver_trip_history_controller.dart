@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class DriverTripHistoryController extends GetxController {
   var tripHistory = [].obs;
   var isLoading = true.obs;
+  var noItems = false.obs;
 
   Future getTripHistory() async {
     print(ApiData.tripCompletedDriver);
@@ -16,6 +17,9 @@ class DriverTripHistoryController extends GetxController {
       if (value != null) {
         tripHistory.assignAll(value);
         isLoading.value = false;
+        if (tripHistory.length == 0) {
+          noItems.value = true;
+        }
       } else {
         getTripHistory();
       }

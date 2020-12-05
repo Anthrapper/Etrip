@@ -6,6 +6,7 @@ class DriverMyTripController extends GetxController {
   var myTrips = [].obs;
   var isLoading = true.obs;
   var selectFlag = false.obs;
+  var noItems = false.obs;
 
   Future getMyTrips() async {
     await ApiCalls()
@@ -17,6 +18,9 @@ class DriverMyTripController extends GetxController {
       if (value != null) {
         myTrips.assignAll(value);
         isLoading.value = false;
+        if (myTrips.length == 0) {
+          noItems.value = true;
+        }
       } else {
         getMyTrips();
       }

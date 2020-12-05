@@ -2,7 +2,6 @@ import 'package:etrip/app/modules/Driver/signup_driver/controllers/signup_driver
 import 'package:flutter/material.dart';
 import 'package:etrip/app/data/Functions/validator.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
 import 'package:get/get.dart';
 import 'package:etrip/app/data/Constants/constants.dart';
 import 'package:etrip/app/data/Widgets/customwidgets.dart';

@@ -1,4 +1,5 @@
 import 'package:etrip/app/data/Constants/constants.dart';
+import 'package:etrip/app/global_widgets/global_widgets.dart';
 import 'package:etrip/app/modules/Driver/Driver_TripHistory/controllers/driver_trip_history_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,33 +23,34 @@ class DriverTripHistoryView extends GetView<DriverTripHistoryController> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(Get.width * 0.04, Get.height * 0.02,
-            Get.width * 0.04, Get.height * 0.02),
-        child: Obx(
-          () {
-            return controller.isLoading.value
-                ? Center(
-                    child: SpinKitCubeGrid(color: CustomColors.buttonColor),
-                  )
-                : ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.tripHistory == null
-                        ? 0
-                        : controller.tripHistory.length,
-                    itemBuilder: (context, index) {
-                      return DriverTripHistoryCard(
-                        id: controller.tripHistory[index]['id'].toString(),
-                        amount:
-                            controller.tripHistory[index]['amount'].toString(),
-                        date: controller.tripHistory[index]['date'],
-                        from: controller.tripHistory[index]['from_place'],
-                        to: controller.tripHistory[index]['to_place'],
-                      );
-                    },
-                  );
-          },
-        ),
+      body: Obx(
+        () {
+          return controller.isLoading.value
+              ? Center(
+                  child: SpinKitCubeGrid(color: CustomColors.buttonColor),
+                )
+              : Container(
+                  child: controller.noItems.value
+                      ? NoItemHere()
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller.tripHistory == null
+                              ? 0
+                              : controller.tripHistory.length,
+                          itemBuilder: (context, index) {
+                            return DriverTripHistoryCard(
+                              id: controller.tripHistory[index]['id']
+                                  .toString(),
+                              amount: controller.tripHistory[index]['amount']
+                                  .toString(),
+                              date: controller.tripHistory[index]['date'],
+                              from: controller.tripHistory[index]['from_place'],
+                              to: controller.tripHistory[index]['to_place'],
+                            );
+                          },
+                        ),
+                );
+        },
       ),
     );
   }
