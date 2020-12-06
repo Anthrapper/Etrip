@@ -12,7 +12,7 @@ class DriverTripHistoryView extends GetView<DriverTripHistoryController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: new IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(

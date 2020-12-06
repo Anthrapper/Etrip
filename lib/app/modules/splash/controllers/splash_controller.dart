@@ -7,7 +7,7 @@ class SplashController extends GetxController {
   checkAuth() async {
     Timer(
         Duration(
-          milliseconds: 2100,
+          milliseconds: 3200,
         ), () async {
       await AuthHelper().authenticationChecking();
     });

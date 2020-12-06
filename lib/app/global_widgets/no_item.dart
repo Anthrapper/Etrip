@@ -27,7 +27,7 @@ class NoItemHere extends StatelessWidget {
                   width: Get.width * 0.9,
                   height: Get.height * 0.3,
                   child: FadeIn(
-                    delay: 0.001,
+                    delay: 0,
                     child: SvgPicture.string(
                       SvgAssets.noTrips,
                       alignment: Alignment.center,
@@ -38,7 +38,7 @@ class NoItemHere extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: Get.height * 0.06),
-                child: TypewriterText(reason),
+                child: TypewriterText(text: reason),
               ),
             ],
           ),

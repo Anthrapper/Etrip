@@ -42,8 +42,6 @@ class CustomTextStyles {
       color: (CustomColors.textColorOne), fontSize: Get.height * 0.0165);
   final smallButtonText = TextStyle(
       color: (CustomColors.textColorTwo), fontSize: Get.height * 0.0165);
-  final typeWriter = TextStyle(
-      letterSpacing: 5,
-      fontSize: Get.height * 0.037,
-      fontWeight: FontWeight.w400);
+  static const typeWriter =
+      TextStyle(letterSpacing: 5, fontSize: 17, fontWeight: FontWeight.w400);
 }

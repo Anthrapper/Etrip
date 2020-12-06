@@ -13,6 +13,7 @@ class DriverHomeView extends GetView<DriverHomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.background,
       drawer: DriverDrawer(),
       appBar: AppBar(
         elevation: 0,

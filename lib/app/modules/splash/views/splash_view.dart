@@ -1,3 +1,5 @@
+import 'package:etrip/app/global_widgets/global_widgets.dart';
+import 'package:etrip/app/global_widgets/logo_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:etrip/app/modules/splash/controllers/splash_controller.dart';
@@ -11,21 +13,29 @@ class SplashView extends GetView<SplashController> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              width: Get.width * 0.35,
-              height: Get.height * 0.16,
-              image: AssetImage('assets/images/full_logo.png'),
+            LogoAnimation(),
+            SizedBox(
+              height: Get.height * 0.03,
             ),
-            Text(
-              'YOUR MOBILITY PARTNER',
-              style: TextStyle(
+            TypewriterText(
+              delay: 0,
+              text: 'YOUR MOBILITY PARTNER',
+              textStyle: TextStyle(
                 letterSpacing: 3,
-                // fontSize: 18.0,
                 fontSize: 17,
                 color: Colors.black,
                 fontFamily: 'BoringSans',
               ),
-            ),
+            )
+            // Text(
+            //   'YOUR MOBILITY PARTNER',
+            //   style: TextStyle(
+            //     letterSpacing: 3,
+            //     fontSize: 17,
+            //     color: Colors.black,
+            //     fontFamily: 'BoringSans',
+            //   ),
+            // ),
           ],
         ),
       ),
