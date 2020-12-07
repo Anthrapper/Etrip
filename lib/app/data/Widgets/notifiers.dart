@@ -385,6 +385,7 @@ class CustomNotifiers {
       SearchWidget(
         fromCheck: fromCheck,
       ),
+      isDismissible: true,
     );
   }
 

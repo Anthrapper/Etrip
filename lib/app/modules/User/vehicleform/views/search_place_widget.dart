@@ -25,6 +25,7 @@ class SearchWidget extends StatelessWidget {
           apiKey: ApiData.mapApiKey,
           hasClearButton: true,
           placeType: PlaceType.address,
+          clearIcon: Icons.clear,
           onSelected: (place) async {
             Geolocation geolocation = await place.geolocation;
             var location = geolocation.coordinates;
@@ -35,7 +36,7 @@ class SearchWidget extends StatelessWidget {
                   place.fullJSON['terms'][0]['value'];
               Get.find<VehicleformController>().fromCo.value =
                   'Point(${location.longitude} ${location.latitude})';
-
+              print('all done');
               Get.back();
             } else {
               Get.find<VehicleformController>().toDes.value =

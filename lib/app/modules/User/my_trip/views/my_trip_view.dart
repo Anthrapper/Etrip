@@ -30,8 +30,8 @@ class MyTripView extends GetView<MyTripController> {
                   child: SpinKitCubeGrid(color: CustomColors.buttonColor),
                 )
               : ListView.builder(
+                  physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
-                  reverse: true,
                   itemCount: controller.myTrips == null
                       ? 0
                       : controller.myTrips.length,
